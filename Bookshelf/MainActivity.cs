@@ -18,7 +18,6 @@ namespace Bookshelf
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_main);
 
-            
             BottomNavigationView navigation = FindViewById<BottomNavigationView>(Resource.Id.navigation);
             navigation.SetOnNavigationItemSelectedListener(this);
         }
@@ -33,14 +32,14 @@ namespace Bookshelf
                     LoadFragment(fragment);
                     return true;
                 case Resource.Id.navigation_dashboard:
-                   
+                    fragment = FragmentLater.NewInstance();
+                    LoadFragment(fragment);
                     return true;
                 case Resource.Id.navigation_statistic:
                     fragment = FragmentStatistic.NewInstance();
                     LoadFragment(fragment);
                     return true;
             }
-
 
             return false;
         }

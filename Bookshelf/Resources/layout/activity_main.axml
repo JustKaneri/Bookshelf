@@ -22,10 +22,8 @@
 		android:layout_marginStart="0dp"
 		android:background="#fc6e51"
 		android:layout_alignParentBottom="true"
-		app:menu="@menu/navigation"
+		app:menu = "@menu/navigation"
 		app:itemIconTint = "#FFFFFF"
 		app:itemTextColor = "#FFFFFF"/>
-
-
 
 </RelativeLayout>

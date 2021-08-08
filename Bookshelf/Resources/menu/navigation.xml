@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+  <item
+      android:id="@+id/navigation_home"
+      android:enabled="true"
+      android:icon="@drawable/book"
+      android:title="@string/title_home"/>
 
-    <item
-        android:id="@+id/navigation_home"
-        android:icon="@drawable/book"
-        android:title="@string/title_home" />
+  <item
+      android:id="@+id/navigation_dashboard"
+      android:enabled="true"
+      android:icon="@drawable/heart"
+      android:title="@string/title_dashboard"/>
 
-    <item
-        android:id="@+id/navigation_dashboard"
-        android:icon="@drawable/heart"
-        android:title="@string/title_dashboard" />
-
-    <item
-        android:id="@+id/navigation_statistic"
-        android:icon="@drawable/statistic"
-        android:title="@string/title_statistic" />
-
+  <item
+      android:id="@+id/navigation_statistic"
+      android:enabled="true"
+      android:icon="@drawable/statistic"
+      android:title="@string/title_statistic"/>
 </menu>
+

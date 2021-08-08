@@ -25,8 +25,7 @@ namespace Bookshelf
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
            View v = inflater.Inflate(Resource.Layout.StatisticPage, container, false);
-            //FloatingActionButton fb = v.FindViewById<FloatingActionButton>(Resource.Id.floatingActionButton);
-            //fb.Click += Fb_Click;
+            
 
             ListView lst = v.FindViewById<ListView>(Resource.Id.LstStat);
             List<string> ls = new List<string>();

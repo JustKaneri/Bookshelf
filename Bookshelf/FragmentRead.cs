@@ -7,6 +7,7 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+using Android.Support.Design.Widget;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
@@ -27,7 +28,17 @@ namespace Bookshelf
             // Use this to return your custom view for this Fragment
             // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
 
-            return inflater.Inflate(Resource.Layout.ReadPage, container, false);
+            var v = inflater.Inflate(Resource.Layout.ReadPage, container, false);
+            FloatingActionButton fb = v.FindViewById<FloatingActionButton>(Resource.Id.fltBtnAddRead);
+            fb.Click += Fb_Click;
+
+            return v;
+        }
+
+        private void Fb_Click(object sender, EventArgs e)
+        {
+            Intent add = new Intent(Activity, typeof(ActivityAdding));
+            StartActivity(add);
         }
     }
 }

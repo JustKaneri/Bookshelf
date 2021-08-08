@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+	<ScrollView
+		android:minWidth="25px"
+		android:minHeight="25px"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:id="@+id/scrollView1">
+		<LinearLayout
+			android:orientation="vertical"
+			android:minWidth="25px"
+			android:minHeight="25px"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:id="@+id/linearLayout1">
+			<EditText
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:minWidth="25px"
+				android:minHeight="25px"
+				android:id="@+id/EdtName"
+				android:textAlignment="center"
+				android:hint="Название книги"
+				android:layout_marginTop="10dp"
+				android:layout_marginRight="10dp"
+				android:layout_marginLeft="10dp"
+				android:layout_marginBottom="5dp" />
+			<EditText
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:minWidth="25px"
+				android:minHeight="25px"
+				android:id="@+id/EdtAutor"
+				android:textAlignment="center"
+				android:hint="Название автор"
+				android:layout_marginLeft="10.0dp"
+				android:layout_marginRight="10dp"
+				android:layout_marginBottom="5dp"/>
+			<ImageView
+				android:src="@android:drawable/ic_menu_gallery"
+				android:layout_width="match_parent"
+				android:layout_height="111.0dp"
+				android:id="@+id/imageView1"
+				android:layout_marginRight="10dp"
+				android:layout_marginLeft="10dp"
+				android:layout_marginBottom="5dp"/>
+			<ListView
+				android:minWidth="25px"
+				android:minHeight="25px"
+				android:layout_width="match_parent"
+				android:layout_height="32.5dp"
+				android:id="@+id/listView1"
+				android:layout_marginRight="10dp"
+				android:layout_marginLeft="10dp"
+				android:textAlignment="center"
+				android:listSelector="#ff5d9cec"
+				android:choiceMode="singleChoice"
+				android:scrollbarStyle="outsideOverlay" />
+			<EditText
+				android:inputType="number"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:id="@+id/editText1"
+				android:layout_marginRight="10dp"
+				android:layout_marginLeft="10dp"
+				android:textAlignment="center"
+				android:hint="Оценка книги от 1 до 5"
+				android:layout_marginBottom="5dp"/>
+			<EditText
+				android:inputType="textMultiLine"
+				android:layout_width="match_parent"
+				android:layout_height="110.0dp"
+				android:id="@+id/editText2"
+				android:hint="Описание (по желанию)"
+				android:layout_marginRight="10dp"
+				android:layout_marginLeft="10dp"
+				android:textAlignment="center"
+				android:layout_marginBottom="5dp"/>
+			<Button
+				android:text="Добавить"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:id="@+id/button1"
+				android:layout_marginTop="23.0dp"
+				android:layout_marginRight="10dp"
+				android:layout_marginLeft="10dp"
+				android:foreground="#ff000000"
+				android:background="#fffc6e51" />
+		</LinearLayout>
+	</ScrollView>
+	
+
+</LinearLayout>
