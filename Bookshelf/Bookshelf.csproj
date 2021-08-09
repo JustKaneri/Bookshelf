@@ -57,10 +57,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActivityAdding.cs" />
+    <Compile Include="Controler\UserControler.cs" />
     <Compile Include="FragmentLater.cs" />
     <Compile Include="FragmentRead.cs" />
     <Compile Include="FragmentStatistic.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="Model\Book.cs" />
+    <Compile Include="Model\PendingBook.cs" />
+    <Compile Include="Model\ReadBook.cs" />
+    <Compile Include="Model\Shelf.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

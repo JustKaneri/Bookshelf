@@ -11,7 +11,7 @@ namespace Bookshelf
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity, BottomNavigationView.IOnNavigationItemSelectedListener
     {
-        private FloatingActionButton fb;
+        private Android.Support.V4.App.Fragment fragment = null;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -20,11 +20,14 @@ namespace Bookshelf
 
             BottomNavigationView navigation = FindViewById<BottomNavigationView>(Resource.Id.navigation);
             navigation.SetOnNavigationItemSelectedListener(this);
+
+            fragment = FragmentRead.NewInstance();
+            LoadFragment(fragment);
         }
 
         public bool OnNavigationItemSelected(IMenuItem item)
         {
-            Android.Support.V4.App.Fragment fragment = null;
+            
             switch (item.ItemId)
             {
                 case Resource.Id.navigation_home:
