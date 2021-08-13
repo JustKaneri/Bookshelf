@@ -16,7 +16,9 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         app:layoutManager="LinearLayoutManager"
-        tools:context=".TodoListFragment"/>
+        tools:context=".TodoListFragment">
+
+	</android.support.v7.widget.RecyclerView>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fltBtnAddRead"

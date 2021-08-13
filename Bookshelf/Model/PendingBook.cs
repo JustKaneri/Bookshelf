@@ -1,4 +1,4 @@
-﻿using Android.Media;
+﻿using Android.Graphics;
 using System;
 
 namespace Bookshelf.Model
@@ -6,7 +6,7 @@ namespace Bookshelf.Model
     [Serializable]
     public class PendingBook:Book
     {
-        public PendingBook(string name, string autor, Image photo, int cntPage, string discript)
+        public PendingBook(string name, string autor, Bitmap photo, int cntPage, string discript)
         {
             Name = name;
             Autor = autor;

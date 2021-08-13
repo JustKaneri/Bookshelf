@@ -15,7 +15,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Bookshelf.Controler
-{ 
+{
     public class UserControler
     {
         public Shelf _shelf;
@@ -24,7 +24,7 @@ namespace Bookshelf.Controler
 
         public UserControler()
         {
-            if(File.Exists(filePath))
+            if (File.Exists(filePath))
             {
                 BinaryFormatter bf = new BinaryFormatter();
 
@@ -39,12 +39,25 @@ namespace Bookshelf.Controler
             }
         }
 
-        public void AddBook(Book book,bool type)
+
+        public void AddBook(Book book, bool type)
         {
             if (type)
                 _shelf.readBooksArray.Add(book as ReadBook);
             else
                 _shelf.pendingBooksArray.Add(book as PendingBook);
         }
+
+        public List<ReadBook> GetBooks()
+        {
+            return _shelf.readBooksArray;
+        }
+        
+        public List<PendingBook> GetPendingBooks()
+        {
+            return _shelf.pendingBooksArray;
+        }
+
+      
     }
 }

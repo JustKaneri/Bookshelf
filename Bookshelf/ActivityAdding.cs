@@ -12,6 +12,8 @@ using Android.Provider;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Bookshelf.Model;
+using System.Drawing;
 
 namespace Bookshelf
 {
@@ -25,6 +27,8 @@ namespace Bookshelf
         private EditText edtStr;
         private EditText edtDiscript;
         private Button btnAdd;
+
+        private Bitmap bmp;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -60,7 +64,37 @@ namespace Bookshelf
 
         private void BtnAdd_Click(object sender, EventArgs e)
         {
-            
+            if (string.IsNullOrWhiteSpace(edtName.Text))
+            {
+                Toast.MakeText(this, "Укажите название", ToastLength.Short).Show();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(edtAutor.Text))
+            {
+                Toast.MakeText(this, "Укажите автора", ToastLength.Short).Show();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(edtMark.Text))
+            {
+                Toast.MakeText(this, "Укажите оценку", ToastLength.Short).Show();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(edtStr.Text))
+            {
+                Toast.MakeText(this, "Укажите кол-во страниц", ToastLength.Short).Show();
+                return;
+            }
+
+            ReadBook read = new ReadBook(edtName.Text, edtAutor.Text, bmp, int.Parse(edtStr.Text), edtDiscript.Text, int.Parse(edtMark.Text));
+
+            MainActivity._userControler.AddBook(read, true);
+
+            Intent intent = new Intent(this, typeof(MainActivity));
+            SetResult(0, intent);
+            Finish();
         }
 
 
@@ -71,8 +105,6 @@ namespace Bookshelf
             intent.SetAction(Intent.ActionGetContent);
             StartActivityForResult(Intent.CreateChooser(intent, "Select Picture"), 0);
 
-            //Intent ope = new Intent(MediaStore.ExtraShowActionIcons);
-            //StartActivityForResult(ope, 0);
         }
 
         protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
@@ -84,13 +116,8 @@ namespace Bookshelf
                 Stream stream = ContentResolver.OpenInputStream(uri);
                 imvBook.SetImageURI(uri);
 
-                //var bmp = (Bitmap)data.Extras.Get("data");
-                //imvBook.SetImageBitmap(bmp);
-
-                //MemoryStream ms = new MemoryStream();
-                //bmp.Compress(CompressFormat.Png, 100, ms);
-
-                //ArrayImgByte = ms.ToArray();
+                bmp = BitmapFactory.DecodeStream(stream);
+                
             }
         }
     }

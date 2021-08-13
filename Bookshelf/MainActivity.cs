@@ -5,6 +5,7 @@ using Android.Support.Design.Widget;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
+using Bookshelf.Controler;
 
 namespace Bookshelf
 {
@@ -12,6 +13,8 @@ namespace Bookshelf
     public class MainActivity : AppCompatActivity, BottomNavigationView.IOnNavigationItemSelectedListener
     {
         private Android.Support.V4.App.Fragment fragment = null;
+
+        public static UserControler _userControler;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -21,8 +24,10 @@ namespace Bookshelf
             BottomNavigationView navigation = FindViewById<BottomNavigationView>(Resource.Id.navigation);
             navigation.SetOnNavigationItemSelectedListener(this);
 
+            _userControler = new UserControler();
+
             fragment = FragmentRead.NewInstance();
-            LoadFragment(fragment);
+            LoadFragment(fragment);           
         }
 
         public bool OnNavigationItemSelected(IMenuItem item)
@@ -51,6 +56,7 @@ namespace Bookshelf
         {
             SupportFragmentManager.BeginTransaction().Replace(Resource.Id.fragment_container, fragment).Commit();
         }
+
 
     }
 }

@@ -1,4 +1,4 @@
-﻿using Android.Media;
+﻿using Android.Graphics;
 using System;
 
 namespace Bookshelf.Model
@@ -8,7 +8,7 @@ namespace Bookshelf.Model
     {
         private int Mark;
 
-        public ReadBook(string name,string autor,Image photo,int cntPage,string discript,int mark)
+        public ReadBook(string name,string autor,Bitmap photo,int cntPage,string discript,int mark)
         {
             Name = name;
             Autor = autor;
