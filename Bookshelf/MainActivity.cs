@@ -1,4 +1,5 @@
 ﻿using Android.App;
+using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.Design.Widget;
@@ -27,7 +28,86 @@ namespace Bookshelf
             _userControler = new UserControler();
 
             fragment = FragmentRead.NewInstance();
-            LoadFragment(fragment);           
+            LoadFragment(fragment);
+
+            MainActivity._userControler.StartReadUpdate += _userControler_StartReadUpdate;
+            MainActivity._userControler.StartReadDelete += _userControler_StartReadDelete;
+
+            MainActivity._userControler.StartLaterUpdate += _userControler_StartLaterUpdate;
+            MainActivity._userControler.StartLaterDelete += _userControler_StartLaterDelete;
+            MainActivity._userControler.StartCopy += _userControler_StartCopy;
+        }
+
+        /// <summary>
+        /// Перемещение из отложенного в прочитанное
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void _userControler_StartCopy(object sender, System.EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        /// <summary>
+        /// Удаление отложенной книги
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void _userControler_StartLaterDelete(object sender, System.EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        /// <summary>
+        /// Обновление отложенной книги
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void _userControler_StartLaterUpdate(object sender, System.EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        /// <summary>
+        /// Удаление прочитанной книги
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void _userControler_StartReadDelete(object sender, System.EventArgs e)
+        {
+            new Android.App.AlertDialog.Builder(this)
+                .SetTitle("Удаление")
+                .SetMessage("Удалить выбранную книгу?")
+                .SetPositiveButton("Да", delegate
+                {
+                    MainActivity._userControler.Delete(int.Parse(sender.ToString()), true);
+                    fragment = FragmentRead.NewInstance();
+                    LoadFragment(fragment);
+                })
+                .SetNegativeButton("Нет", delegate { }).Show();
+        }
+
+        /// <summary>
+        /// Редактирование прочитанной книги
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void _userControler_StartReadUpdate(object sender, System.EventArgs e)
+        {
+            Intent edt = new Intent(this, typeof(ActivityAdding));
+            edt.PutExtra("status", "edit_read");
+            edt.PutExtra("id", int.Parse(sender.ToString()));
+            StartActivityForResult(edt, 0);
+        }
+
+        protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+            if (resultCode == 0)
+            {
+                fragment = FragmentRead.NewInstance();
+                LoadFragment(fragment);
+            }
         }
 
         public bool OnNavigationItemSelected(IMenuItem item)

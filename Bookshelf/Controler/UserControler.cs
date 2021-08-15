@@ -29,7 +29,6 @@ namespace Bookshelf.Controler
         public event EventHandler StartLaterDelete;
         public event EventHandler StartCopy;
 
-
         public UserControler()
         {
             if (File.Exists(filePath))
@@ -103,7 +102,25 @@ namespace Bookshelf.Controler
             StartCopy?.Invoke(i,null);
         }
       
+        public void Update(Book book,int id,bool type)
+        {
+            if(type)
+            {
+                _shelf.readBooksArray[id] = book as ReadBook;
+            }
+            else
+            {
+                _shelf.pendingBooksArray[id] = book as PendingBook;
+            }
+        }
 
+        public void Delete(int id,bool type)
+        {
+            if (type)
+                _shelf.readBooksArray.RemoveAt(id);
+            else
+                _shelf.pendingBooksArray.RemoveAt(id);
+        }
 
     }
 }

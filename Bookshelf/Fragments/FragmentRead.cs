@@ -29,15 +29,21 @@ namespace Bookshelf
         private RecyclerView mRecyclerView;
         private RecyclerView.LayoutManager mLayoutManager;
         private View v;
+        private Activity activ;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
+            //MainActivity._userControler.StartReadUpdate += _userControler_StartUpdate;
+            //MainActivity._userControler.StartReadDelete += _userControler_StartReadDelete;
+
             v = inflater.Inflate(Resource.Layout.ReadPage, container, false);
             FloatingActionButton fb = v.FindViewById<FloatingActionButton>(Resource.Id.fltBtnAddRead);
             fb.Click += Fb_Click;
 
             mRecyclerView = v.FindViewById<RecyclerView>(Resource.Id.RecRead);
             FillRecylerView();
+
+            activ = Activity;
 
             return v;
         }
@@ -51,23 +57,12 @@ namespace Bookshelf
 
             mLayoutManager = new LinearLayoutManager(Activity);
             mRecyclerView.SetLayoutManager(mLayoutManager);
-
-            MainActivity._userControler.StartReadUpdate += _userControler_StartUpdate;
-            MainActivity._userControler.StartReadDelete += _userControler_StartReadDelete;
-
         }
+
 
         private void _userControler_StartReadDelete(object sender, EventArgs e)
         {
-            Toast.MakeText(Activity,"Удаляется "+ sender.ToString(), ToastLength.Short).Show();
-        }
-
-        private void _userControler_StartUpdate(object sender, EventArgs e)
-        {
-            Intent edt = new Intent(Activity, typeof(ActivityAdding));
-            edt.PutExtra("status", "edit_read");
-            edt.PutExtra("id", int.Parse(sender.ToString()));
-            StartActivityForResult(edt, 0);
+            
         }
 
         private void Fb_Click(object sender, EventArgs e)

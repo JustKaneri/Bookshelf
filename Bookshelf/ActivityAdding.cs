@@ -33,6 +33,7 @@ namespace Bookshelf
         private string status;
         private PendingBook pendingBook;
         private ReadBook readBook;
+        private int id;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -54,8 +55,7 @@ namespace Bookshelf
 
 
             status = Intent.GetStringExtra("status");
-            int id = Intent.GetIntExtra("id", -1);
-
+            id = Intent.GetIntExtra("id", -1);
 
             if(status == "add_read")
             {
@@ -69,6 +69,7 @@ namespace Bookshelf
                 edtName.Text = readBook.Name;
                 edtAutor.Text = readBook.Autor;
                 imvBook.SetImageBitmap(readBook.Photo);
+                bmp = readBook.Photo;
                 edtMark.Text = readBook.Mark.ToString();
                 edtStr.Text = readBook.CountPage.ToString();
                 edtDiscript.Text = readBook.Discript;
@@ -94,6 +95,7 @@ namespace Bookshelf
                 edtAutor.Text = pendingBook.Autor;
                 imvBook.SetImageBitmap(pendingBook.Photo);
                 edtStr.Text = pendingBook.CountPage.ToString();
+                bmp = pendingBook.Photo;
                 edtDiscript.Text = pendingBook.Discript;
 
             }
@@ -119,6 +121,20 @@ namespace Bookshelf
             ReadBook read = new ReadBook(edtName.Text, edtAutor.Text, bmp, int.Parse(edtStr.Text), edtDiscript.Text, int.Parse(edtMark.Text));
 
             MainActivity._userControler.AddBook(read, true);
+
+            Intent intent = new Intent(this, typeof(MainActivity));
+            SetResult(0, intent);
+            Finish();
+        }
+
+        private void UpdateReadBook()
+        {
+            if (bmp == null)
+                bmp = BitmapFactory.DecodeResource(this.Resources, Resource.Drawable.NotBook);
+
+            readBook = new ReadBook(edtName.Text, edtAutor.Text, bmp, int.Parse(edtStr.Text), edtDiscript.Text, int.Parse(edtMark.Text));
+
+            MainActivity._userControler.Update(readBook, id, true);
 
             Intent intent = new Intent(this, typeof(MainActivity));
             SetResult(0, intent);
@@ -173,7 +189,7 @@ namespace Bookshelf
 
             if (status == "edit_read")
             {
-
+                UpdateReadBook();
             }
 
             if (status == "add_later")
