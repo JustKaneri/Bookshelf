@@ -122,5 +122,13 @@ namespace Bookshelf.Controler
                 _shelf.pendingBooksArray.RemoveAt(id);
         }
 
+        public void ReadingBook(ReadBook book,int id)
+        {
+            Delete(id, false);
+
+            AddBook(book, true);
+        }
+        
+
     }
 }

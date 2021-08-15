@@ -1,19 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 using Android.App;
 using Android.Content;
 using Android.Graphics;
 using Android.OS;
-using Android.Provider;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Bookshelf.Model;
-using System.Drawing;
 
 namespace Bookshelf
 {
@@ -57,12 +52,8 @@ namespace Bookshelf
             status = Intent.GetStringExtra("status");
             id = Intent.GetIntExtra("id", -1);
 
-            if(status == "add_read")
-            {
-                
-            }
 
-            if(status == "edit_read")
+            if (status == "edit_read")
             {
                 readBook = MainActivity._userControler.GetBooks()[id];
 
@@ -76,29 +67,32 @@ namespace Bookshelf
             }
 
             if (status == "add_later")
-                EditLater();
+                edtMark.Visibility = ViewStates.Invisible;
 
-            if(status == "edit_later")
+            if (status == "edit_later")
             {
-                EditLater();
+                edtMark.Visibility = ViewStates.Invisible;
                 pendingBook = MainActivity._userControler.GetPendingBooks()[id];
+                FillLater();
             }
+
+            if (status == "read_book")
+            {
+                pendingBook = MainActivity._userControler.GetPendingBooks()[id];
+                FillLater();
+            }
+                
+
         }
 
-        private void EditLater()
+        private void FillLater()
         {
-            edtMark.Visibility = ViewStates.Invisible;
-
-            if(pendingBook != null)
-            {
-                edtName.Text = pendingBook.Name;
-                edtAutor.Text = pendingBook.Autor;
-                imvBook.SetImageBitmap(pendingBook.Photo);
-                edtStr.Text = pendingBook.CountPage.ToString();
-                bmp = pendingBook.Photo;
-                edtDiscript.Text = pendingBook.Discript;
-
-            }
+            edtName.Text = pendingBook.Name;
+            edtAutor.Text = pendingBook.Autor;
+            imvBook.SetImageBitmap(pendingBook.Photo);
+            edtStr.Text = pendingBook.CountPage.ToString();
+            bmp = pendingBook.Photo;
+            edtDiscript.Text = pendingBook.Discript;
         }
 
         private void EdtMark_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
@@ -148,7 +142,35 @@ namespace Bookshelf
 
             pendingBook = new PendingBook(edtName.Text, edtAutor.Text, bmp, int.Parse(edtStr.Text), edtDiscript.Text);
 
-            MainActivity._userControler.AddBook(pendingBook,false);
+            MainActivity._userControler.AddBook(pendingBook, false);
+
+            Intent intent = new Intent(this, typeof(MainActivity));
+            SetResult(0, intent);
+            Finish();
+        }
+
+        private void UpdateLaterBook()
+        {
+            if (bmp == null)
+                bmp = BitmapFactory.DecodeResource(this.Resources, Resource.Drawable.NotBook);
+
+            pendingBook = new PendingBook(edtName.Text, edtAutor.Text, bmp, int.Parse(edtStr.Text), edtDiscript.Text);
+
+            MainActivity._userControler.Update(pendingBook, id, false);
+
+            Intent intent = new Intent(this, typeof(MainActivity));
+            SetResult(Result.Ok, intent);
+            Finish();
+        }
+
+        private void ReadingBook()
+        {
+            if (bmp == null)
+                bmp = BitmapFactory.DecodeResource(this.Resources, Resource.Drawable.NotBook);
+
+            ReadBook read = new ReadBook(edtName.Text, edtAutor.Text, bmp, int.Parse(edtStr.Text), edtDiscript.Text, int.Parse(edtMark.Text));
+
+            MainActivity._userControler.ReadingBook(read,id);
 
             Intent intent = new Intent(this, typeof(MainActivity));
             SetResult(0, intent);
@@ -182,28 +204,26 @@ namespace Bookshelf
             }
 
 
-            if (status == "add_read")
+            switch (status)
             {
-                AddReadBook();
+                case "add_read":
+                    AddReadBook();
+                    break;
+                case "edit_read":
+                    UpdateReadBook();
+                    break;
+                case "add_later":
+                    AddLaterBook();
+                    break;
+                case "edit_later":
+                    UpdateLaterBook();
+                    break;
+                case "read_book":
+                    ReadingBook();
+                    break;
             }
-
-            if (status == "edit_read")
-            {
-                UpdateReadBook();
-            }
-
-            if (status == "add_later")
-            {
-                AddLaterBook();
-            }
-
-            if (status == "edit_later")
-            {
-
-            }
-
+                
         }
-
 
         private void ImvBook_Click(object sender, EventArgs e)
         {
@@ -224,7 +244,7 @@ namespace Bookshelf
                 imvBook.SetImageURI(uri);
 
                 bmp = BitmapFactory.DecodeStream(stream);
-                
+
             }
         }
     }

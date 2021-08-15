@@ -45,7 +45,10 @@ namespace Bookshelf
         /// <param name="e"></param>
         private void _userControler_StartCopy(object sender, System.EventArgs e)
         {
-            throw new System.NotImplementedException();
+            Intent edt = new Intent(this, typeof(ActivityAdding));
+            edt.PutExtra("status", "read_book");
+            edt.PutExtra("id", int.Parse(sender.ToString()));
+            StartActivityForResult(edt, 1);
         }
 
         /// <summary>
@@ -55,7 +58,16 @@ namespace Bookshelf
         /// <param name="e"></param>
         private void _userControler_StartLaterDelete(object sender, System.EventArgs e)
         {
-            throw new System.NotImplementedException();
+            new Android.App.AlertDialog.Builder(this)
+                .SetTitle("Удаление")
+                .SetMessage("Удалить выбранную книгу?")
+                .SetPositiveButton("Да", delegate
+                {
+                    MainActivity._userControler.Delete(int.Parse(sender.ToString()), false);
+                    fragment = FragmentLater.NewInstance();
+                    LoadFragment(fragment);
+                })
+                .SetNegativeButton("Нет", delegate { }).Show();
         }
 
         /// <summary>
@@ -65,7 +77,10 @@ namespace Bookshelf
         /// <param name="e"></param>
         private void _userControler_StartLaterUpdate(object sender, System.EventArgs e)
         {
-            throw new System.NotImplementedException();
+            Intent edt = new Intent(this, typeof(ActivityAdding));
+            edt.PutExtra("status", "edit_later");
+            edt.PutExtra("id", int.Parse(sender.ToString()));
+            StartActivityForResult(edt, 1);
         }
 
         /// <summary>
@@ -103,11 +118,14 @@ namespace Bookshelf
         protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
         {
             base.OnActivityResult(requestCode, resultCode, data);
-            if (resultCode == 0)
-            {
+
+            if (requestCode == 0)
                 fragment = FragmentRead.NewInstance();
-                LoadFragment(fragment);
-            }
+
+            if (requestCode == 1)
+                fragment = FragmentLater.NewInstance();
+
+            LoadFragment(fragment);
         }
 
         public bool OnNavigationItemSelected(IMenuItem item)

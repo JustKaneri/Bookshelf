@@ -30,6 +30,21 @@ namespace Bookshelf.Model
             BtnDele = itemView.FindViewById<ImageButton>(Resource.Id.BtnDelLater);
             BtnMove = itemView.FindViewById<ImageButton>(Resource.Id.BtnMovLater);
 
+            BtnEdit.Click += delegate
+            {
+                MainActivity._userControler.BegingUpdate(int.Parse(BtnEdit.Tag.ToString()), false);
+            };
+
+            BtnDele.Click += delegate
+            {
+                MainActivity._userControler.BeginDelete(int.Parse(BtnDele.Tag.ToString()), false);
+            };
+
+            BtnMove.Click += delegate
+            {
+                MainActivity._userControler.StartMoved(int.Parse(BtnMove.Tag.ToString()));
+            };
+
         }
     }
 
