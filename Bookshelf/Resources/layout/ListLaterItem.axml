@@ -27,15 +27,15 @@
 					android:id="@+id/BtnMovLater"
 					android:maxWidth="25dp"
 					android:maxHeight="25dp"
-					android:background="@drawable/read"
-					android:layout_marginRight="15dp" />
+					android:layout_marginRight="15dp"
+					android:background="@drawable/read" />
 				<ImageButton
 					android:layout_width="25dp"
 					android:layout_height="25dp"
 					android:id="@+id/BtnEditLater"
 					android:maxWidth="25dp"
 					android:maxHeight="25dp"
-					android:background="@drawable/edit"
+					android:background="@drawable/delete"
 					android:layout_marginRight="15dp" />
 				<ImageButton
 					android:layout_width="25dp"

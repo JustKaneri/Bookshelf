@@ -26,11 +26,13 @@ namespace Bookshelf.Controler
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
             // Inflate the CardView for the photo:
-            View itemView = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.ListItem, parent, false);
+            //View itemView = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.ListItem, parent, false);
 
-            // Create a ViewHolder to hold view references inside the CardView:
-            BookViewHolder bv = new BookViewHolder(itemView);
-            return bv;
+            //// Create a ViewHolder to hold view references inside the CardView:
+            //BookViewHolder bv = new BookViewHolder(itemView);
+            //return bv;
+
+            return null;
         }
 
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)

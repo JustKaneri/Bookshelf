@@ -23,20 +23,20 @@ namespace Bookshelf.Model
         public BookViewHolder(View itemView) : base(itemView)
         {
             // Locate and cache view references:
-            Image = itemView.FindViewById<ImageView>(Resource.Id.imageView);
-            Caption = itemView.FindViewById<TextView>(Resource.Id.textView);
-            BtnEdit = itemView.FindViewById<ImageButton>(Resource.Id.BtnEdit);
-            BtnDele = itemView.FindViewById<ImageButton>(Resource.Id.BtnDel);
+            //Image = itemView.FindViewById<ImageView>(Resource.Id.imageView);
+            //Caption = itemView.FindViewById<TextView>(Resource.Id.textView);
+            //BtnEdit = itemView.FindViewById<ImageButton>(Resource.Id.BtnEdit);
+            //BtnDele = itemView.FindViewById<ImageButton>(Resource.Id.BtnDel);
 
-            BtnEdit.Click += delegate
-            {
-                MainActivity._userControler.BegingUpdate(int.Parse(BtnEdit.Tag.ToString()),true);
-            };
+            //BtnEdit.Click += delegate
+            //{
+            //    MainActivity._userControler.BegingUpdate(int.Parse(BtnEdit.Tag.ToString()),true);
+            //};
 
-            BtnDele.Click += delegate
-            {
-                MainActivity._userControler.BeginDelete(int.Parse(BtnDele.Tag.ToString()), true);
-            };
+            //BtnDele.Click += delegate
+            //{
+            //    MainActivity._userControler.BeginDelete(int.Parse(BtnDele.Tag.ToString()), true);
+            //};
         }
 
     }
