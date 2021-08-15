@@ -8,10 +8,10 @@ namespace Bookshelf.Model
     public class Book
     {
         internal string Name { get; set; }
-        protected string Autor { get; set; }
+        internal string Autor { get; set; }
         internal Bitmap Photo { get; set; }
-        protected int CountPage { get; set; }
-        protected string Discript { get; set;}
+        internal int CountPage { get; set; }
+        internal string Discript { get; set;}
 
     }
 }

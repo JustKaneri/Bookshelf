@@ -32,9 +32,6 @@ namespace Bookshelf
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            // Use this to return your custom view for this Fragment
-            // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
-
             v = inflater.Inflate(Resource.Layout.ReadPage, container, false);
             FloatingActionButton fb = v.FindViewById<FloatingActionButton>(Resource.Id.fltBtnAddRead);
             fb.Click += Fb_Click;
@@ -45,30 +42,33 @@ namespace Bookshelf
             return v;
         }
 
-        private void BtnDel_Click(object sender, EventArgs e)
-        {
-            if (sender != null)
-                Toast.MakeText(Activity, ((Button)sender).Text, ToastLength.Short).Show();
-        }
-
         private void FillRecylerView()
         {
             BookAdapter adapter = new BookAdapter(MainActivity._userControler.GetBooks());
             
-
             // Plug the adapter into the RecyclerView:
             mRecyclerView.SetAdapter(adapter);
 
             mLayoutManager = new LinearLayoutManager(Activity);
             mRecyclerView.SetLayoutManager(mLayoutManager);
 
+            MainActivity._userControler.StartReadUpdate += _userControler_StartUpdate;
+            MainActivity._userControler.StartReadDelete += _userControler_StartReadDelete;
+
         }
 
-        public void GetId(int id)
+        private void _userControler_StartReadDelete(object sender, EventArgs e)
         {
-            Toast.MakeText(Activity, id.ToString(), ToastLength.Short);
+            Toast.MakeText(Activity,"Удаляется "+ sender.ToString(), ToastLength.Short).Show();
         }
 
+        private void _userControler_StartUpdate(object sender, EventArgs e)
+        {
+            Intent edt = new Intent(Activity, typeof(ActivityAdding));
+            edt.PutExtra("status", "edit_read");
+            edt.PutExtra("id", int.Parse(sender.ToString()));
+            StartActivityForResult(edt, 0);
+        }
 
         private void Fb_Click(object sender, EventArgs e)
         {

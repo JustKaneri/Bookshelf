@@ -30,6 +30,10 @@ namespace Bookshelf
 
         private Bitmap bmp;
 
+        private string status;
+        private PendingBook pendingBook;
+        private ReadBook readBook;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -48,6 +52,51 @@ namespace Bookshelf
             edtMark.TextChanged += EdtMark_TextChanged;
             btnAdd.Click += BtnAdd_Click;
 
+
+            status = Intent.GetStringExtra("status");
+            int id = Intent.GetIntExtra("id", -1);
+
+
+            if(status == "add_read")
+            {
+                
+            }
+
+            if(status == "edit_read")
+            {
+                readBook = MainActivity._userControler.GetBooks()[id];
+
+                edtName.Text = readBook.Name;
+                edtAutor.Text = readBook.Autor;
+                imvBook.SetImageBitmap(readBook.Photo);
+                edtMark.Text = readBook.Mark.ToString();
+                edtStr.Text = readBook.CountPage.ToString();
+                edtDiscript.Text = readBook.Discript;
+            }
+
+            if (status == "add_later")
+                EditLater();
+
+            if(status == "edit_later")
+            {
+                EditLater();
+                pendingBook = MainActivity._userControler.GetPendingBooks()[id];
+            }
+        }
+
+        private void EditLater()
+        {
+            edtMark.Visibility = ViewStates.Invisible;
+
+            if(pendingBook != null)
+            {
+                edtName.Text = pendingBook.Name;
+                edtAutor.Text = pendingBook.Autor;
+                imvBook.SetImageBitmap(pendingBook.Photo);
+                edtStr.Text = pendingBook.CountPage.ToString();
+                edtDiscript.Text = pendingBook.Discript;
+
+            }
         }
 
         private void EdtMark_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
@@ -60,6 +109,34 @@ namespace Bookshelf
 
             if (mark == 0 || mark > 5)
                 edtMark.Text = "";
+        }
+
+        private void AddReadBook()
+        {
+            if (bmp == null)
+                bmp = BitmapFactory.DecodeResource(this.Resources, Resource.Drawable.NotBook);
+
+            ReadBook read = new ReadBook(edtName.Text, edtAutor.Text, bmp, int.Parse(edtStr.Text), edtDiscript.Text, int.Parse(edtMark.Text));
+
+            MainActivity._userControler.AddBook(read, true);
+
+            Intent intent = new Intent(this, typeof(MainActivity));
+            SetResult(0, intent);
+            Finish();
+        }
+
+        private void AddLaterBook()
+        {
+            if (bmp == null)
+                bmp = BitmapFactory.DecodeResource(this.Resources, Resource.Drawable.NotBook);
+
+            pendingBook = new PendingBook(edtName.Text, edtAutor.Text, bmp, int.Parse(edtStr.Text), edtDiscript.Text);
+
+            MainActivity._userControler.AddBook(pendingBook,false);
+
+            Intent intent = new Intent(this, typeof(MainActivity));
+            SetResult(0, intent);
+            Finish();
         }
 
         private void BtnAdd_Click(object sender, EventArgs e)
@@ -76,7 +153,7 @@ namespace Bookshelf
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(edtMark.Text))
+            if (status.Contains("read") && string.IsNullOrWhiteSpace(edtMark.Text))
             {
                 Toast.MakeText(this, "Укажите оценку", ToastLength.Short).Show();
                 return;
@@ -88,13 +165,27 @@ namespace Bookshelf
                 return;
             }
 
-            ReadBook read = new ReadBook(edtName.Text, edtAutor.Text, bmp, int.Parse(edtStr.Text), edtDiscript.Text, int.Parse(edtMark.Text));
 
-            MainActivity._userControler.AddBook(read, true);
+            if (status == "add_read")
+            {
+                AddReadBook();
+            }
 
-            Intent intent = new Intent(this, typeof(MainActivity));
-            SetResult(0, intent);
-            Finish();
+            if (status == "edit_read")
+            {
+
+            }
+
+            if (status == "add_later")
+            {
+                AddLaterBook();
+            }
+
+            if (status == "edit_later")
+            {
+
+            }
+
         }
 
 

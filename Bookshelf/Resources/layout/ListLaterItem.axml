@@ -22,25 +22,33 @@
 				android:layout_gravity="center"
 				android:gravity="center|right">
 				<ImageButton
-					android:layout_width="24dp"
-					android:layout_height="24dp"
-					android:id="@+id/BtnEdit"
-					android:maxWidth="24dp"
-					android:maxHeight="24dp"
+					android:layout_width="25dp"
+					android:layout_height="25dp"
+					android:id="@+id/BtnMovLater"
+					android:maxWidth="25dp"
+					android:maxHeight="25dp"
+					android:background="@drawable/read"
+					android:layout_marginRight="15dp" />
+				<ImageButton
+					android:layout_width="25dp"
+					android:layout_height="25dp"
+					android:id="@+id/BtnEditLater"
+					android:maxWidth="25dp"
+					android:maxHeight="25dp"
 					android:background="@drawable/edit"
 					android:layout_marginRight="15dp" />
 				<ImageButton
-					android:layout_width="24dp"
-					android:layout_height="24dp"
-					android:id="@+id/BtnDel"
-					android:maxWidth="24dp"
-					android:maxHeight="24dp"
+					android:layout_width="25dp"
+					android:layout_height="25dp"
+					android:id="@+id/BtnDelLater"
+					android:maxWidth="25dp"
+					android:maxHeight="25dp"
 					android:background="@drawable/delete" />
 			</LinearLayout>
 			<ImageView
 				android:layout_width="match_parent"
 				android:layout_height="350dp"
-				android:id="@+id/imageView"
+				android:id="@+id/ImgLater"
 				android:scaleType="centerCrop"
 				android:maxHeight="350dp" />
 			<TextView
@@ -49,7 +57,7 @@
 				android:textAppearance="?android:attr/textAppearanceMedium"
 				android:textColor="#333333"
 				android:text="Caption"
-				android:id="@+id/textView"
+				android:id="@+id/TxtLater"
 				android:layout_gravity="center_horizontal"
 				android:layout_marginLeft="4dp" />
 		</LinearLayout>

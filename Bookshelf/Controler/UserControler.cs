@@ -22,6 +22,14 @@ namespace Bookshelf.Controler
 
         private readonly string filePath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal) + "/data.dat";
 
+        public event EventHandler StartReadUpdate;
+        public event EventHandler StartReadDelete;
+
+        public event EventHandler StartLaterUpdate;
+        public event EventHandler StartLaterDelete;
+        public event EventHandler StartCopy;
+
+
         public UserControler()
         {
             if (File.Exists(filePath))
@@ -58,6 +66,44 @@ namespace Bookshelf.Controler
             return _shelf.pendingBooksArray;
         }
 
+        /// <summary>
+        /// Обработчик события нажатия на кнопку редактирования
+        /// </summary>
+        /// <param name="i">позиция</param>
+        /// <param name="type">
+        /// True - прочитанная книга
+        /// False - отложенная книга
+        /// </param>
+        public void BegingUpdate(int i,bool type)
+        {
+            if (type)
+                StartReadUpdate?.Invoke(i, null);
+            else
+                StartLaterUpdate?.Invoke(i, null);
+        }
+
+        /// <summary>
+        /// Обработчик событя нажатия на кнопку удаления
+        /// </summary>
+        /// <param name="i">Позиция</param>
+        /// <param name="type">
+        /// True - прочитанная книга
+        /// False - отложенная книга
+        /// </param>
+        public void BeginDelete(int i,bool type)
+        {
+            if (type)
+                StartReadDelete?.Invoke(i, null);
+            else
+                StartLaterDelete?.Invoke(i, null);
+        }
+
+        public void StartMoved(int i)
+        {
+            StartCopy?.Invoke(i,null);
+        }
       
+
+
     }
 }

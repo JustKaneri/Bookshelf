@@ -61,12 +61,14 @@
   <ItemGroup>
     <Compile Include="ActivityAdding.cs" />
     <Compile Include="Adapter\BookAdapter.cs" />
+    <Compile Include="Adapter\BookLaterAdapter.cs" />
     <Compile Include="Controler\UserControler.cs" />
     <Compile Include="Fragments\FragmentLater.cs" />
     <Compile Include="Fragments\FragmentRead.cs" />
     <Compile Include="Fragments\FragmentStatistic.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Model\Book.cs" />
+    <Compile Include="Model\BookLaterViewHolder.cs" />
     <Compile Include="Model\BookViewHolder.cs" />
     <Compile Include="Model\PendingBook.cs" />
     <Compile Include="Model\ReadBook.cs" />
@@ -161,7 +163,17 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\edit.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\NotBook.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\read.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\ListLaterItem.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
     Other similar extension points exist, see Microsoft.Common.targets.

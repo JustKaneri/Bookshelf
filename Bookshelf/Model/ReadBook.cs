@@ -6,7 +6,7 @@ namespace Bookshelf.Model
     [Serializable]
     public class ReadBook:Book
     {
-        private int Mark;
+        internal int Mark;
 
         public ReadBook(string name,string autor,Bitmap photo,int cntPage,string discript,int mark)
         {

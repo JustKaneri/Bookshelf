@@ -12,42 +12,45 @@ using Android.Views;
 using Android.Widget;
 using Bookshelf.Model;
 
-namespace Bookshelf.Controler
+namespace Bookshelf.Adapter
 {
-    class BookAdapter: RecyclerView.Adapter
+    class BookLaterAdapter : RecyclerView.Adapter
     {
-        private List<ReadBook> bookArray { get;set; }
-        
-        public BookAdapter(List<ReadBook> books)
+        private List<PendingBook> books;
+
+        public BookLaterAdapter(List<PendingBook> books)
         {
-            bookArray = books;
+            this.books = books;
         }
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
             // Inflate the CardView for the photo:
-            View itemView = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.ListItem, parent, false);
+            View itemView = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.ListLaterItem ,parent, false);
 
             // Create a ViewHolder to hold view references inside the CardView:
-            BookViewHolder bv = new BookViewHolder(itemView);
+            BookLaterViewHolder bv = new BookLaterViewHolder(itemView);
             return bv;
         }
 
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
-            BookViewHolder book = holder as BookViewHolder;
+            BookLaterViewHolder book = holder as BookLaterViewHolder;
 
-            book.Image.SetImageBitmap(bookArray[position].Photo);
-            book.Caption.Text = bookArray[position].Name;
+            book.Image.SetImageBitmap(books[position].Photo);
+            book.Caption.Text = books[position].Name;
             book.BtnEdit.Tag = position.ToString();
             book.BtnDele.Tag = position.ToString();
+            book.BtnMove.Tag = position.ToString();
+
+
         }
 
         public override int ItemCount
         {
             get
             {
-                return bookArray.Count;
+                return books.Count;
             }
         }
     }

@@ -26,10 +26,16 @@ namespace Bookshelf.Model
             Image = itemView.FindViewById<ImageView>(Resource.Id.imageView);
             Caption = itemView.FindViewById<TextView>(Resource.Id.textView);
             BtnEdit = itemView.FindViewById<ImageButton>(Resource.Id.BtnEdit);
+            BtnDele = itemView.FindViewById<ImageButton>(Resource.Id.BtnDel);
 
             BtnEdit.Click += delegate
             {
-                Toast.MakeText(itemView.Context, BtnEdit.Tag.ToString() , ToastLength.Short).Show();
+                MainActivity._userControler.BegingUpdate(int.Parse(BtnEdit.Tag.ToString()),true);
+            };
+
+            BtnDele.Click += delegate
+            {
+                MainActivity._userControler.BeginDelete(int.Parse(BtnDele.Tag.ToString()), true);
             };
         }
 
