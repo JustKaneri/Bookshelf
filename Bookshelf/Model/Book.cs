@@ -12,6 +12,6 @@ namespace Bookshelf.Model
         internal Bitmap Photo { get; set; }
         internal int CountPage { get; set; }
         internal string Discript { get; set;}
-
+        internal int Categori { get; set; }
     }
 }

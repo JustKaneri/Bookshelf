@@ -18,6 +18,7 @@ namespace Bookshelf
         private EditText edtName;
         private EditText edtAutor;
         private ImageView imvBook;
+        private Spinner spType;
         private EditText edtMark;
         private EditText edtStr;
         private EditText edtDiscript;
@@ -39,19 +40,22 @@ namespace Bookshelf
             edtName = FindViewById<EditText>(Resource.Id.EdtName);
             edtAutor = FindViewById<EditText>(Resource.Id.EdtAutor);
             imvBook = FindViewById<ImageView>(Resource.Id.ImvBookAdd);
+            spType = FindViewById<Spinner>(Resource.Id.SpnCatecogr);
             edtMark = FindViewById<EditText>(Resource.Id.EdtMark);
             edtStr = FindViewById<EditText>(Resource.Id.EdtStr);
             edtDiscript = FindViewById<EditText>(Resource.Id.EdtDiscript);
             btnAdd = FindViewById<Button>(Resource.Id.BtnAdd);
 
             imvBook.Click += ImvBook_Click;
+            imvBook.LongClick += ImvBook_LongClick;
             edtMark.TextChanged += EdtMark_TextChanged;
             btnAdd.Click += BtnAdd_Click;
 
+            imvBook.SetImageResource(Resource.Drawable.NotBook);
 
             status = Intent.GetStringExtra("status");
             id = Intent.GetIntExtra("id", -1);
-
+            
 
             if (status == "edit_read")
             {
@@ -82,7 +86,19 @@ namespace Bookshelf
                 FillLater();
             }
                 
+        }
 
+        private void ImvBook_LongClick(object sender, View.LongClickEventArgs e)
+        {
+            new Android.App.AlertDialog.Builder(this)
+               .SetTitle("Удаление")
+               .SetMessage("Очистить изображение ?")
+               .SetPositiveButton("Да", delegate
+               {
+                   imvBook.SetImageResource(Resource.Drawable.NotBook);
+                   bmp = BitmapFactory.DecodeResource(this.Resources, Resource.Drawable.NotBook);
+               })
+               .SetNegativeButton("Нет", delegate { }).Show();
         }
 
         private void FillLater()

@@ -36,13 +36,11 @@ namespace Bookshelf
             }
 
             lst.Adapter = new ArrayAdapter(Activity, Android.Resource.Layout.SimpleListItem1, ls);
+                
+
 
             return v;
         }
 
-        private void Fb_Click(object sender, System.EventArgs e)
-        {
-            Toast.MakeText(Activity, "Hello", ToastLength.Long).Show();
-        }
     }
 }
