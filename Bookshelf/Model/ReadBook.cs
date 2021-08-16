@@ -8,7 +8,7 @@ namespace Bookshelf.Model
     {
         internal int Mark;
 
-        public ReadBook(string name,string autor,Bitmap photo,int cntPage,string discript,int mark)
+        public ReadBook(string name,string autor,Bitmap photo,int cntPage,string discript,int mark,int categori)
         {
             Name = name;
             Autor = autor;
@@ -16,6 +16,7 @@ namespace Bookshelf.Model
             CountPage = cntPage;
             Discript = discript;
             Mark = mark;
+            Categori = categori;
         }
     }
 }

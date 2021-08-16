@@ -3,7 +3,4 @@
     <string name="title_home">Прочитанное</string>
     <string name="title_dashboard">Отложенное</string>
     <string name="title_statistic">Статистика</string>
-    <string-array name ="type_array">
-      <item>Приключения</item>
-    </string-array>
 </resources>

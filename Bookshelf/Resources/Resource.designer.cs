@@ -105,22 +105,6 @@ namespace Bookshelf
 			}
 		}
 		
-		public partial class Array
-		{
-			
-			// aapt resource value: 0x7f0e0000
-			public const int type_array = 2131623936;
-			
-			static Array()
-			{
-				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
-			}
-			
-			private Array()
-			{
-			}
-		}
-		
 		public partial class Attribute
 		{
 			
@@ -3318,8 +3302,8 @@ namespace Bookshelf
 		public partial class Menu
 		{
 			
-			// aapt resource value: 0x7f0f0000
-			public const int navigation = 2131689472;
+			// aapt resource value: 0x7f0e0000
+			public const int navigation = 2131623936;
 			
 			static Menu()
 			{

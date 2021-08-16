@@ -20,6 +20,10 @@ namespace Bookshelf.Controler
     {
         public Shelf _shelf;
 
+        public static string[] categories = {"Афоризмы,фольклор и мифы","Астрология","Детективы","Домоводство","Исторические романы","На иностранном языке",
+            "Комиксы и манга","Любовные романы","Поэзия","Приключенческая литература","Проза","Триллер","Фантастика или фэнтези",
+            "Юмор и сатира"};
+
         private readonly string filePath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal) + "/data.dat";
 
         public event EventHandler StartReadUpdate;

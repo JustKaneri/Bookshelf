@@ -7,7 +7,8 @@ using Android.Support.Design.Widget;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
-
+using Bookshelf.Controler;
+using Android.Content.Res;
 
 namespace Bookshelf
 {
@@ -24,18 +25,12 @@ namespace Bookshelf
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-           View v = inflater.Inflate(Resource.Layout.StatisticPage, container, false);
-            
+
+            View v = inflater.Inflate(Resource.Layout.StatisticPage, container, false);
 
             ListView lst = v.FindViewById<ListView>(Resource.Id.LstStat);
-            List<string> ls = new List<string>();
 
-            for (int i = 0; i < 100; i++)
-            {
-                ls.Add(i.ToString());
-            }
-
-            lst.Adapter = new ArrayAdapter(Activity, Android.Resource.Layout.SimpleListItem1, ls);
+            lst.Adapter = new ArrayAdapter(Activity, Android.Resource.Layout.SimpleListItem1, StatisticControler.GetList(MainActivity._userControler.GetBooks(),MainActivity._userControler.GetPendingBooks()));
                 
 
 

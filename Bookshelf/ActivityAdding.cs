@@ -8,6 +8,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Bookshelf.Controler;
 using Bookshelf.Model;
 
 namespace Bookshelf
@@ -52,6 +53,7 @@ namespace Bookshelf
             btnAdd.Click += BtnAdd_Click;
 
             imvBook.SetImageResource(Resource.Drawable.NotBook);
+            spType.Adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, UserControler.categories);
 
             status = Intent.GetStringExtra("status");
             id = Intent.GetIntExtra("id", -1);
@@ -68,6 +70,7 @@ namespace Bookshelf
                 edtMark.Text = readBook.Mark.ToString();
                 edtStr.Text = readBook.CountPage.ToString();
                 edtDiscript.Text = readBook.Discript;
+                spType.SetSelection(readBook.Categori);
             }
 
             if (status == "add_later")
@@ -109,6 +112,7 @@ namespace Bookshelf
             edtStr.Text = pendingBook.CountPage.ToString();
             bmp = pendingBook.Photo;
             edtDiscript.Text = pendingBook.Discript;
+            spType.SetSelection(pendingBook.Categori);
         }
 
         private void EdtMark_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
@@ -128,7 +132,7 @@ namespace Bookshelf
             if (bmp == null)
                 bmp = BitmapFactory.DecodeResource(this.Resources, Resource.Drawable.NotBook);
 
-            ReadBook read = new ReadBook(edtName.Text, edtAutor.Text, bmp, int.Parse(edtStr.Text), edtDiscript.Text, int.Parse(edtMark.Text));
+            ReadBook read = new ReadBook(edtName.Text, edtAutor.Text, bmp, int.Parse(edtStr.Text), edtDiscript.Text, int.Parse(edtMark.Text),spType.SelectedItemPosition);
 
             MainActivity._userControler.AddBook(read, true);
 
@@ -142,7 +146,7 @@ namespace Bookshelf
             if (bmp == null)
                 bmp = BitmapFactory.DecodeResource(this.Resources, Resource.Drawable.NotBook);
 
-            readBook = new ReadBook(edtName.Text, edtAutor.Text, bmp, int.Parse(edtStr.Text), edtDiscript.Text, int.Parse(edtMark.Text));
+            readBook = new ReadBook(edtName.Text, edtAutor.Text, bmp, int.Parse(edtStr.Text), edtDiscript.Text, int.Parse(edtMark.Text),spType.SelectedItemPosition);
 
             MainActivity._userControler.Update(readBook, id, true);
 
@@ -156,7 +160,7 @@ namespace Bookshelf
             if (bmp == null)
                 bmp = BitmapFactory.DecodeResource(this.Resources, Resource.Drawable.NotBook);
 
-            pendingBook = new PendingBook(edtName.Text, edtAutor.Text, bmp, int.Parse(edtStr.Text), edtDiscript.Text);
+            pendingBook = new PendingBook(edtName.Text, edtAutor.Text, bmp, int.Parse(edtStr.Text), edtDiscript.Text,spType.SelectedItemPosition);
 
             MainActivity._userControler.AddBook(pendingBook, false);
 
@@ -170,7 +174,7 @@ namespace Bookshelf
             if (bmp == null)
                 bmp = BitmapFactory.DecodeResource(this.Resources, Resource.Drawable.NotBook);
 
-            pendingBook = new PendingBook(edtName.Text, edtAutor.Text, bmp, int.Parse(edtStr.Text), edtDiscript.Text);
+            pendingBook = new PendingBook(edtName.Text, edtAutor.Text, bmp, int.Parse(edtStr.Text), edtDiscript.Text,spType.SelectedItemPosition);
 
             MainActivity._userControler.Update(pendingBook, id, false);
 
@@ -184,7 +188,7 @@ namespace Bookshelf
             if (bmp == null)
                 bmp = BitmapFactory.DecodeResource(this.Resources, Resource.Drawable.NotBook);
 
-            ReadBook read = new ReadBook(edtName.Text, edtAutor.Text, bmp, int.Parse(edtStr.Text), edtDiscript.Text, int.Parse(edtMark.Text));
+            ReadBook read = new ReadBook(edtName.Text, edtAutor.Text, bmp, int.Parse(edtStr.Text), edtDiscript.Text, int.Parse(edtMark.Text),spType.SelectedItemPosition);
 
             MainActivity._userControler.ReadingBook(read,id);
 
