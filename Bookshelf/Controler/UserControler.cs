@@ -13,6 +13,7 @@ using Bookshelf.Model;
 using Bookshelf.Controler;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Reflection;
 
 namespace Bookshelf.Controler
 {
@@ -24,7 +25,8 @@ namespace Bookshelf.Controler
             "Комиксы и манга","Любовные романы","Поэзия","Приключенческая литература","Проза","Триллер","Фантастика или фэнтези",
             "Юмор и сатира"};
 
-        private readonly string filePath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal) + "/data.dat";
+        private readonly string filePath = System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "bookshelf.db3");
+
 
         public event EventHandler StartReadUpdate;
         public event EventHandler StartReadDelete;
@@ -35,28 +37,32 @@ namespace Bookshelf.Controler
 
         public UserControler()
         {
-            if (File.Exists(filePath))
+            if(File.Exists(filePath))
             {
-                BinaryFormatter bf = new BinaryFormatter();
+                var res = DBControler.GetTables();
+                _shelf = new Shelf(res.Item1, res.Item2);
 
-                using (FileStream fs = File.OpenRead(filePath))
-                {
-                    _shelf = bf.Deserialize(fs) as Shelf;
-                }
-            }
-            else
+            }else
             {
+
+                DBControler.CreatDB();
+
                 _shelf = new Shelf(new List<ReadBook>(), new List<PendingBook>());
             }
         }
 
-
         public void AddBook(Book book, bool type)
         {
             if (type)
+            {
                 _shelf.readBooksArray.Add(book as ReadBook);
+                DBControler.AddBook(book, type);
+            }
             else
+            {
                 _shelf.pendingBooksArray.Add(book as PendingBook);
+                DBControler.AddBook(book, type);
+            }
         }
 
         public List<ReadBook> GetBooks()

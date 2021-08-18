@@ -54,6 +54,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
@@ -62,6 +63,7 @@
     <Compile Include="ActivityAdding.cs" />
     <Compile Include="Adapter\BookAdapter.cs" />
     <Compile Include="Adapter\BookLaterAdapter.cs" />
+    <Compile Include="Controler\DBControler.cs" />
     <Compile Include="Controler\StatisticControler.cs" />
     <Compile Include="Controler\UserControler.cs" />
     <Compile Include="Fragments\FragmentLater.cs" />
@@ -116,6 +118,12 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher_round.png" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="sqlite-net-pcl">
+      <Version>1.7.335</Version>
+    </PackageReference>
+    <PackageReference Include="SQLitePCL">
+      <Version>3.8.7.2</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.Design" Version="27.0.2.1" />
     <PackageReference Include="Xamarin.Android.Support.v7.CardView">
       <Version>27.0.2.1</Version>

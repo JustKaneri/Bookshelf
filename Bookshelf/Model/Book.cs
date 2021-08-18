@@ -7,6 +7,7 @@ namespace Bookshelf.Model
     [Serializable]
     public class Book
     {
+        public int ID { get; set; }
         internal string Name { get; set; }
         internal string Autor { get; set; }
         internal Bitmap Photo { get; set; }
