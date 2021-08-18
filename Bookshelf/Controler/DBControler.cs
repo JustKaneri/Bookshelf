@@ -53,12 +53,25 @@ namespace Bookshelf.Controler
             public int Categori { get; set; }
         }
 
+        [Table("Quotes")]
+        public class Quotes
+        {
+            [PrimaryKey, AutoIncrement, Column("_id")]
+            public int Id { get; set; }
+            [Column("Id_Book")]
+            public int Id_Book { get; set; }
+            [Column("Text")]
+            public string Name { get; set; }
+            [Column("Autor")]
+            public string Autor { get; set; }
+        }
+
         public static void CreatDB()
         {
             var db = new SQLiteConnection(filePath);
             db.CreateTable<ReadBook>();
             db.CreateTable<PendibgBook>();
-
+            db.CreateTable<Quotes>();
         }
 
         public static (List<Model.ReadBook>,List<Model.PendingBook>) GetTables()
@@ -110,7 +123,7 @@ namespace Bookshelf.Controler
                 using (MemoryStream ms = new MemoryStream())
                 {
                     newBok.Photo.Compress(CompressFormat.Png, 100, ms);
-                    db.Query<ReadBook>($"INSERT INTO ReadBook Values({new Random().Next(0,int.MaxValue)},'{newBok.Name}','{newBok.Autor}',?," +
+                    db.Query<ReadBook>($"INSERT INTO ReadBook (Name,Autor,Photo,CountPage,Discript,Categori,Mark) Values('{newBok.Name}','{newBok.Autor}',?," +
                         $"{newBok.CountPage},'{newBok.Discript}',{newBok.Categori},{newBok.Mark})", ms.ToArray());
                 }                
             }
@@ -122,7 +135,7 @@ namespace Bookshelf.Controler
                 using (MemoryStream ms = new MemoryStream())
                 {
                     newBok.Photo.Compress(CompressFormat.Png, 100, ms);
-                    db.Query<ReadBook>($"INSERT INTO ReadBook Values({new Random().Next(0, int.MaxValue)},'{newBok.Name}','{newBok.Autor}',?," +
+                    db.Query<PendibgBook>($"INSERT INTO PendibgBook (Name,Autor,Photo,CountPage,Discript,Categori) Values('{newBok.Name}','{newBok.Autor}',?," +
                       $"{newBok.CountPage},'{newBok.Discript}',{newBok.Categori})", ms.ToArray());
                 }
             }
@@ -130,7 +143,67 @@ namespace Bookshelf.Controler
 
         public static void UpdateBook(Book book,bool type)
         {
+            var db = new SQLiteConnection(filePath);
 
+            if(type)
+            {
+                var newBok = book as Model.ReadBook;
+
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    newBok.Photo.Compress(CompressFormat.Png, 100, ms);
+
+                    db.Execute($"UPDATE ReadBook SET Name = '{newBok.Name}',Autor = '{newBok.Autor}'," +
+                        $"Photo  = ?, CountPage = {newBok.CountPage}, " +
+                        $"Discript = '{newBok.Discript}',Categori = {newBok.Categori}, " +
+                        $"Mark  = {newBok.Mark} " +
+                        $"WHERE _id = {newBok.ID}", ms.ToArray());
+                }
+            }
+            else
+            {
+                var newBok = book as Model.PendingBook;
+
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    newBok.Photo.Compress(CompressFormat.Png, 100, ms);
+
+                    db.Execute($"UPDATE PendibgBook SET Name = '{newBok.Name}',Autor = '{newBok.Autor}'," +
+                        $"Photo  = ?, CountPage = {newBok.CountPage}, " +
+                        $"Discript = '{newBok.Discript}',Categori = {newBok.Categori} " +
+                        $"WHERE _id = {newBok.ID}", ms.ToArray());
+                }
+            }
         }
+
+        public static void DeleteBook(int id,bool type)
+        {
+            var db = new SQLiteConnection(filePath);
+
+            if (type)
+            {
+                ClearQuites(id);
+                db.Delete<ReadBook>(id);
+            }
+            else
+            {
+                db.Delete<PendibgBook>(id);
+            }
+          
+        }
+
+        private static void ClearQuites(int id)
+        {
+            var db = new SQLiteConnection(filePath);
+            db.Execute("Delete From Quites where Id_Book = ?",id); ;
+        }
+
+        private static void DeleteQuites(int id)
+        {
+            var db = new SQLiteConnection(filePath);
+            db.Execute("Delete From Quites where Id = ?", id); ;
+        }
+
+       
     }
 }

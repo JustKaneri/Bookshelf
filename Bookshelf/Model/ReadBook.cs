@@ -3,7 +3,6 @@ using System;
 
 namespace Bookshelf.Model
 {
-    [Serializable]
     public class ReadBook:Book
     {
         internal int Mark;

@@ -4,7 +4,7 @@ using Android.Media;
 
 namespace Bookshelf.Model
 {
-    [Serializable]
+
     public class Book
     {
         public int ID { get; set; }

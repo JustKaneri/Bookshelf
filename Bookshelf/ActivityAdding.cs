@@ -146,7 +146,9 @@ namespace Bookshelf
             if (bmp == null)
                 bmp = BitmapFactory.DecodeResource(this.Resources, Resource.Drawable.NotBook);
 
+            int idB = readBook.ID;
             readBook = new ReadBook(edtName.Text, edtAutor.Text, bmp, int.Parse(edtStr.Text), edtDiscript.Text, int.Parse(edtMark.Text),spType.SelectedItemPosition);
+            readBook.ID = idB;
 
             MainActivity._userControler.Update(readBook, id, true);
 
@@ -174,7 +176,9 @@ namespace Bookshelf
             if (bmp == null)
                 bmp = BitmapFactory.DecodeResource(this.Resources, Resource.Drawable.NotBook);
 
+            int idBook = pendingBook.ID;
             pendingBook = new PendingBook(edtName.Text, edtAutor.Text, bmp, int.Parse(edtStr.Text), edtDiscript.Text,spType.SelectedItemPosition);
+            pendingBook.ID = idBook;
 
             MainActivity._userControler.Update(pendingBook, id, false);
 

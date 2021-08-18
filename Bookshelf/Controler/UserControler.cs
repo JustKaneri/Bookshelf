@@ -42,11 +42,10 @@ namespace Bookshelf.Controler
                 var res = DBControler.GetTables();
                 _shelf = new Shelf(res.Item1, res.Item2);
 
-            }else
+            }
+            else
             {
-
                 DBControler.CreatDB();
-
                 _shelf = new Shelf(new List<ReadBook>(), new List<PendingBook>());
             }
         }
@@ -116,10 +115,12 @@ namespace Bookshelf.Controler
         {
             if(type)
             {
+                DBControler.UpdateBook(book, type);
                 _shelf.readBooksArray[id] = book as ReadBook;
             }
             else
             {
+                DBControler.UpdateBook(book, type);
                 _shelf.pendingBooksArray[id] = book as PendingBook;
             }
         }
@@ -127,9 +128,16 @@ namespace Bookshelf.Controler
         public void Delete(int id,bool type)
         {
             if (type)
+            {
+                DBControler.DeleteBook(_shelf.readBooksArray[id].ID, true);
                 _shelf.readBooksArray.RemoveAt(id);
+            }          
             else
+            {
+                DBControler.DeleteBook(_shelf.pendingBooksArray[id].ID, false);
                 _shelf.pendingBooksArray.RemoveAt(id);
+            }
+               
         }
 
         public void ReadingBook(ReadBook book,int id)
