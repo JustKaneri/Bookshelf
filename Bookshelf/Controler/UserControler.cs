@@ -142,8 +142,9 @@ namespace Bookshelf.Controler
 
         public void ReadingBook(ReadBook book,int id)
         {
-            Delete(id, false);
+            DBControler.DeleteBook(_shelf.pendingBooksArray[id].ID, false);
 
+            Delete(id, false);
             AddBook(book, true);
         }
         

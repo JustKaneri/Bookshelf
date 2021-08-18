@@ -195,13 +195,13 @@ namespace Bookshelf.Controler
         private static void ClearQuites(int id)
         {
             var db = new SQLiteConnection(filePath);
-            db.Execute("Delete From Quites where Id_Book = ?",id); ;
+            db.Execute("Delete From Quotes where Id_Book = ?", id); ;
         }
 
         private static void DeleteQuites(int id)
         {
             var db = new SQLiteConnection(filePath);
-            db.Execute("Delete From Quites where Id = ?", id); ;
+            db.Execute("Delete From Quotes where Id = ?", id); ;
         }
 
        
