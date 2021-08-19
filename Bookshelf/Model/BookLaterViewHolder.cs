@@ -42,10 +42,41 @@ namespace Bookshelf.Model
 
             BtnMove.Click += delegate
             {
-                MainActivity._userControler.StartMoved(int.Parse(BtnMove.Tag.ToString()));
+                EditText editText = new EditText(itemView.Context);
+                editText.Hint = "Введите оценку";
+                editText.TextAlignment = TextAlignment.Center;
+                editText.TextChanged += EditText_TextChanged;
+
+
+                new Android.App.AlertDialog.Builder(itemView.Context)
+                .SetTitle("Перемещение").SetMessage("Переместить данную книгу в раздел прочитанное?\nДля этого укажите оценку данной книги.")
+                .SetView(editText)
+                .SetPositiveButton("Переместить", delegate
+                {
+                    if (editText.Text == "")
+                        Toast.MakeText(itemView.Context, "Вы не указали оценку", ToastLength.Long).Show();
+                    else
+                        MainActivity._userControler.StartMoved(int.Parse(BtnMove.Tag.ToString()),int.Parse(editText.Text));
+                })
+                .SetNegativeButton("Отмена", delegate { })
+                .Show();
+
+              
 
             };
 
+        }
+
+        private void EditText_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
+        {
+            int res = 0;
+            if (!int.TryParse(((EditText)sender).Text, out res))
+                return;
+
+            int mark = int.Parse(((EditText)sender).Text);
+
+            if (mark == 0 || mark > 5)
+                ((EditText)sender).Text = "";
         }
     }
 

@@ -5,8 +5,8 @@ using Android.Runtime;
 using Android.Support.Design.Widget;
 using Android.Support.V7.App;
 using Android.Views;
-using Android.Widget;
 using Bookshelf.Controler;
+using Bookshelf.Model;
 
 namespace Bookshelf
 {
@@ -45,10 +45,16 @@ namespace Bookshelf
         /// <param name="e"></param>
         private void _userControler_StartCopy(object sender, System.EventArgs e)
         {
-            Intent edt = new Intent(this, typeof(ActivityAdding));
-            edt.PutExtra("status", "read_book");
-            edt.PutExtra("id", int.Parse(sender.ToString()));
-            StartActivityForResult(edt, 1);
+            var mas = sender as int[];
+
+            var pend = _userControler.GetPendingBooks()[mas[0]];
+
+            var readBook = new ReadBook(pend.Name, pend.Autor, pend.Photo, pend.CountPage, pend.Discript, mas[1], pend.Categori);
+
+            _userControler.ReadingBook(readBook, mas[0]);
+
+            fragment = FragmentLater.NewInstance();
+            LoadFragment(fragment);
         }
 
         /// <summary>

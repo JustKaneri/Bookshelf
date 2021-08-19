@@ -82,12 +82,6 @@ namespace Bookshelf
                 pendingBook = MainActivity._userControler.GetPendingBooks()[id];
                 FillLater();
             }
-
-            if (status == "read_book")
-            {
-                pendingBook = MainActivity._userControler.GetPendingBooks()[id];
-                FillLater();
-            }
                 
         }
 
@@ -187,20 +181,6 @@ namespace Bookshelf
             Finish();
         }
 
-        private void ReadingBook()
-        {
-            if (bmp == null)
-                bmp = BitmapFactory.DecodeResource(this.Resources, Resource.Drawable.NotBook);
-
-            ReadBook read = new ReadBook(edtName.Text, edtAutor.Text, bmp, int.Parse(edtStr.Text), edtDiscript.Text, int.Parse(edtMark.Text),spType.SelectedItemPosition);
-
-            MainActivity._userControler.ReadingBook(read,id);
-
-            Intent intent = new Intent(this, typeof(MainActivity));
-            SetResult(0, intent);
-            Finish();
-        }
-
         private void BtnAdd_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(edtName.Text))
@@ -241,9 +221,6 @@ namespace Bookshelf
                     break;
                 case "edit_later":
                     UpdateLaterBook();
-                    break;
-                case "read_book":
-                    ReadingBook();
                     break;
             }
                 

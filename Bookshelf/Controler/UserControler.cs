@@ -106,9 +106,9 @@ namespace Bookshelf.Controler
                 StartLaterDelete?.Invoke(i, null);
         }
 
-        public void StartMoved(int i)
+        public void StartMoved(int i,int mark)
         {
-            StartCopy?.Invoke(i,null);
+            StartCopy?.Invoke(new int[] {i,mark},null);
         }
       
         public void Update(Book book,int id,bool type)
