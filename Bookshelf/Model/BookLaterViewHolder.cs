@@ -43,6 +43,7 @@ namespace Bookshelf.Model
             BtnMove.Click += delegate
             {
                 MainActivity._userControler.StartMoved(int.Parse(BtnMove.Tag.ToString()));
+
             };
 
         }
