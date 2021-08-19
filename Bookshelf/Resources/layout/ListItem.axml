@@ -21,6 +21,23 @@
 				android:padding="8dp"
 				android:layout_gravity="center"
 				android:gravity="center|right">
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal"
+					android:padding="8dp"
+					android:layout_gravity="fill"
+					android:gravity="left"
+					android:layout_marginLeft="60.0dp">
+					<ImageButton
+						android:layout_width="25dp"
+						android:layout_height="25dp"
+						android:id="@+id/BtnFavorite"
+						android:maxWidth="25dp"
+						android:maxHeight="25dp"
+						android:background="@drawable/NoFavorite"
+						android:layout_marginRight="15dp" />
+				</LinearLayout>
 				<ImageButton
 					android:layout_width="25dp"
 					android:layout_height="25dp"

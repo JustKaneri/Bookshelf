@@ -5,7 +5,8 @@ namespace Bookshelf.Model
 {
     public class ReadBook:Book
     {
-        internal int Mark;
+        public int Mark { get; set; }
+        public bool Favorite { get; internal set; } = false;
 
         public ReadBook(string name,string autor,Bitmap photo,int cntPage,string discript,int mark,int categori)
         {
@@ -17,5 +18,7 @@ namespace Bookshelf.Model
             Mark = mark;
             Categori = categori;
         }
+
+        
     }
 }
