@@ -1,16 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.Content.Res;
-using Android.Content.PM;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
+﻿using System.Collections.Generic;
 using Bookshelf.Model;
 
 namespace Bookshelf.Controler
@@ -22,14 +10,48 @@ namespace Bookshelf.Controler
         public static List<string> GetList(List<ReadBook> readBooks, List<PendingBook> pendingBooks)
         {
             List<string> statistic = new List<string>();
+
             statistic.Add("Прочитанно книг: " +readBooks.Count.ToString());
             statistic.Add("Прочитанно страниц: " + CountReadPage(readBooks));
             statistic.Add("Любимый жанр: " + LikeTypeBook(readBooks));
+            statistic.Add("Любимый автор: " + LikeAutor(readBooks));
+            statistic.Add("Любимых книг: " + 0);
 
             statistic.Add("Отложенно книг: " +pendingBooks.Count.ToString());
             statistic.Add("Страниц предстоит прочитать: " +CountLaterPage(pendingBooks));
 
             return statistic;
+        }
+
+        private static string LikeAutor(List<ReadBook> readBooks)
+        {
+            Dictionary<string, int> autor = new Dictionary<string, int>();
+
+            foreach (var item in readBooks)
+            {
+                if (item.Mark > 3)
+                {
+                    if (autor.ContainsKey(item.Autor))
+                        autor[item.Autor] += 1;
+                    else
+                        autor.Add(item.Autor, 1);
+                }
+            }
+
+            int max = 0;
+            string key = "";
+
+            foreach (var item in autor)
+            {
+                if (item.Value > max)
+                {
+                    max = item.Value;
+                    key = item.Key;
+                }
+
+            }
+
+            return key == "" ? "Отсутствует" : key;
         }
 
         private static string CountLaterPage(List<PendingBook> pendingBooks)
