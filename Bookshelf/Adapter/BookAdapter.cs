@@ -41,6 +41,11 @@ namespace Bookshelf.Controler
             book.Caption.Text = bookArray[position].Name;
             book.BtnEdit.Tag = position.ToString();
             book.BtnDele.Tag = position.ToString();
+            book.BtnFavorite.Tag = position.ToString();
+            if (MainActivity._userControler._shelf.readBooksArray[position].Favorite)
+                book.BtnFavorite.SetBackgroundResource(Resource.Drawable.Favorite);
+            else
+                book.BtnFavorite.SetBackgroundResource(Resource.Drawable.NoFavorite);
         }
 
         public override int ItemCount

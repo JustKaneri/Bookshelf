@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Bookshelf.Model;
 
 namespace Bookshelf.Controler
@@ -15,12 +16,25 @@ namespace Bookshelf.Controler
             statistic.Add("Прочитанно страниц: " + CountReadPage(readBooks));
             statistic.Add("Любимый жанр: " + LikeTypeBook(readBooks));
             statistic.Add("Любимый автор: " + LikeAutor(readBooks));
-            statistic.Add("Любимых книг: " + 0);
+            statistic.Add("Избранных книг: " + GetFavoriteCount(readBooks));
 
             statistic.Add("Отложенно книг: " +pendingBooks.Count.ToString());
             statistic.Add("Страниц предстоит прочитать: " +CountLaterPage(pendingBooks));
 
             return statistic;
+        }
+
+        private static string GetFavoriteCount(List<ReadBook> readBooks)
+        {
+            int count = 0;
+
+            foreach (var item in readBooks)
+            {
+                if (item.Favorite)
+                    count++;
+            }
+
+            return count.ToString();
         }
 
         private static string LikeAutor(List<ReadBook> readBooks)

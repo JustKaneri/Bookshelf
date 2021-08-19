@@ -32,6 +32,8 @@ namespace Bookshelf.Controler
             public int Categori { get; set; }
             [Column("Mark")]
             public int Mark { get; set; }
+            [Column("Favorite")]
+            public bool Favorite { get; set; }
         }
 
         [Table("PendibgBook")]
@@ -87,6 +89,7 @@ namespace Bookshelf.Controler
                     BitmapFactory.DecodeByteArray(item.Photo, 0, item.Photo.Length),
                     item.CountPage, item.Discript, item.Mark, item.Categori);
                 read.ID = item.Id;
+                read.Favorite = item.Favorite;
 
                 rb.Add(read);
 
@@ -123,8 +126,8 @@ namespace Bookshelf.Controler
                 using (MemoryStream ms = new MemoryStream())
                 {
                     newBok.Photo.Compress(CompressFormat.Png, 100, ms);
-                    db.Query<ReadBook>($"INSERT INTO ReadBook (Name,Autor,Photo,CountPage,Discript,Categori,Mark) Values('{newBok.Name}','{newBok.Autor}',?," +
-                        $"{newBok.CountPage},'{newBok.Discript}',{newBok.Categori},{newBok.Mark})", ms.ToArray());
+                    db.Query<ReadBook>($"INSERT INTO ReadBook (Name,Autor,Photo,CountPage,Discript,Categori,Mark,Favorite) Values('{newBok.Name}','{newBok.Autor}',?," +
+                        $"{newBok.CountPage},'{newBok.Discript}',{newBok.Categori},{newBok.Mark},{newBok.Favorite})", ms.ToArray());
                 }                
             }
             else
@@ -174,6 +177,13 @@ namespace Bookshelf.Controler
                         $"WHERE _id = {newBok.ID}", ms.ToArray());
                 }
             }
+        }
+
+        public static void UpdateFavoriteStatus(int id,bool IsFavorite)
+        {
+            var db = new SQLiteConnection(filePath);
+
+            db.Execute($"UPDATE ReadBook SET Favorite = ? Where _id = {id}", IsFavorite);
         }
 
         public static void DeleteBook(int id,bool type)
