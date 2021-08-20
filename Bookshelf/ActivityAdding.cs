@@ -183,30 +183,35 @@ namespace Bookshelf
 
         private void BtnAdd_Click(object sender, EventArgs e)
         {
+            btnAdd.Enabled = false;
+
             if (string.IsNullOrWhiteSpace(edtName.Text))
             {
                 Toast.MakeText(this, "Укажите название", ToastLength.Short).Show();
+                btnAdd.Enabled = true;
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(edtAutor.Text))
             {
                 Toast.MakeText(this, "Укажите автора", ToastLength.Short).Show();
+                btnAdd.Enabled = true;
                 return;
             }
 
             if (status.Contains("read") && string.IsNullOrWhiteSpace(edtMark.Text))
             {
                 Toast.MakeText(this, "Укажите оценку", ToastLength.Short).Show();
+                btnAdd.Enabled = true;
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(edtStr.Text))
             {
                 Toast.MakeText(this, "Укажите кол-во страниц", ToastLength.Short).Show();
+                btnAdd.Enabled = true;
                 return;
             }
-
 
             switch (status)
             {
@@ -247,6 +252,13 @@ namespace Bookshelf
                 bmp = BitmapFactory.DecodeStream(stream);
 
             }
+        }
+
+        public override void OnBackPressed()
+        {
+            Intent intent = new Intent(this, typeof(MainActivity));
+            SetResult(Result.Canceled, intent);
+            Finish();
         }
     }
 }

@@ -29,12 +29,13 @@ namespace Bookshelf
         private RecyclerView mRecyclerView;
         private RecyclerView.LayoutManager mLayoutManager;
         private View v;
+        private FloatingActionButton fb;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             v = inflater.Inflate(Resource.Layout.LaterPage, container, false);
 
-            FloatingActionButton fb = v.FindViewById<FloatingActionButton>(Resource.Id.fltBtnAddLater);
+            fb = v.FindViewById<FloatingActionButton>(Resource.Id.fltBtnAddLater);
             fb.Click += Fb_Click;
 
             mRecyclerView = v.FindViewById<RecyclerView>(Resource.Id.RecLater);
@@ -45,6 +46,7 @@ namespace Bookshelf
 
         private void Fb_Click(object sender, EventArgs e)
         {
+            fb.Enabled = false;
             Intent add = new Intent(Activity, typeof(ActivityAdding));
             add.PutExtra("status", "add_later");
             StartActivityForResult(add, 0);
@@ -65,6 +67,7 @@ namespace Bookshelf
             base.OnActivityResult(requestCode, resultCode, data);
             if (resultCode == 0)
             {
+                fb.Enabled = true;
                 FillRecylerView();
             }
         }
