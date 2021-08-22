@@ -1,14 +1,7 @@
-﻿using System.Collections.Generic;
-
-using Android.App;
-using Android.Graphics;
-using Android.OS;
-using Android.Support.Design.Widget;
-using Android.Support.V7.Widget;
+﻿using Android.OS;
 using Android.Views;
 using Android.Widget;
 using Bookshelf.Controler;
-using Android.Content.Res;
 
 namespace Bookshelf
 {

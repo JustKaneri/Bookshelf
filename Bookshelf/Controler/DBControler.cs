@@ -4,8 +4,6 @@ using Android.Graphics;
 using Bookshelf.Model;
 using SQLite;
 using static Android.Graphics.Bitmap;
-using System.Threading.Tasks;
-using System;
 
 namespace Bookshelf.Controler
 {

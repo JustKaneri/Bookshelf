@@ -1,19 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Bookshelf.Model;
-using Bookshelf.Controler;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Reflection;
 
 namespace Bookshelf.Controler
 {
@@ -34,6 +22,7 @@ namespace Bookshelf.Controler
         public event EventHandler StartLaterUpdate;
         public event EventHandler StartLaterDelete;
         public event EventHandler StartCopy;
+        
 
         public UserControler()
         {
@@ -41,13 +30,13 @@ namespace Bookshelf.Controler
             {
                 var res = DBControler.GetTables();
                 _shelf = new Shelf(res.Item1, res.Item2);
-
             }
             else
             {
                 DBControler.CreatDB();
                 _shelf = new Shelf(new List<ReadBook>(), new List<PendingBook>());
             }
+            
         }
 
         public void AddBook(Book book, bool type)

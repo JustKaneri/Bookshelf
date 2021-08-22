@@ -1,19 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Support.Design.Widget;
 using Android.Support.V7.Widget;
-using Android.Util;
 using Android.Views;
-using Android.Widget;
 using Bookshelf.Controler;
-using Bookshelf.Model;
 
 namespace Bookshelf
 {
@@ -34,9 +27,6 @@ namespace Bookshelf
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            //MainActivity._userControler.StartReadUpdate += _userControler_StartUpdate;
-            //MainActivity._userControler.StartReadDelete += _userControler_StartReadDelete;
-
             v = inflater.Inflate(Resource.Layout.ReadPage, container, false);
             fb = v.FindViewById<FloatingActionButton>(Resource.Id.fltBtnAddRead);
             fb.Click += Fb_Click;
@@ -53,7 +43,6 @@ namespace Bookshelf
         {
             BookAdapter adapter = new BookAdapter(MainActivity._userControler.GetBooks());
             
-            // Plug the adapter into the RecyclerView:
             mRecyclerView.SetAdapter(adapter);
 
             mLayoutManager = new LinearLayoutManager(Activity);

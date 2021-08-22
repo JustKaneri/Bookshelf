@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
+﻿using System.Collections.Generic;
 using Android.Support.V7.Widget;
 using Android.Views;
-using Android.Widget;
 using Bookshelf.Model;
 
 namespace Bookshelf.Controler
@@ -25,10 +16,8 @@ namespace Bookshelf.Controler
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
-            // Inflate the CardView for the photo:
             View itemView = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.ListItem, parent, false);
 
-            // Create a ViewHolder to hold view references inside the CardView:
             BookViewHolder bv = new BookViewHolder(itemView);
             return bv;
         }

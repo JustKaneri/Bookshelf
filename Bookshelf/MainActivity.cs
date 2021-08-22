@@ -8,10 +8,11 @@ using Android.Views;
 using Android.Widget;
 using Bookshelf.Controler;
 using Bookshelf.Model;
+using System.Threading;
 
 namespace Bookshelf
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
+    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme",MainLauncher = true)]
     public class MainActivity : AppCompatActivity, BottomNavigationView.IOnNavigationItemSelectedListener
     {
         private Android.Support.V4.App.Fragment fragment = null;
@@ -21,23 +22,30 @@ namespace Bookshelf
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.activity_main);
 
+            OpenPreviewScreen();
+
+            SetContentView(Resource.Layout.activity_main);
+           
             BottomNavigationView navigation = FindViewById<BottomNavigationView>(Resource.Id.navigation);
             navigation.SetOnNavigationItemSelectedListener(this);
-
-            _userControler = new UserControler();
-
-            fragment = FragmentRead.NewInstance();
-            LoadFragment(fragment);
-
-            MainActivity._userControler.StartReadUpdate += _userControler_StartReadUpdate;
-            MainActivity._userControler.StartReadDelete += _userControler_StartReadDelete;
-
-            MainActivity._userControler.StartLaterUpdate += _userControler_StartLaterUpdate;
-            MainActivity._userControler.StartLaterDelete += _userControler_StartLaterDelete;
-            MainActivity._userControler.StartCopy += _userControler_StartCopy;
         }
+
+        private void ConnectEvent()
+        {
+            _userControler.StartReadUpdate += _userControler_StartReadUpdate;
+            _userControler.StartReadDelete += _userControler_StartReadDelete;
+
+            _userControler.StartLaterUpdate += _userControler_StartLaterUpdate;
+            _userControler.StartLaterDelete += _userControler_StartLaterDelete;
+            _userControler.StartCopy += _userControler_StartCopy;
+        }
+
+        private void OpenPreviewScreen()
+        {
+            Intent intent = new Intent(this,typeof(PagePreview));
+            StartActivityForResult(intent, 2);
+        } 
 
         /// <summary>
         /// Перемещение из отложенного в прочитанное
@@ -125,6 +133,21 @@ namespace Bookshelf
         protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
         {
             base.OnActivityResult(requestCode, resultCode, data);
+
+            if (requestCode == 2)
+            {
+                if (resultCode == 0)
+                {
+                    this.Finish();
+                }
+                else
+                {
+                    fragment = FragmentRead.NewInstance();
+                    LoadFragment(fragment);
+                    ConnectEvent();
+                }
+            }
+                
 
             if (requestCode == 0)
                 fragment = FragmentRead.NewInstance();
