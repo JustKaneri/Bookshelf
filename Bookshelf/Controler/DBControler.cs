@@ -116,19 +116,23 @@ namespace Bookshelf.Controler
             return (rb, pb);
         }
 
-        public static void AddBook(Book book,bool type)
+        public static int AddBook(Book book,bool type)
         {
             var db = new SQLiteConnection(filePath);
 
-            if(type)
+            if (type)
             {
                 var newBok = book as Model.ReadBook;
                 using (MemoryStream ms = new MemoryStream())
                 {
                     newBok.Photo.Compress(CompressFormat.Png, 100, ms);
-                    db.Query<ReadBook>($"INSERT INTO ReadBook (Name,Autor,Photo,CountPage,Discript,Categori,Mark,Favorite,Date) Values('{newBok.Name}','{newBok.Autor}',?," +
+                    db.Execute($"INSERT INTO ReadBook (Name,Autor,Photo,CountPage,Discript,Categori,Mark,Favorite,Date) Values('{newBok.Name}','{newBok.Autor}',?," +
                         $"{newBok.CountPage},'{newBok.Discript}',{newBok.Categori},{newBok.Mark},{newBok.Favorite},'{newBok.DateReading}')", ms.ToArray());
-                }                
+                }
+
+                var res = db.Query<ReadBook>("SELECT * FROM ReadBook ORDER BY _id DESC LIMIT 1;");
+
+                return res[0].Id;
             }
             else
             {
@@ -138,9 +142,13 @@ namespace Bookshelf.Controler
                 using (MemoryStream ms = new MemoryStream())
                 {
                     newBok.Photo.Compress(CompressFormat.Png, 100, ms);
-                    db.Query<PendibgBook>($"INSERT INTO PendibgBook (Name,Autor,Photo,CountPage,Discript,Categori) Values('{newBok.Name}','{newBok.Autor}',?," +
+                    db.Execute($"INSERT INTO PendibgBook (Name,Autor,Photo,CountPage,Discript,Categori) Values('{newBok.Name}','{newBok.Autor}',?," +
                       $"{newBok.CountPage},'{newBok.Discript}',{newBok.Categori})", ms.ToArray());
                 }
+
+                var res = db.Query<PendibgBook>("SELECT * FROM PendibgBook ORDER BY _id DESC LIMIT 1;");
+
+                return res[0].Id;
             }
         }
 

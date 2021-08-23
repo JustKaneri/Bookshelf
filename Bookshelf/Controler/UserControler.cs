@@ -43,13 +43,14 @@ namespace Bookshelf.Controler
         {
             if (type)
             {
+                 book.ID = DBControler.AddBook(book, type);
                 _shelf.readBooksArray.Add(book as ReadBook);
-                DBControler.AddBook(book, type);
+                
             }
             else
             {
+                 book.ID = DBControler.AddBook(book, type);
                 _shelf.pendingBooksArray.Add(book as PendingBook);
-                DBControler.AddBook(book, type);
             }
         }
 

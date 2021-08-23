@@ -74,6 +74,7 @@
     <Compile Include="Model\BookLaterViewHolder.cs" />
     <Compile Include="Model\BookViewHolder.cs" />
     <Compile Include="Model\PendingBook.cs" />
+    <Compile Include="Model\Quotes.cs" />
     <Compile Include="Model\ReadBook.cs" />
     <Compile Include="Model\Shelf.cs" />
     <Compile Include="PagePreview.cs" />
