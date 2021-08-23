@@ -57,6 +57,33 @@
 				android:layout_marginBottom="5dp"
 				android:textAlignment="center"
 				/>
+			<LinearLayout
+				android:orientation="horizontal"
+				android:minWidth="25px"
+				android:minHeight="25px"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:id="@+id/linearLayout2"
+				android:gravity="center">
+				<EditText
+					android:inputType="date"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:id="@+id/EdtDate"
+					android:layout_marginLeft="65.0dp"
+					android:hint="Дата прочетения"
+					android:textAlignment="center"
+					android:enabled="false"  />
+				<ImageButton
+					android:layout_width="50dp"
+					android:layout_height="50dp"
+					android:id="@+id/ImvDate"
+					android:background="@drawable/calendar"
+					android:layout_marginRight="68.5dp"
+					android:layout_marginLeft="6.0dp"
+					android:layout_marginTop="6.0dp"
+					android:layout_marginBottom="1.5dp" />
+			</LinearLayout>
 			<EditText
 				android:inputType="number"
 				android:layout_width="match_parent"

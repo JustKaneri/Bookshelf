@@ -8,6 +8,7 @@ using Android.Views;
 using Android.Widget;
 using Bookshelf.Controler;
 using Bookshelf.Model;
+using System;
 using System.Threading;
 
 namespace Bookshelf
@@ -58,7 +59,7 @@ namespace Bookshelf
 
             var pend = _userControler.GetPendingBooks()[mas[0]];
 
-            var readBook = new ReadBook(pend.Name, pend.Autor, pend.Photo, pend.CountPage, pend.Discript, mas[1], pend.Categori);
+            var readBook = new ReadBook(pend.Name, pend.Autor, pend.Photo, pend.CountPage, pend.Discript, mas[1], pend.Categori,DateTime.Now.ToShortDateString());
 
             _userControler.ReadingBook(readBook, mas[0]);
 

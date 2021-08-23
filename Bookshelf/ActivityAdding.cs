@@ -20,10 +20,14 @@ namespace Bookshelf
         private EditText edtAutor;
         private ImageView imvBook;
         private Spinner spType;
+        private EditText edtDate;
+        private ImageButton imvdate;
         private EditText edtMark;
         private EditText edtStr;
         private EditText edtDiscript;
         private Button btnAdd;
+
+        private LinearLayout layout;
 
         private Bitmap bmp;
 
@@ -42,16 +46,23 @@ namespace Bookshelf
             edtAutor = FindViewById<EditText>(Resource.Id.EdtAutor);
             imvBook = FindViewById<ImageView>(Resource.Id.ImvBookAdd);
             spType = FindViewById<Spinner>(Resource.Id.SpnCatecogr);
+            edtDate = FindViewById<EditText>(Resource.Id.EdtDate);
+            imvdate = FindViewById<ImageButton>(Resource.Id.ImvDate);
             edtMark = FindViewById<EditText>(Resource.Id.EdtMark);
             edtStr = FindViewById<EditText>(Resource.Id.EdtStr);
             edtDiscript = FindViewById<EditText>(Resource.Id.EdtDiscript);
             btnAdd = FindViewById<Button>(Resource.Id.BtnAdd);
 
+            layout = FindViewById<LinearLayout>(Resource.Id.linearLayout2);
+
+            imvdate.Click += Imvdate_Click;
             imvBook.Click += ImvBook_Click;
             imvBook.LongClick += ImvBook_LongClick;
             edtMark.TextChanged += EdtMark_TextChanged;
             btnAdd.Click += BtnAdd_Click;
 
+
+            edtDate.Text = DateTime.Now.ToShortDateString();
             imvBook.SetImageResource(Resource.Drawable.NotBook);
             spType.Adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, UserControler.categories);
 
@@ -67,6 +78,7 @@ namespace Bookshelf
                 edtAutor.Text = readBook.Autor;
                 imvBook.SetImageBitmap(readBook.Photo);
                 bmp = readBook.Photo;
+                edtDate.Text = readBook.DateReading;
                 edtMark.Text = readBook.Mark.ToString();
                 edtStr.Text = readBook.CountPage.ToString();
                 edtDiscript.Text = readBook.Discript;
@@ -74,15 +86,38 @@ namespace Bookshelf
             }
 
             if (status == "add_later")
-                edtMark.Visibility = ViewStates.Invisible;
+            {
+                edtMark.Visibility = ViewStates.Gone;
+                layout.Visibility = ViewStates.Gone;
+            }
+                
 
             if (status == "edit_later")
             {
-                edtMark.Visibility = ViewStates.Invisible;
+                edtMark.Visibility = ViewStates.Gone;
+                layout.Visibility = ViewStates.Gone;
                 pendingBook = MainActivity._userControler.GetPendingBooks()[id];
                 FillLater();
             }
                 
+        }
+
+        private void Imvdate_Click(object sender, EventArgs e)
+        {
+            DatePicker dt = new DatePicker(this);
+
+            if (edtDate.Text != "")
+                dt.DateTime = DateTime.Parse(edtDate.Text);
+
+            new Android.App.AlertDialog.Builder(this)
+                .SetTitle("Дата прочтения")
+                .SetView(dt)
+                .SetPositiveButton("Ок", delegate 
+                {
+                    edtDate.Text = dt.DateTime.ToShortDateString();
+                })
+                .SetNegativeButton("Отмена", delegate { })
+                .Show();
         }
 
         private void ImvBook_LongClick(object sender, View.LongClickEventArgs e)
@@ -126,7 +161,7 @@ namespace Bookshelf
             if (bmp == null)
                 bmp = BitmapFactory.DecodeResource(this.Resources, Resource.Drawable.NotBook);
 
-            ReadBook read = new ReadBook(edtName.Text, edtAutor.Text, bmp, int.Parse(edtStr.Text), edtDiscript.Text, int.Parse(edtMark.Text),spType.SelectedItemPosition);
+            ReadBook read = new ReadBook(edtName.Text, edtAutor.Text, bmp, int.Parse(edtStr.Text), edtDiscript.Text, int.Parse(edtMark.Text),spType.SelectedItemPosition,edtDate.Text);
 
             MainActivity._userControler.AddBook(read, true);
 
@@ -141,7 +176,7 @@ namespace Bookshelf
                 bmp = BitmapFactory.DecodeResource(this.Resources, Resource.Drawable.NotBook);
 
             int idB = readBook.ID;
-            readBook = new ReadBook(edtName.Text, edtAutor.Text, bmp, int.Parse(edtStr.Text), edtDiscript.Text, int.Parse(edtMark.Text),spType.SelectedItemPosition);
+            readBook = new ReadBook(edtName.Text, edtAutor.Text, bmp, int.Parse(edtStr.Text), edtDiscript.Text, int.Parse(edtMark.Text),spType.SelectedItemPosition,edtDate.Text);
             readBook.ID = idB;
 
             MainActivity._userControler.Update(readBook, id, true);

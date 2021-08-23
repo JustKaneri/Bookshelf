@@ -32,6 +32,8 @@ namespace Bookshelf.Controler
             public int Mark { get; set; }
             [Column("Favorite")]
             public bool Favorite { get; set; }
+            [Column("Date")]
+            public string DateRead { get; set; }
         }
 
         [Table("PendibgBook")]
@@ -85,7 +87,7 @@ namespace Bookshelf.Controler
             {
                 Model.ReadBook read = new Model.ReadBook(item.Name, item.Autor,
                     BitmapFactory.DecodeByteArray(item.Photo, 0, item.Photo.Length),
-                    item.CountPage, item.Discript, item.Mark, item.Categori);
+                    item.CountPage, item.Discript, item.Mark, item.Categori,item.DateRead);
                 read.ID = item.Id;
                 read.Favorite = item.Favorite;
 
@@ -124,8 +126,8 @@ namespace Bookshelf.Controler
                 using (MemoryStream ms = new MemoryStream())
                 {
                     newBok.Photo.Compress(CompressFormat.Png, 100, ms);
-                    db.Query<ReadBook>($"INSERT INTO ReadBook (Name,Autor,Photo,CountPage,Discript,Categori,Mark,Favorite) Values('{newBok.Name}','{newBok.Autor}',?," +
-                        $"{newBok.CountPage},'{newBok.Discript}',{newBok.Categori},{newBok.Mark},{newBok.Favorite})", ms.ToArray());
+                    db.Query<ReadBook>($"INSERT INTO ReadBook (Name,Autor,Photo,CountPage,Discript,Categori,Mark,Favorite,Date) Values('{newBok.Name}','{newBok.Autor}',?," +
+                        $"{newBok.CountPage},'{newBok.Discript}',{newBok.Categori},{newBok.Mark},{newBok.Favorite},'{newBok.DateReading}')", ms.ToArray());
                 }                
             }
             else
@@ -157,7 +159,7 @@ namespace Bookshelf.Controler
                     db.Execute($"UPDATE ReadBook SET Name = '{newBok.Name}',Autor = '{newBok.Autor}'," +
                         $"Photo  = ?, CountPage = {newBok.CountPage}, " +
                         $"Discript = '{newBok.Discript}',Categori = {newBok.Categori}, " +
-                        $"Mark  = {newBok.Mark} " +
+                        $"Mark  = {newBok.Mark} , Date = '{newBok.DateReading}'" +
                         $"WHERE _id = {newBok.ID}", ms.ToArray());
                 }
             }

@@ -7,8 +7,9 @@ namespace Bookshelf.Model
     {
         public int Mark { get; set; }
         public bool Favorite { get; internal set; } = false;
+        public string DateReading { get; set; }
 
-        public ReadBook(string name,string autor,Bitmap photo,int cntPage,string discript,int mark,int categori)
+        public ReadBook(string name,string autor,Bitmap photo,int cntPage,string discript,int mark,int categori,string date)
         {
             Name = name;
             Autor = autor;
@@ -17,6 +18,7 @@ namespace Bookshelf.Model
             Discript = discript;
             Mark = mark;
             Categori = categori;
+            DateReading = date;
         }
 
         
