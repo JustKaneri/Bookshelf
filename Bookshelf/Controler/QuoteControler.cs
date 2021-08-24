@@ -16,20 +16,37 @@ namespace Bookshelf.Controler
     public class QuoteControler
     {
         private int idBook;
+        private int posBook;
         private List<Quotes> listQuot;
 
-        public QuoteControler()
+        public event EventHandler BeginUpdate;
+        public event EventHandler BeginDelete;
+
+        public QuoteControler(int id,int pos)
         {
-            if (MainActivity._userControler.GetBooks()[idBook].list != null)
+            idBook = id;
+            posBook = pos;
+
+            if (MainActivity._userControler.GetBooks()[posBook].list != null)
             {
-                listQuot = MainActivity._userControler.GetBooks()[idBook].list;
+                listQuot = MainActivity._userControler.GetBooks()[posBook].list;
             }
             else
             {
                 listQuot = new List<Quotes>();
-                MainActivity._userControler.GetBooks()[idBook].list = listQuot;
+                MainActivity._userControler.GetBooks()[posBook].list = listQuot;
             }
                 
+        }
+
+        public void StartUpdate(int pos)
+        {
+            BeginUpdate?.Invoke(pos, null);
+        }
+
+        public void StartDele(int pos)
+        {
+            BeginDelete?.Invoke(pos, null);
         }
 
         public void AddQuot(Quotes quot)

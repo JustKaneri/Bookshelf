@@ -63,6 +63,7 @@
     <Compile Include="ActivityAdding.cs" />
     <Compile Include="Adapter\BookAdapter.cs" />
     <Compile Include="Adapter\BookLaterAdapter.cs" />
+    <Compile Include="Adapter\QuotesAdapter.cs" />
     <Compile Include="Controler\DBControler.cs" />
     <Compile Include="Controler\QuoteControler.cs" />
     <Compile Include="Controler\StatisticControler.cs" />
@@ -72,15 +73,17 @@
     <Compile Include="Fragments\FragmentStatistic.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Model\Book.cs" />
-    <Compile Include="Model\BookLaterViewHolder.cs" />
-    <Compile Include="Model\BookViewHolder.cs" />
+    <Compile Include="ViewHolder\BookLaterViewHolder.cs" />
+    <Compile Include="ViewHolder\BookViewHolder.cs" />
     <Compile Include="Model\PendingBook.cs" />
     <Compile Include="Model\Quotes.cs" />
     <Compile Include="Model\ReadBook.cs" />
     <Compile Include="Model\Shelf.cs" />
     <Compile Include="PagePreview.cs" />
+    <Compile Include="PageQuotes.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewHolder\QuoteViewHolder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
