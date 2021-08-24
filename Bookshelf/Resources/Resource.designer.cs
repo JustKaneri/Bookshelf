@@ -2498,8 +2498,8 @@ namespace Bookshelf
 			// aapt resource value: 0x7f080096
 			public const int ImvDate = 2131230870;
 			
-			// aapt resource value: 0x7f0800cf
-			public const int LstStat = 2131230927;
+			// aapt resource value: 0x7f0800d1
+			public const int LstStat = 2131230929;
 			
 			// aapt resource value: 0x7f080035
 			public const int META = 2131230773;
@@ -2507,11 +2507,11 @@ namespace Bookshelf
 			// aapt resource value: 0x7f0800a8
 			public const int RecLater = 2131230888;
 			
-			// aapt resource value: 0x7f0800cc
-			public const int RecQuot = 2131230924;
-			
 			// aapt resource value: 0x7f0800cd
-			public const int RecRead = 2131230925;
+			public const int RecQuot = 2131230925;
+			
+			// aapt resource value: 0x7f0800cf
+			public const int RecRead = 2131230927;
 			
 			// aapt resource value: 0x7f080036
 			public const int SHIFT = 2131230774;
@@ -2527,6 +2527,9 @@ namespace Bookshelf
 			
 			// aapt resource value: 0x7f0800b3
 			public const int TxtLater = 2131230899;
+			
+			// aapt resource value: 0x7f0800cc
+			public const int TxtNameQ = 2131230924;
 			
 			// aapt resource value: 0x7f0800b6
 			public const int TxtQuot = 2131230902;
@@ -2727,7 +2730,10 @@ namespace Bookshelf
 			public const int fltBtnAddLater = 2131230889;
 			
 			// aapt resource value: 0x7f0800ce
-			public const int fltBtnAddRead = 2131230926;
+			public const int fltBtnAddQuot = 2131230926;
+			
+			// aapt resource value: 0x7f0800d0
+			public const int fltBtnAddRead = 2131230928;
 			
 			// aapt resource value: 0x7f080058
 			public const int forever = 2131230808;
@@ -2795,14 +2801,14 @@ namespace Bookshelf
 			// aapt resource value: 0x7f080061
 			public const int list_item = 2131230817;
 			
-			// aapt resource value: 0x7f0800d2
-			public const int masked = 2131230930;
+			// aapt resource value: 0x7f0800d4
+			public const int masked = 2131230932;
 			
 			// aapt resource value: 0x7f0800be
 			public const int media_actions = 2131230910;
 			
-			// aapt resource value: 0x7f0800d0
-			public const int message = 2131230928;
+			// aapt resource value: 0x7f0800d2
+			public const int message = 2131230930;
 			
 			// aapt resource value: 0x7f080031
 			public const int middle = 2131230769;
@@ -2816,17 +2822,17 @@ namespace Bookshelf
 			// aapt resource value: 0x7f08008d
 			public const int navigation = 2131230861;
 			
-			// aapt resource value: 0x7f0800d4
-			public const int navigation_dashboard = 2131230932;
+			// aapt resource value: 0x7f0800d6
+			public const int navigation_dashboard = 2131230934;
 			
 			// aapt resource value: 0x7f0800a2
 			public const int navigation_header_container = 2131230882;
 			
-			// aapt resource value: 0x7f0800d3
-			public const int navigation_home = 2131230931;
-			
 			// aapt resource value: 0x7f0800d5
-			public const int navigation_statistic = 2131230933;
+			public const int navigation_home = 2131230933;
+			
+			// aapt resource value: 0x7f0800d7
+			public const int navigation_statistic = 2131230935;
 			
 			// aapt resource value: 0x7f08003b
 			public const int never = 2131230779;
@@ -3068,8 +3074,8 @@ namespace Bookshelf
 			// aapt resource value: 0x7f080016
 			public const int view_offset_helper = 2131230742;
 			
-			// aapt resource value: 0x7f0800d1
-			public const int visible = 2131230929;
+			// aapt resource value: 0x7f0800d3
+			public const int visible = 2131230931;
 			
 			// aapt resource value: 0x7f08003c
 			public const int withText = 2131230780;

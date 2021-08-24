@@ -44,7 +44,7 @@ namespace Bookshelf.Controler
             BeginUpdate?.Invoke(pos, null);
         }
 
-        public void StartDele(int pos)
+        public void StartDelet(int pos)
         {
             BeginDelete?.Invoke(pos, null);
         }

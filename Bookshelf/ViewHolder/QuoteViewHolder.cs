@@ -18,7 +18,7 @@ namespace Bookshelf.ViewHolder
         public TextView Quot { get; private set; }
         public TextView Caption { get; private set; }
         public ImageButton BtnEdit { get; private set; }
-        public ImageButton BtnDele { get; private set; }
+        public ImageButton BtnDelet { get; private set; }
 
         public QuoteViewHolder(View itemView) : base(itemView)
         {
@@ -26,16 +26,16 @@ namespace Bookshelf.ViewHolder
             Quot = itemView.FindViewById<TextView>(Resource.Id.TxtQuot);
             Caption = itemView.FindViewById<TextView>(Resource.Id.TxtAutorQ);
             BtnEdit = itemView.FindViewById<ImageButton>(Resource.Id.BtnEditQ);
-            BtnDele = itemView.FindViewById<ImageButton>(Resource.Id.BtnDelQ);
+            BtnDelet = itemView.FindViewById<ImageButton>(Resource.Id.BtnDelQ);
 
             BtnEdit.Click += delegate
             {
-                MainActivity._userControler.BegingUpdate(int.Parse(BtnEdit.Tag.ToString()), true);
+                PageQuotes._quoteControler.StartUpdate(int.Parse(BtnEdit.Tag.ToString()));
             };
 
-            BtnDele.Click += delegate
+            BtnDelet.Click += delegate
             {
-                MainActivity._userControler.BeginDelete(int.Parse(BtnDele.Tag.ToString()), true);
+                PageQuotes._quoteControler.StartDelet(int.Parse(BtnDelet.Tag.ToString()));
             };
 
         }

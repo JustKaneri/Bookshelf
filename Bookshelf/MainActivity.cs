@@ -48,6 +48,7 @@ namespace Bookshelf
             Intent quot = new Intent(this, typeof(PageQuotes));
             quot.PutExtra("id", _userControler.GetBooks()[int.Parse(sender.ToString())].ID);
             quot.PutExtra("pos", int.Parse(sender.ToString()));
+            quot.PutExtra("name", _userControler.GetBooks()[int.Parse(sender.ToString())].Name);
             StartActivity(quot);
         }
 

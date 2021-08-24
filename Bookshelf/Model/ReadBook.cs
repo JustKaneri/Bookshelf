@@ -11,7 +11,7 @@ namespace Bookshelf.Model
         public bool Favorite { get; set; } = false;
         public string DateReading { get; set; }
 
-        public List<Quotes> list;
+        public List<Quotes> list  = null;
 
         public ReadBook(string name,string autor,Bitmap photo,int cntPage,string discript,int mark,int categori,string date)
         {

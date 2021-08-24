@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
+﻿using System.Collections.Generic;
 using Android.Support.V7.Widget;
 using Android.Views;
-using Android.Widget;
 using Bookshelf.Model;
 using Bookshelf.ViewHolder;
 
@@ -36,10 +27,10 @@ namespace Bookshelf.Adapter
         {
             QuoteViewHolder quot = holder as QuoteViewHolder;
 
-            quot.BtnDele.Tag = position;
+            quot.BtnDelet.Tag = position;
             quot.BtnEdit.Tag = position;
             quot.Caption.Text = quotes[position].Autor;
-            quot.Quot.Text = quotes[position].Quot;
+            quot.Quot.Text = "\" " + quotes[position].Quot + " \" ";
         }
 
         public override int ItemCount
