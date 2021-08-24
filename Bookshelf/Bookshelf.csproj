@@ -64,6 +64,7 @@
     <Compile Include="Adapter\BookAdapter.cs" />
     <Compile Include="Adapter\BookLaterAdapter.cs" />
     <Compile Include="Controler\DBControler.cs" />
+    <Compile Include="Controler\QuoteControler.cs" />
     <Compile Include="Controler\StatisticControler.cs" />
     <Compile Include="Controler\UserControler.cs" />
     <Compile Include="Fragments\FragmentLater.cs" />

@@ -22,7 +22,6 @@ namespace Bookshelf.Controler
         public event EventHandler StartLaterUpdate;
         public event EventHandler StartLaterDelete;
         public event EventHandler StartCopy;
-        
 
         public UserControler()
         {
