@@ -31,6 +31,7 @@ namespace Bookshelf.Controler
             book.BtnEdit.Tag = position.ToString();
             book.BtnDele.Tag = position.ToString();
             book.BtnFavorite.Tag = position.ToString();
+            book.Image.Tag = position.ToString();
             if (MainActivity._userControler._shelf.readBooksArray[position].Favorite)
                 book.BtnFavorite.SetBackgroundResource(Resource.Drawable.Favorite);
             else

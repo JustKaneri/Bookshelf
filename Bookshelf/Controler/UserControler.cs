@@ -18,6 +18,7 @@ namespace Bookshelf.Controler
 
         public event EventHandler StartReadUpdate;
         public event EventHandler StartReadDelete;
+        public event EventHandler StartOpenQuotes;
 
         public event EventHandler StartLaterUpdate;
         public event EventHandler StartLaterDelete;
@@ -98,6 +99,11 @@ namespace Bookshelf.Controler
         public void StartMoved(int i,int mark)
         {
             StartCopy?.Invoke(new int[] {i,mark},null);
+        }
+
+        public void BeginOpenQuotes(int pos)
+        {
+            StartOpenQuotes?.Invoke(pos, null);
         }
       
         public void Update(Book book,int id,bool type)

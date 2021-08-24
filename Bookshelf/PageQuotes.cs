@@ -7,8 +7,10 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using Bookshelf.Adapter;
 using Bookshelf.Controler;
 
 namespace Bookshelf
@@ -17,6 +19,8 @@ namespace Bookshelf
     public class PageQuotes : Activity
     {
         public static QuoteControler _quoteControler;
+        private RecyclerView mRecyclerView;
+        private RecyclerView.LayoutManager mLayoutManager;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -33,14 +37,24 @@ namespace Bookshelf
             _quoteControler.BeginUpdate += _quoteControler_BeginUpdate;
         }
 
+        private void FillRecylerView()
+        {
+            QuotesAdapter adapter = new QuotesAdapter(_quoteControler.GetQuoteList());
+
+            mRecyclerView.SetAdapter(adapter);
+
+            mLayoutManager = new LinearLayoutManager(this);
+            mRecyclerView.SetLayoutManager(mLayoutManager);
+        }
+
         private void _quoteControler_BeginUpdate(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            
         }
 
         private void _quoteControler_BeginDelete(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

@@ -33,6 +33,11 @@ namespace Bookshelf.Model
                 MainActivity._userControler.BeginDelete(int.Parse(BtnDele.Tag.ToString()), true);
             };
 
+            Image.Click += delegate
+            {
+                MainActivity._userControler.BeginOpenQuotes(int.Parse(Image.Tag.ToString()));
+            };
+
             BtnFavorite.Click += BtnFavorite_Click;
         }
 

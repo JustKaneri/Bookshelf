@@ -49,6 +49,11 @@ namespace Bookshelf.Controler
             BeginDelete?.Invoke(pos, null);
         }
 
+        internal List<Quotes> GetQuoteList()
+        {
+            return listQuot;
+        }
+
         public void AddQuot(Quotes quot)
         {
             listQuot.Add(quot);

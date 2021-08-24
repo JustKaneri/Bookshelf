@@ -36,10 +36,19 @@ namespace Bookshelf
         {
             _userControler.StartReadUpdate += _userControler_StartReadUpdate;
             _userControler.StartReadDelete += _userControler_StartReadDelete;
+            _userControler.StartOpenQuotes += _userControler_StartOpenQuotes;
 
             _userControler.StartLaterUpdate += _userControler_StartLaterUpdate;
             _userControler.StartLaterDelete += _userControler_StartLaterDelete;
             _userControler.StartCopy += _userControler_StartCopy;
+        }
+
+        private void _userControler_StartOpenQuotes(object sender, EventArgs e)
+        {
+            Intent quot = new Intent(this, typeof(PageQuotes));
+            quot.PutExtra("id", _userControler.GetBooks()[int.Parse(sender.ToString())].ID);
+            quot.PutExtra("pos", int.Parse(sender.ToString()));
+            StartActivity(quot);
         }
 
         private void OpenPreviewScreen()
