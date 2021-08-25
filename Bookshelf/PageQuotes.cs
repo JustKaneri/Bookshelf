@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Support.Design.Widget;
 using Android.Support.V7.Widget;
-using Android.Views;
 using Android.Widget;
 using Bookshelf.Adapter;
 using Bookshelf.Controler;
@@ -41,7 +36,7 @@ namespace Bookshelf
             int id = Intent.GetIntExtra("id", -1);
             int pos = Intent.GetIntExtra("pos", -1);
 
-            txtName.Text = "Цитаты из \"" + Intent.GetStringExtra("name") + "\"";
+            txtName.Text = "Цитаты из книги \"" + Intent.GetStringExtra("name") + "\"";
 
             _quoteControler = new QuoteControler(id, pos);
 

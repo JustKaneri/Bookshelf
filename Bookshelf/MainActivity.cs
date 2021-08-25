@@ -5,11 +5,9 @@ using Android.Runtime;
 using Android.Support.Design.Widget;
 using Android.Support.V7.App;
 using Android.Views;
-using Android.Widget;
 using Bookshelf.Controler;
 using Bookshelf.Model;
 using System;
-using System.Threading;
 
 namespace Bookshelf
 {

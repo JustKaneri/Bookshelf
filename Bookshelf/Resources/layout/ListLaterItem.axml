@@ -21,14 +21,23 @@
 				android:padding="8dp"
 				android:layout_gravity="center"
 				android:gravity="center|right">
-				<ImageButton
-					android:layout_width="25dp"
-					android:layout_height="25dp"
-					android:id="@+id/BtnMovLater"
-					android:maxWidth="25dp"
-					android:maxHeight="25dp"
-					android:background="@drawable/read"
-					android:layout_marginRight="15dp" />
+				<LinearLayout
+					android:orientation="horizontal"
+					android:minWidth="25px"
+					android:minHeight="25px"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:id="@+id/linearLayout1"
+					android:layout_marginLeft="69.5dp">
+					<ImageButton
+						android:layout_width="25dp"
+						android:layout_height="25dp"
+						android:id="@+id/BtnMovLater"
+						android:maxWidth="25dp"
+						android:maxHeight="25dp"
+						android:background="@drawable/read"
+						android:layout_marginRight="15dp" />
+				</LinearLayout>
 				<ImageButton
 					android:layout_width="25dp"
 					android:layout_height="25dp"

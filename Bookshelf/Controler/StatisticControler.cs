@@ -18,13 +18,29 @@ namespace Bookshelf.Controler
             statistic.Add("Любимый автор: " + LikeAutor(readBooks));
             statistic.Add("Избранных книг: " + GetFavoriteCount(readBooks));
 
-            statistic.Add("Книг прочитано за этот месяц: " + GetCountBookThisMonth(readBooks));
+            statistic.Add("Прочитано за этот месяц: " + GetCountBookThisMonth(readBooks));
+            statistic.Add("Прочитано за этот год: " + GetCountBookThisYear(readBooks));
             statistic.Add("Цитат: " + DBControler.CountQuotes());
 
             statistic.Add("Отложенно книг: " +pendingBooks.Count.ToString());
             statistic.Add("Страниц предстоит прочитать: " +CountLaterPage(pendingBooks));
 
             return statistic;
+        }
+
+        private static string GetCountBookThisYear(List<ReadBook> readBooks)
+        {
+            int count = 0;
+
+            foreach (var item in readBooks)
+            {
+                var dt = DateTime.Parse(item.DateReading);
+
+                if (dt.Year == DateTime.Now.Year)
+                    count++;
+            }
+
+            return count.ToString();
         }
 
         private static string GetCountBookThisMonth(List<ReadBook> readBooks)

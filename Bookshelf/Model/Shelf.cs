@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 namespace Bookshelf.Model
 {
-    [Serializable]
     public class Shelf
     {
         public List<ReadBook> readBooksArray;
