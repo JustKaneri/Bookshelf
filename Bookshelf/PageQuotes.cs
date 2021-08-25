@@ -69,6 +69,15 @@ namespace Bookshelf
                 .SetView(ln)
                 .SetPositiveButton("Добавить", delegate 
                 {
+                    if (string.IsNullOrWhiteSpace(edtQut.Text))
+                    {
+                        Toast.MakeText(this, "Укажите цитату", ToastLength.Short).Show();
+                        return;
+                    }
+
+                    if (string.IsNullOrWhiteSpace(edtAutor.Text))
+                        edtAutor.Text = "Неизвестен";
+
                     Quotes quot = new Quotes();
                     quot.Autor = edtAutor.Text;
                     quot.Quot = edtQut.Text;
@@ -112,6 +121,12 @@ namespace Bookshelf
                 .SetView(ln)
                 .SetPositiveButton("Сохранить", delegate
                 {
+                    if(string.IsNullOrWhiteSpace(edtAutor.Text) || string.IsNullOrWhiteSpace(edtQut.Text))
+                    {
+                        Toast.MakeText(this, "Заполните все поля", ToastLength.Short).Show();
+                        return;
+                    }
+
                     Quotes quot = new Quotes();
                     quot.Autor = edtAutor.Text;
                     quot.Quot = edtQut.Text;
