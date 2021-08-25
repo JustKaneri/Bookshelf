@@ -86,6 +86,7 @@ namespace Bookshelf
         {
             new Android.App.AlertDialog.Builder(this)
                 .SetTitle("Удаление")
+                .SetIcon(Resource.Drawable.help)
                 .SetMessage("Удалить выбранную книгу?")
                 .SetPositiveButton("Да", delegate
                 {
@@ -117,6 +118,7 @@ namespace Bookshelf
         private void _userControler_StartReadDelete(object sender, System.EventArgs e)
         {
             new Android.App.AlertDialog.Builder(this)
+                .SetIcon(Resource.Drawable.help)
                 .SetTitle("Удаление")
                 .SetMessage("Удалить выбранную книгу?")
                 .SetPositiveButton("Да", delegate
