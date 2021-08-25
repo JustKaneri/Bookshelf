@@ -33,7 +33,7 @@ namespace Bookshelf.Controler
             }
             else
             {
-                listQuot = new List<Quotes>();
+                listQuot = DBControler.GetQuotes(idBook);
                 MainActivity._userControler.GetBooks()[posBook].list = listQuot;
             }
                 
@@ -56,16 +56,20 @@ namespace Bookshelf.Controler
 
         public void AddQuot(Quotes quot)
         {
+            quot.Id =  DBControler.AddQuot(quot, idBook);
             listQuot.Add(quot);
         }
 
         public void DeleteQuot(int pos)
         {
+            DBControler.DeleteQuites(listQuot[pos].Id);
             listQuot.RemoveAt(pos);
         }
 
         public void EditQuot(Quotes newQuot, int pos)
         {
+            newQuot.Id = listQuot[pos].Id;
+            DBControler.UpadteQuote(newQuot);
             listQuot[pos] = newQuot;
         }
     }

@@ -9,12 +9,12 @@ namespace Bookshelf.Controler
 {
     public class DBControler
     {
-        private readonly static string filePath = System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal),"bookshelf.db3");
+        private readonly static string filePath = System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "bookshelf.db3");
 
         [Table("ReadBook")]
         public class ReadBook
         {
-            [PrimaryKey, AutoIncrement,Unique, Column("_id")]
+            [PrimaryKey, AutoIncrement, Unique, Column("_id")]
             public int Id { get; set; }
             [Column("Name")]
             public string Name { get; set; }
@@ -76,7 +76,7 @@ namespace Bookshelf.Controler
             db.CreateTable<Quotes>();
         }
 
-        public static (List<Model.ReadBook>,List<Model.PendingBook>) GetTables()
+        public static (List<Model.ReadBook>, List<Model.PendingBook>) GetTables()
         {
             var db = new SQLiteConnection(filePath);
             var tableRead = db.Table<ReadBook>();
@@ -87,7 +87,7 @@ namespace Bookshelf.Controler
             {
                 Model.ReadBook read = new Model.ReadBook(item.Name, item.Autor,
                     BitmapFactory.DecodeByteArray(item.Photo, 0, item.Photo.Length),
-                    item.CountPage, item.Discript, item.Mark, item.Categori,item.DateRead);
+                    item.CountPage, item.Discript, item.Mark, item.Categori, item.DateRead);
                 read.ID = item.Id;
                 read.Favorite = item.Favorite;
 
@@ -116,7 +116,7 @@ namespace Bookshelf.Controler
             return (rb, pb);
         }
 
-        public static int AddBook(Book book,bool type)
+        public static int AddBook(Book book, bool type)
         {
             var db = new SQLiteConnection(filePath);
 
@@ -152,11 +152,11 @@ namespace Bookshelf.Controler
             }
         }
 
-        public static void UpdateBook(Book book,bool type)
+        public static void UpdateBook(Book book, bool type)
         {
             var db = new SQLiteConnection(filePath);
 
-            if(type)
+            if (type)
             {
                 var newBok = book as Model.ReadBook;
 
@@ -187,14 +187,14 @@ namespace Bookshelf.Controler
             }
         }
 
-        public static void UpdateFavoriteStatus(int id,bool IsFavorite)
+        public static void UpdateFavoriteStatus(int id, bool IsFavorite)
         {
             var db = new SQLiteConnection(filePath);
 
             db.Execute($"UPDATE ReadBook SET Favorite = ? Where _id = {id}", IsFavorite);
         }
 
-        public static void DeleteBook(int id,bool type)
+        public static void DeleteBook(int id, bool type)
         {
             var db = new SQLiteConnection(filePath);
 
@@ -207,7 +207,49 @@ namespace Bookshelf.Controler
             {
                 db.Delete<PendibgBook>(id);
             }
-          
+
+        }
+
+        public static List<Model.Quotes> GetQuotes(int idBook)
+        {
+            List<Model.Quotes> quotes = new List<Model.Quotes>();
+            var db = new SQLiteConnection(filePath);
+
+            var res = db.Query<Quotes>("Select * From Quotes Where Id_Book = ?", idBook);
+
+
+            foreach (var item in res)
+            {
+                Model.Quotes quot = new Model.Quotes();
+                quot.Id = item.Id;
+                quot.Autor = item.Autor;
+                quot.Quot = item.Name;
+
+                quotes.Add(quot);
+
+                quot = null;
+            }
+
+            return quotes;
+
+        }
+
+        public static int AddQuot(Model.Quotes quot, int idBook)
+        {
+            var db = new SQLiteConnection(filePath);
+
+            db.Execute($"INSERT INTO Quotes (Id_Book,Text,Autor) Values({idBook},'{quot.Quot}','{quot.Autor}')");
+
+            var res = db.Query<Quotes>("SELECT * FROM Quotes ORDER BY _id DESC LIMIT 1;");
+
+            return res[0].Id;
+        }
+
+        public static void UpadteQuote(Model.Quotes quot)
+        {
+            var db = new SQLiteConnection(filePath);
+
+            db.Execute($"UPDATE Quotes SET Text = '{quot.Quot}',Autor = '{quot.Autor}' WHERE _id = {quot.Id}");
         }
 
         private static void ClearQuites(int id)
@@ -216,12 +258,12 @@ namespace Bookshelf.Controler
             db.Execute("Delete From Quotes where Id_Book = ?", id); ;
         }
 
-        private static void DeleteQuites(int id)
+        public static void DeleteQuites(int id)
         {
             var db = new SQLiteConnection(filePath);
-            db.Execute("Delete From Quotes where Id = ?", id); ;
+            db.Execute("Delete From Quotes where _id = ?", id); ;
         }
 
-       
+
     }
 }
