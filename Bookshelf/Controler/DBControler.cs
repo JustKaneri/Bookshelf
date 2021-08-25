@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Android.Graphics;
 using Bookshelf.Model;
@@ -35,6 +36,7 @@ namespace Bookshelf.Controler
             [Column("Date")]
             public string DateRead { get; set; }
         }
+
 
         [Table("PendibgBook")]
         public class PendibgBook
@@ -262,6 +264,13 @@ namespace Bookshelf.Controler
         {
             var db = new SQLiteConnection(filePath);
             db.Execute("Delete From Quotes where _id = ?", id); ;
+        }
+
+
+        public static string CountQuotes()
+        {
+            var db = new SQLiteConnection(filePath);
+            return db.Table<Quotes>().Count().ToString();
         }
 
 
