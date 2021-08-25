@@ -91,7 +91,35 @@ namespace Bookshelf
 
         private void _quoteControler_BeginUpdate(object sender, EventArgs e)
         {
-            
+            int pos = int.Parse(sender.ToString());
+            var tmp = _quoteControler.GetQuoteList()[pos];
+
+            EditText edtQut = new EditText(this);
+            edtQut.Text = tmp.Quot;
+            edtQut.Hint = "Цитата";
+            EditText edtAutor = new EditText(this);
+            edtAutor.Text = tmp.Autor;
+            edtAutor.Hint = "Автор Цитаты";
+
+            LinearLayout ln = new LinearLayout(this);
+            ln.Orientation = Orientation.Vertical;
+
+            ln.AddView(edtQut);
+            ln.AddView(edtAutor);
+
+            new Android.App.AlertDialog.Builder(this)
+                .SetTitle("Редактирование цитаты")
+                .SetView(ln)
+                .SetPositiveButton("Сохранить", delegate
+                {
+                    Quotes quot = new Quotes();
+                    quot.Autor = edtAutor.Text;
+                    quot.Quot = edtQut.Text;
+                    _quoteControler.EditQuot(quot,pos);
+                    FillRecylerView();
+                })
+                .SetNegativeButton("Отмена", delegate { })
+                .Show();
         }
 
         private void _quoteControler_BeginDelete(object sender, EventArgs e)
@@ -99,6 +127,7 @@ namespace Bookshelf
             new Android.App.AlertDialog.Builder(this)
                 .SetTitle("Удаление")
                 .SetMessage("Удалить выбранную цитату ?")
+                .SetIcon(Resource.Drawable.help)
                 .SetPositiveButton("Удалить", delegate
                 {
                     _quoteControler.DeleteQuot(int.Parse(sender.ToString()));
