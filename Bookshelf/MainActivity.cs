@@ -28,6 +28,8 @@ namespace Bookshelf
            
             BottomNavigationView navigation = FindViewById<BottomNavigationView>(Resource.Id.navigation);
             navigation.SetOnNavigationItemSelectedListener(this);
+
+            
         }
 
         private void ConnectEvent()
