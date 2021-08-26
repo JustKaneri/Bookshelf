@@ -33,11 +33,20 @@ namespace Bookshelf.ViewHolder
                 PageQuotes._quoteControler.StartUpdate(int.Parse(BtnEdit.Tag.ToString()));
             };
 
+            BtnEdit.LongClick += delegate
+            {
+                Toast.MakeText(Application.Context, "Редактировать цитату", ToastLength.Short).Show();
+            };
+
             BtnDelet.Click += delegate
             {
                 PageQuotes._quoteControler.StartDelet(int.Parse(BtnDelet.Tag.ToString()));
             };
 
+            BtnDelet.LongClick += delegate
+            {
+                Toast.MakeText(Application.Context, "Редактировать цитату", ToastLength.Short).Show();
+            };
         }
     }
 }

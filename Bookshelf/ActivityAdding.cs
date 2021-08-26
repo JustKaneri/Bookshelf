@@ -61,7 +61,6 @@ namespace Bookshelf
             edtMark.TextChanged += EdtMark_TextChanged;
             btnAdd.Click += BtnAdd_Click;
 
-
             edtDate.Text = DateTime.Now.ToShortDateString();
             imvBook.SetImageResource(Resource.Drawable.NotBook);
             spType.Adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, UserControler.categories);
@@ -99,7 +98,10 @@ namespace Bookshelf
                 pendingBook = MainActivity._userControler.GetPendingBooks()[id];
                 FillLater();
             }
-                
+
+
+
+            Toast.MakeText(this, "Нажмите на изображение что бы добавить фотографию или удерживайте палец на изображении что бы очистиь", ToastLength.Long).Show();
         }
 
         private void Imvdate_Click(object sender, EventArgs e)

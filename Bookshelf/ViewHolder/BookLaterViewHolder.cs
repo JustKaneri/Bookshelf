@@ -1,4 +1,5 @@
-﻿using Android.Support.V7.Widget;
+﻿using Android.App;
+using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 
@@ -26,9 +27,19 @@ namespace Bookshelf.Model
                 MainActivity._userControler.BegingUpdate(int.Parse(BtnEdit.Tag.ToString()), false);
             };
 
+            BtnDele.LongClick += delegate
+            {
+                Toast.MakeText(Application.Context, "Удалить книгу", ToastLength.Short).Show();
+            };
+
             BtnDele.Click += delegate
             {
                 MainActivity._userControler.BeginDelete(int.Parse(BtnDele.Tag.ToString()), false);
+            };
+
+            BtnEdit.LongClick += delegate
+            {
+                Toast.MakeText(Application.Context, "Редактировать книгу", ToastLength.Short).Show();
             };
 
             BtnMove.Click += delegate
@@ -53,6 +64,11 @@ namespace Bookshelf.Model
                 .Show();
 
               
+            };
+
+            BtnMove.LongClick += delegate
+            {
+                Toast.MakeText(Application.Context, "Переместить книгу в прочитанное", ToastLength.Short).Show();
             };
 
         }

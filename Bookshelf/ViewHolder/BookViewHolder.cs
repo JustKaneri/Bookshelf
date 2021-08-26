@@ -1,4 +1,5 @@
 ﻿using System;
+using Android.App;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
@@ -28,15 +29,32 @@ namespace Bookshelf.Model
                 MainActivity._userControler.BegingUpdate(int.Parse(BtnEdit.Tag.ToString()),true);
             };
 
+            BtnEdit.LongClick += delegate
+            {
+                Toast.MakeText(Application.Context, "Редактировать книгу", ToastLength.Short).Show();
+            };
+
+
             BtnDele.Click += delegate
             {
                 MainActivity._userControler.BeginDelete(int.Parse(BtnDele.Tag.ToString()), true);
+            };
+
+            BtnDele.LongClick += delegate
+            {
+                Toast.MakeText(Application.Context, "Удалить книгу", ToastLength.Short).Show();
             };
 
             Image.Click += delegate
             {
                 MainActivity._userControler.BeginOpenQuotes(int.Parse(Image.Tag.ToString()));
             };
+
+            Image.LongClick += delegate
+            {
+                Toast.MakeText(Application.Context, "Открыть страницу с цитатами из этой книги", ToastLength.Short).Show();
+            };
+
 
             BtnFavorite.Click += BtnFavorite_Click;
         }
