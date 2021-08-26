@@ -27,7 +27,8 @@
 		android:layout_marginRight="5dp"
 		app:layoutManager="LinearLayoutManager"
 		tools:context=".TodoListFragment"
-		android:layout_marginTop="61.0dp" >
+		android:layout_marginTop="61.0dp"
+		android:layout_marginBottom="30.0dp" >
 	</android.support.v7.widget.RecyclerView>
 
 	<android.support.design.widget.FloatingActionButton
@@ -38,6 +39,6 @@
         android:src="@drawable/add"
 		android:layout_marginRight="16dp"
 		app:backgroundTint = "#fc6e51"
-		android:layout_marginBottom = "20dp"/>
+		android:layout_marginBottom = "15dp"/>
 
 </android.support.design.widget.CoordinatorLayout>
