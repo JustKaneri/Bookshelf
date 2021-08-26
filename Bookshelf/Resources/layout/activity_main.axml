@@ -23,7 +23,7 @@
 		android:background="#fc6e51"
 		android:layout_alignParentBottom="true"
 		app:menu = "@menu/navigation"
-		app:itemIconTint = "#FFFFFF"
-		app:itemTextColor = "#FFFFFF"/>
+		app:itemIconTint = "@drawable/bottom_nav_colors"
+		app:itemTextColor = "@drawable/bottom_nav_colors"/>
 
 </RelativeLayout>
