@@ -196,8 +196,6 @@ namespace Bookshelf
         {
             SupportFragmentManager.BeginTransaction().Replace(Resource.Id.fragment_container, fragment).Commit();
         }
-
-
     }
 }
 
