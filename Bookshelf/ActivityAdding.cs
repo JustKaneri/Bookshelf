@@ -165,7 +165,7 @@ namespace Bookshelf
 
             ReadBook read = new ReadBook(edtName.Text, edtAutor.Text, bmp, int.Parse(edtStr.Text), edtDiscript.Text, int.Parse(edtMark.Text),spType.SelectedItemPosition,edtDate.Text);
 
-            MainActivity._userControler.AddBook(read, true);
+            MainActivity._userControler.AddBook(read, UserControler.TypeBook.ReadBook);
 
             Intent intent = new Intent(this, typeof(MainActivity));
             SetResult(0, intent);
@@ -181,7 +181,7 @@ namespace Bookshelf
             readBook = new ReadBook(edtName.Text, edtAutor.Text, bmp, int.Parse(edtStr.Text), edtDiscript.Text, int.Parse(edtMark.Text),spType.SelectedItemPosition,edtDate.Text);
             readBook.ID = idB;
 
-            MainActivity._userControler.Update(readBook, id, true);
+            MainActivity._userControler.Update(readBook, id, UserControler.TypeBook.ReadBook);
 
             Intent intent = new Intent(this, typeof(MainActivity));
             SetResult(0, intent);
@@ -195,7 +195,7 @@ namespace Bookshelf
 
             pendingBook = new PendingBook(edtName.Text, edtAutor.Text, bmp, int.Parse(edtStr.Text), edtDiscript.Text,spType.SelectedItemPosition);
 
-            MainActivity._userControler.AddBook(pendingBook, false);
+            MainActivity._userControler.AddBook(pendingBook, UserControler.TypeBook.PendingBook);
 
             Intent intent = new Intent(this, typeof(MainActivity));
             SetResult(0, intent);
@@ -211,7 +211,7 @@ namespace Bookshelf
             pendingBook = new PendingBook(edtName.Text, edtAutor.Text, bmp, int.Parse(edtStr.Text), edtDiscript.Text,spType.SelectedItemPosition);
             pendingBook.ID = idBook;
 
-            MainActivity._userControler.Update(pendingBook, id, false);
+            MainActivity._userControler.Update(pendingBook, id, UserControler.TypeBook.PendingBook);
 
             Intent intent = new Intent(this, typeof(MainActivity));
             SetResult(Result.Ok, intent);

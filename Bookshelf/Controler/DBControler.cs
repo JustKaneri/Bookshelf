@@ -118,11 +118,11 @@ namespace Bookshelf.Controler
             return (rb, pb);
         }
 
-        public static int AddBook(Book book, bool type)
+        public static int AddBook(Book book,UserControler.TypeBook type)
         {
             var db = new SQLiteConnection(filePath);
 
-            if (type)
+            if (type == UserControler.TypeBook.ReadBook)
             {
                 var newBok = book as Model.ReadBook;
                 using (MemoryStream ms = new MemoryStream())
@@ -154,11 +154,11 @@ namespace Bookshelf.Controler
             }
         }
 
-        public static void UpdateBook(Book book, bool type)
+        public static void UpdateBook(Book book, UserControler.TypeBook type)
         {
             var db = new SQLiteConnection(filePath);
 
-            if (type)
+            if (type == UserControler.TypeBook.ReadBook)
             {
                 var newBok = book as Model.ReadBook;
 
@@ -196,11 +196,11 @@ namespace Bookshelf.Controler
             db.Execute($"UPDATE ReadBook SET Favorite = ? Where _id = {id}", IsFavorite);
         }
 
-        public static void DeleteBook(int id, bool type)
+        public static void DeleteBook(int id, UserControler.TypeBook type)
         {
             var db = new SQLiteConnection(filePath);
 
-            if (type)
+            if (type == UserControler.TypeBook.ReadBook)
             {
                 ClearQuites(id);
                 db.Delete<ReadBook>(id);

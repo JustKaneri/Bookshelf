@@ -47,9 +47,9 @@ namespace Bookshelf.Controler
             
         }
 
-        public void AddBook(Book book, bool type)
+        public void AddBook(Book book, TypeBook type)
         {
-            if (type)
+            if (type == TypeBook.ReadBook)
             {
                  book.ID = DBControler.AddBook(book, type);
                 _shelf.readBooksArray.Add(book as ReadBook);
@@ -80,12 +80,12 @@ namespace Bookshelf.Controler
         /// True - прочитанная книга
         /// False - отложенная книга
         /// </param>
-        public void BegingUpdate(int i,bool type)
+        public void BegingUpdate(int id,TypeBook type)
         {
-            if (type)
-                StartReadUpdate?.Invoke(i, null);
+            if (type == TypeBook.ReadBook)
+                StartReadUpdate?.Invoke(id, null);
             else
-                StartLaterUpdate?.Invoke(i, null);
+                StartLaterUpdate?.Invoke(id, null);
         }
 
         /// <summary>
@@ -96,17 +96,17 @@ namespace Bookshelf.Controler
         /// True - прочитанная книга
         /// False - отложенная книга
         /// </param>
-        public void BeginDelete(int i,bool type)
+        public void BeginDelete(int id,TypeBook type)
         {
-            if (type)
-                StartReadDelete?.Invoke(i, null);
+            if (type == TypeBook.ReadBook)
+                StartReadDelete?.Invoke(id, null);
             else
-                StartLaterDelete?.Invoke(i, null);
+                StartLaterDelete?.Invoke(id, null);
         }
 
-        public void StartMoved(int i,int mark)
+        public void StartMoved(int id,int mark)
         {
-            StartCopy?.Invoke(new int[] {i,mark},null);
+            StartCopy?.Invoke(new int[] {id,mark},null);
         }
 
         public void BeginOpenQuotes(int pos)
@@ -114,9 +114,9 @@ namespace Bookshelf.Controler
             StartOpenQuotes?.Invoke(pos, null);
         }
       
-        public void Update(Book book,int id,bool type)
+        public void Update(Book book,int id,TypeBook type)
         {
-            if(type)
+            if(type == TypeBook.ReadBook)
             {
                 DBControler.UpdateBook(book, type);
                 _shelf.readBooksArray[id] = book as ReadBook;
@@ -128,16 +128,16 @@ namespace Bookshelf.Controler
             }
         }
 
-        public void Delete(int id,bool type)
+        public void Delete(int id,TypeBook type)
         {
-            if (type)
+            if (type == TypeBook.ReadBook)
             {
-                DBControler.DeleteBook(_shelf.readBooksArray[id].ID, true);
+                DBControler.DeleteBook(_shelf.readBooksArray[id].ID, type);
                 _shelf.readBooksArray.RemoveAt(id);
             }          
             else
             {
-                DBControler.DeleteBook(_shelf.pendingBooksArray[id].ID, false);
+                DBControler.DeleteBook(_shelf.pendingBooksArray[id].ID, type);
                 _shelf.pendingBooksArray.RemoveAt(id);
             }
                
@@ -145,8 +145,8 @@ namespace Bookshelf.Controler
 
         public void ReadingBook(ReadBook book,int id)
         {
-            Delete(id, false);
-            AddBook(book, true);
+            Delete(id, TypeBook.PendingBook);
+            AddBook(book,TypeBook.ReadBook);
         }
         
     }

@@ -2,6 +2,7 @@
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using Bookshelf.Controler;
 
 namespace Bookshelf.Model
 {
@@ -24,7 +25,7 @@ namespace Bookshelf.Model
 
             BtnEdit.Click += delegate
             {
-                MainActivity._userControler.BegingUpdate(int.Parse(BtnEdit.Tag.ToString()), false);
+                MainActivity._userControler.BegingUpdate(int.Parse(BtnEdit.Tag.ToString()),UserControler.TypeBook.PendingBook);
             };
 
             BtnDele.LongClick += delegate
@@ -34,7 +35,7 @@ namespace Bookshelf.Model
 
             BtnDele.Click += delegate
             {
-                MainActivity._userControler.BeginDelete(int.Parse(BtnDele.Tag.ToString()), false);
+                MainActivity._userControler.BeginDelete(int.Parse(BtnDele.Tag.ToString()), UserControler.TypeBook.PendingBook);
             };
 
             BtnEdit.LongClick += delegate

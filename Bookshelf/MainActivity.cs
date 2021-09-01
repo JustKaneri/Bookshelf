@@ -89,7 +89,7 @@ namespace Bookshelf
                 .SetMessage("Удалить выбранную книгу?")
                 .SetPositiveButton("Да", delegate
                 {
-                    MainActivity._userControler.Delete(int.Parse(sender.ToString()), false);
+                    _userControler.Delete(int.Parse(sender.ToString()), UserControler.TypeBook.PendingBook);
                     fragment = FragmentLater.NewInstance();
                     LoadFragment(fragment);
                 })
@@ -122,7 +122,7 @@ namespace Bookshelf
                 .SetMessage("Удалить выбранную книгу?")
                 .SetPositiveButton("Да", delegate
                 {
-                    MainActivity._userControler.Delete(int.Parse(sender.ToString()), true);
+                    _userControler.Delete(int.Parse(sender.ToString()), UserControler.TypeBook.ReadBook);
                     fragment = FragmentRead.NewInstance();
                     LoadFragment(fragment);
                 })

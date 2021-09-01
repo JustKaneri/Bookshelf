@@ -26,7 +26,7 @@ namespace Bookshelf.Model
 
             BtnEdit.Click += delegate
             {
-                MainActivity._userControler.BegingUpdate(int.Parse(BtnEdit.Tag.ToString()),true);
+                MainActivity._userControler.BegingUpdate(int.Parse(BtnEdit.Tag.ToString()),UserControler.TypeBook.ReadBook);
             };
 
             BtnEdit.LongClick += delegate
@@ -37,7 +37,7 @@ namespace Bookshelf.Model
 
             BtnDele.Click += delegate
             {
-                MainActivity._userControler.BeginDelete(int.Parse(BtnDele.Tag.ToString()), true);
+                MainActivity._userControler.BeginDelete(int.Parse(BtnDele.Tag.ToString()), UserControler.TypeBook.ReadBook);
             };
 
             BtnDele.LongClick += delegate
