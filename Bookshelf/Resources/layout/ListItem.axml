@@ -22,13 +22,13 @@
 				android:layout_gravity="center"
 				android:gravity="center|right">
 				<LinearLayout
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
 					android:orientation="horizontal"
-					android:padding="8dp"
-					android:layout_gravity="fill"
-					android:gravity="left"
-					android:layout_marginLeft="60.0dp">
+					android:minWidth="25px"
+					android:minHeight="25px"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:id="@+id/linearLayout1"
+					android:layout_marginLeft="69.5dp">
 					<ImageButton
 						android:layout_width="25dp"
 						android:layout_height="25dp"
