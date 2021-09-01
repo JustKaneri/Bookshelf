@@ -7,6 +7,12 @@ namespace Bookshelf.Controler
 {
     public class UserControler
     {
+        public enum TypeBook
+        {
+            ReadBook,
+            PendingBook
+        }
+
         public Shelf _shelf;
 
         public static string[] categories = {"Афоризмы,фольклор и мифы","Астрология","Детективы",

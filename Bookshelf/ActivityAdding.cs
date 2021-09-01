@@ -99,7 +99,7 @@ namespace Bookshelf
                 FillLater();
             }
 
-
+            
 
             Toast.MakeText(this, "Нажмите на изображение что бы добавить фотографию или удерживайте палец на изображении что бы очистиь", ToastLength.Long).Show();
         }
