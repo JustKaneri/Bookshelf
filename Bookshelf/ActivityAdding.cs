@@ -184,8 +184,10 @@ namespace Bookshelf
             SetBitmap();
 
             int idB = readBook.ID;
+            bool favorite = readBook.Favorite;
             readBook = new ReadBook(edtName.Text, edtAutor.Text, bmp, int.Parse(edtStr.Text), edtDiscript.Text, int.Parse(edtMark.Text),spType.SelectedItemPosition,edtDate.Text);
             readBook.ID = idB;
+            readBook.Favorite = favorite;
 
             MainActivity._userControler.Update(readBook, id, UserControler.TypeBook.ReadBook);
 
