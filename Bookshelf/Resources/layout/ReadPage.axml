@@ -1,31 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/RecRead"
-        android:name="..."
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        app:layoutManager="LinearLayoutManager"
-        tools:context=".TodoListFragment">
-
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+	<Toolbar
+		android:minHeight="?android:attr/actionBarSize"
+		android:layout_width="match_parent"
+		android:layout_height="35dp"
+		android:id="@+id/toolbar1"
+		android:background="#ffffffff">
+		<ImageButton
+			android:layout_width="32dp"
+			android:layout_height="32dp"
+			android:id="@+id/imageButton1"
+			android:background="@drawable/sort"/>
+	</Toolbar>
+	<LinearLayout
+		android:orientation="vertical"
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:id="@+id/linearLayout1"
+		android:layout_marginTop="35dp"
+		android:background="#fc6e51" />
+	<android.support.v7.widget.RecyclerView
+		xmlns:tools="http://schemas.android.com/tools"
+		android:id="@+id/RecRead"
+		android:name="..."
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_marginLeft="5dp"
+		android:layout_marginRight="5dp"
+		app:layoutManager="LinearLayoutManager"
+		tools:context=".TodoListFragment"
+		android:layout_marginTop="36.0dp" >
 	</android.support.v7.widget.RecyclerView>
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fltBtnAddRead"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:src="@drawable/add"
+	<android.support.design.widget.FloatingActionButton
+		android:id="@+id/fltBtnAddRead"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="end|bottom"
+		android:src="@drawable/add"
 		android:layout_marginRight="16dp"
 		app:backgroundTint = "#fc6e51"
 		android:layout_marginBottom = "20dp"/>

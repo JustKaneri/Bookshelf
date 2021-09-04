@@ -2293,26 +2293,26 @@ namespace Bookshelf
 			// aapt resource value: 0x7f020054
 			public const int avd_hide_password = 2130837588;
 			
-			// aapt resource value: 0x7f02007c
-			public const int avd_hide_password_1 = 2130837628;
-			
 			// aapt resource value: 0x7f02007d
-			public const int avd_hide_password_2 = 2130837629;
+			public const int avd_hide_password_1 = 2130837629;
 			
 			// aapt resource value: 0x7f02007e
-			public const int avd_hide_password_3 = 2130837630;
+			public const int avd_hide_password_2 = 2130837630;
+			
+			// aapt resource value: 0x7f02007f
+			public const int avd_hide_password_3 = 2130837631;
 			
 			// aapt resource value: 0x7f020055
 			public const int avd_show_password = 2130837589;
 			
-			// aapt resource value: 0x7f02007f
-			public const int avd_show_password_1 = 2130837631;
-			
 			// aapt resource value: 0x7f020080
-			public const int avd_show_password_2 = 2130837632;
+			public const int avd_show_password_1 = 2130837632;
 			
 			// aapt resource value: 0x7f020081
-			public const int avd_show_password_3 = 2130837633;
+			public const int avd_show_password_2 = 2130837633;
+			
+			// aapt resource value: 0x7f020082
+			public const int avd_show_password_3 = 2130837634;
 			
 			// aapt resource value: 0x7f020056
 			public const int book = 2130837590;
@@ -2401,11 +2401,11 @@ namespace Bookshelf
 			// aapt resource value: 0x7f020072
 			public const int notification_icon_background = 2130837618;
 			
-			// aapt resource value: 0x7f02007a
-			public const int notification_template_icon_bg = 2130837626;
-			
 			// aapt resource value: 0x7f02007b
-			public const int notification_template_icon_low_bg = 2130837627;
+			public const int notification_template_icon_bg = 2130837627;
+			
+			// aapt resource value: 0x7f02007c
+			public const int notification_template_icon_low_bg = 2130837628;
 			
 			// aapt resource value: 0x7f020073
 			public const int notification_tile_bg = 2130837619;
@@ -2420,13 +2420,16 @@ namespace Bookshelf
 			public const int ScreenLoad = 2130837622;
 			
 			// aapt resource value: 0x7f020077
-			public const int statistic = 2130837623;
+			public const int Sort = 2130837623;
 			
 			// aapt resource value: 0x7f020078
-			public const int tooltip_frame_dark = 2130837624;
+			public const int statistic = 2130837624;
 			
 			// aapt resource value: 0x7f020079
-			public const int tooltip_frame_light = 2130837625;
+			public const int tooltip_frame_dark = 2130837625;
+			
+			// aapt resource value: 0x7f02007a
+			public const int tooltip_frame_light = 2130837626;
 			
 			static Drawable()
 			{
@@ -2504,8 +2507,8 @@ namespace Bookshelf
 			// aapt resource value: 0x7f080096
 			public const int ImvDate = 2131230870;
 			
-			// aapt resource value: 0x7f0800d1
-			public const int LstStat = 2131230929;
+			// aapt resource value: 0x7f0800d3
+			public const int LstStat = 2131230931;
 			
 			// aapt resource value: 0x7f080035
 			public const int META = 2131230773;
@@ -2516,8 +2519,8 @@ namespace Bookshelf
 			// aapt resource value: 0x7f0800cd
 			public const int RecQuot = 2131230925;
 			
-			// aapt resource value: 0x7f0800cf
-			public const int RecRead = 2131230927;
+			// aapt resource value: 0x7f0800d1
+			public const int RecRead = 2131230929;
 			
 			// aapt resource value: 0x7f080036
 			public const int SHIFT = 2131230774;
@@ -2738,8 +2741,8 @@ namespace Bookshelf
 			// aapt resource value: 0x7f0800ce
 			public const int fltBtnAddQuot = 2131230926;
 			
-			// aapt resource value: 0x7f0800d0
-			public const int fltBtnAddRead = 2131230928;
+			// aapt resource value: 0x7f0800d2
+			public const int fltBtnAddRead = 2131230930;
 			
 			// aapt resource value: 0x7f080058
 			public const int forever = 2131230808;
@@ -2767,6 +2770,9 @@ namespace Bookshelf
 			
 			// aapt resource value: 0x7f08005f
 			public const int image = 2131230815;
+			
+			// aapt resource value: 0x7f0800d0
+			public const int imageButton1 = 2131230928;
 			
 			// aapt resource value: 0x7f0800ad
 			public const int imageView = 2131230893;
@@ -2807,14 +2813,14 @@ namespace Bookshelf
 			// aapt resource value: 0x7f080061
 			public const int list_item = 2131230817;
 			
-			// aapt resource value: 0x7f0800d4
-			public const int masked = 2131230932;
+			// aapt resource value: 0x7f0800d6
+			public const int masked = 2131230934;
 			
 			// aapt resource value: 0x7f0800be
 			public const int media_actions = 2131230910;
 			
-			// aapt resource value: 0x7f0800d2
-			public const int message = 2131230930;
+			// aapt resource value: 0x7f0800d4
+			public const int message = 2131230932;
 			
 			// aapt resource value: 0x7f080031
 			public const int middle = 2131230769;
@@ -2828,17 +2834,17 @@ namespace Bookshelf
 			// aapt resource value: 0x7f08008d
 			public const int navigation = 2131230861;
 			
-			// aapt resource value: 0x7f0800d6
-			public const int navigation_dashboard = 2131230934;
+			// aapt resource value: 0x7f0800d8
+			public const int navigation_dashboard = 2131230936;
 			
 			// aapt resource value: 0x7f0800a2
 			public const int navigation_header_container = 2131230882;
 			
-			// aapt resource value: 0x7f0800d5
-			public const int navigation_home = 2131230933;
-			
 			// aapt resource value: 0x7f0800d7
-			public const int navigation_statistic = 2131230935;
+			public const int navigation_home = 2131230935;
+			
+			// aapt resource value: 0x7f0800d9
+			public const int navigation_statistic = 2131230937;
 			
 			// aapt resource value: 0x7f08003b
 			public const int never = 2131230779;
@@ -3044,6 +3050,9 @@ namespace Bookshelf
 			// aapt resource value: 0x7f08006f
 			public const int title_template = 2131230831;
 			
+			// aapt resource value: 0x7f0800cf
+			public const int toolbar1 = 2131230927;
+			
 			// aapt resource value: 0x7f08003e
 			public const int top = 2131230782;
 			
@@ -3080,8 +3089,8 @@ namespace Bookshelf
 			// aapt resource value: 0x7f080016
 			public const int view_offset_helper = 2131230742;
 			
-			// aapt resource value: 0x7f0800d3
-			public const int visible = 2131230931;
+			// aapt resource value: 0x7f0800d5
+			public const int visible = 2131230933;
 			
 			// aapt resource value: 0x7f08003c
 			public const int withText = 2131230780;
