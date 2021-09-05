@@ -30,6 +30,9 @@ namespace Bookshelf.Controler
                                             "Проза","Триллер","Сказки","Учебная литература","Ужасы","Фантастика или фэнтези",
                                             "Юмор и сатира"};
 
+        public int SortRead = -1;
+        public int SortPen = -1;
+
         private readonly string filePath = System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "bookshelf.db3");
 
         public event EventHandler StartReadUpdate;
@@ -173,12 +176,16 @@ namespace Bookshelf.Controler
                     _shelf.readBooksArray.SortByName();
                     break;
                 case TypeSort.ByAutor:
+                    _shelf.readBooksArray.SortByAutor();
                     break;
                 case TypeSort.ByDate:
+                    _shelf.readBooksArray.SortByDate();
                     break;
                 case TypeSort.ByMark:
+                    _shelf.readBooksArray.SortByMark();
                     break;
                 case TypeSort.ByFavorite:
+                    _shelf.readBooksArray.SortByFavorite();
                     break;
             }
         }
@@ -188,8 +195,10 @@ namespace Bookshelf.Controler
             switch (type)
             {
                 case TypeSort.ByName:
+                    _shelf.pendingBooksArray.SortByName();
                     break;
                 case TypeSort.ByAutor:
+                    _shelf.pendingBooksArray.SortByAutor();
                     break;
             }
         }

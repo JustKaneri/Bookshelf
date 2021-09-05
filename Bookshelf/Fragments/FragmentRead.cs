@@ -69,6 +69,25 @@ namespace Bookshelf
             rg.AddView(rbMark);
             rg.AddView(rbFavorite);
 
+            switch (MainActivity._userControler.SortRead)
+            {
+                case 0:
+                    rbName.Checked = true;
+                    break;
+                case 1:
+                    rbAutor.Checked = true;
+                    break;
+                case 2:
+                    rbDate.Checked = true;
+                    break;
+                case 3:
+                    rbMark.Checked = true;
+                    break;
+                case 4:
+                    rbFavorite.Checked = true;
+                    break;
+            }
+
 
             new Android.App.AlertDialog.Builder(v.Context)
                 .SetTitle("Сортировка")
@@ -92,6 +111,7 @@ namespace Bookshelf
                     if (index != -1)
                         MainActivity._userControler.SortBook((UserControler.TypeSort)index, UserControler.TypeBook.ReadBook);
 
+                    MainActivity._userControler.SortRead = index;
                     FillRecylerView();
                 })
                 .SetNegativeButton("Отмена", delegate { })
