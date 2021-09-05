@@ -5,18 +5,22 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
-	<Toolbar
-		android:minHeight="?android:attr/actionBarSize"
+	<LinearLayout
+		android:orientation="vertical"
+		android:minWidth="25px"
 		android:layout_width="match_parent"
 		android:layout_height="35dp"
-		android:id="@+id/toolbar1"
-		android:background="#ffffffff">
+		android:id="@+id/linearLayout2"
+		android:gravity="right">
 		<ImageButton
 			android:layout_width="32dp"
 			android:layout_height="32dp"
-			android:id="@+id/imageButton1"
-			android:background="@drawable/sort"/>
-	</Toolbar>
+			android:id="@+id/ImbSortR"
+			android:layout_marginLeft="5.0dp"
+			android:background="@drawable/sort"
+			android:layout_marginRight="10.5dp" />
+	</LinearLayout>
+	
 	<LinearLayout
 		android:orientation="vertical"
 		android:layout_width="match_parent"

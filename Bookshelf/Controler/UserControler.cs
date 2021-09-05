@@ -13,6 +13,15 @@ namespace Bookshelf.Controler
             PendingBook
         }
 
+        public enum TypeSort
+        {
+            ByName = 0,
+            ByAutor,
+            ByDate,
+            ByMark,
+            ByFavorite
+        }
+
         public Shelf _shelf;
 
         public static string[] categories = {"Афоризмы,фольклор и мифы","Астрология","Детективы",
@@ -22,7 +31,6 @@ namespace Bookshelf.Controler
                                             "Юмор и сатира"};
 
         private readonly string filePath = System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "bookshelf.db3");
-
 
         public event EventHandler StartReadUpdate;
         public event EventHandler StartReadDelete;
@@ -149,5 +157,41 @@ namespace Bookshelf.Controler
             AddBook(book,TypeBook.ReadBook);
         }
         
+        public void SortBook(TypeSort typeSort,TypeBook typeBook)
+        {
+            if (typeBook == TypeBook.ReadBook)
+                SortReadBook(typeSort);
+            else
+                SortPendingBook(typeSort);
+        }
+
+        private void SortReadBook(TypeSort type)
+        {
+            switch (type)
+            {
+                case TypeSort.ByName:
+                    _shelf.readBooksArray.SortByName();
+                    break;
+                case TypeSort.ByAutor:
+                    break;
+                case TypeSort.ByDate:
+                    break;
+                case TypeSort.ByMark:
+                    break;
+                case TypeSort.ByFavorite:
+                    break;
+            }
+        }
+
+        private void SortPendingBook(TypeSort type)
+        {
+            switch (type)
+            {
+                case TypeSort.ByName:
+                    break;
+                case TypeSort.ByAutor:
+                    break;
+            }
+        }
     }
 }

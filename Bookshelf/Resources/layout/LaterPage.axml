@@ -5,18 +5,41 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+	<LinearLayout
+		android:orientation="vertical"
+		android:minWidth="25px"
+		android:layout_width="match_parent"
+		android:layout_height="35dp"
+		android:id="@+id/linearLayout2"
+		android:gravity="right">
+		<ImageButton
+			android:layout_width="32dp"
+			android:layout_height="32dp"
+			android:id="@+id/ImbSortL"
+			android:layout_marginLeft="5.0dp"
+			android:background="@drawable/sort"
+			android:layout_marginRight="10.5dp" />
+	</LinearLayout>
+	
+	<LinearLayout
+		android:orientation="vertical"
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:id="@+id/linearLayout1"
+		android:layout_marginTop="35dp"
+		android:background="#fc6e51" />
 
-    <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/RecLater"
-        android:name="..."
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        app:layoutManager="LinearLayoutManager"
-        tools:context=".TodoListFragment"/>
+	<android.support.v7.widget.RecyclerView
+		xmlns:tools="http://schemas.android.com/tools"
+		android:id="@+id/RecLater"
+		android:name="..."
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_marginLeft="5dp"
+		android:layout_marginRight="5dp"
+		app:layoutManager="LinearLayoutManager"
+		tools:context=".TodoListFragment"
+		android:layout_marginTop="36dp" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fltBtnAddLater"

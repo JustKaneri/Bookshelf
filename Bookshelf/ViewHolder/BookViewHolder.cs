@@ -55,9 +55,11 @@ namespace Bookshelf.Model
                 Toast.MakeText(Application.Context, "Открыть страницу с цитатами из этой книги", ToastLength.Short).Show();
             };
 
+     
 
             BtnFavorite.Click += BtnFavorite_Click;
         }
+
 
         private void BtnFavorite_Click(object sender, EventArgs e)
         {

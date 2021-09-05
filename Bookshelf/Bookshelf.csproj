@@ -71,6 +71,7 @@
     <Compile Include="Adapter\QuotesAdapter.cs" />
     <Compile Include="Controler\DBControler.cs" />
     <Compile Include="Controler\QuoteControler.cs" />
+    <Compile Include="Controler\Sorting.cs" />
     <Compile Include="Controler\StatisticControler.cs" />
     <Compile Include="Controler\UserControler.cs" />
     <Compile Include="Fragments\FragmentLater.cs" />

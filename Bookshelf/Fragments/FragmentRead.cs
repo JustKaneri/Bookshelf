@@ -6,6 +6,7 @@ using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Support.V7.Widget;
 using Android.Views;
+using Android.Widget;
 using Bookshelf.Controler;
 
 namespace Bookshelf
@@ -24,6 +25,7 @@ namespace Bookshelf
         private View v;
         private FloatingActionButton fb;
         private Activity activ;
+        private ImageButton BtnSort;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -31,12 +33,69 @@ namespace Bookshelf
             fb = v.FindViewById<FloatingActionButton>(Resource.Id.fltBtnAddRead);
             fb.Click += Fb_Click;
 
+            BtnSort = v.FindViewById<ImageButton>(Resource.Id.ImbSortR);
+            BtnSort.Click += BtnSort_Click;
+
             mRecyclerView = v.FindViewById<RecyclerView>(Resource.Id.RecRead);
             FillRecylerView();
 
             activ = Activity;
 
             return v;
+        }
+
+        private void BtnSort_Click(object sender, EventArgs e)
+        {
+            RadioGroup rg = new RadioGroup(Application.Context);
+
+            RadioButton rbName = new RadioButton(Application.Context);
+            rbName.Text = "По названию";
+
+            RadioButton rbAutor = new RadioButton(Application.Context);
+            rbAutor.Text = "По автору";
+
+            RadioButton rbDate = new RadioButton(Application.Context);
+            rbDate.Text = "По дате";
+
+            RadioButton rbMark = new RadioButton(Application.Context);
+            rbMark.Text = "По оценке";
+
+            RadioButton rbFavorite = new RadioButton(Application.Context);
+            rbFavorite.Text = "Сначало избранные";
+
+            rg.AddView(rbName);
+            rg.AddView(rbAutor);
+            rg.AddView(rbDate);
+            rg.AddView(rbMark);
+            rg.AddView(rbFavorite);
+
+
+            new Android.App.AlertDialog.Builder(v.Context)
+                .SetTitle("Сортировка")
+                .SetIcon(Resource.Drawable.Sort)
+                .SetView(rg)
+                .SetPositiveButton("Сортировать",delegate 
+                {
+                    int index = -1;
+
+                    if (rbName.Checked)
+                        index = 0;
+                    if (rbAutor.Checked)
+                        index = 1;
+                    if (rbDate.Checked)
+                        index = 2;
+                    if (rbMark.Checked)
+                        index = 3;
+                    if (rbFavorite.Checked)
+                        index = 4;
+
+                    if (index != -1)
+                        MainActivity._userControler.SortBook((UserControler.TypeSort)index, UserControler.TypeBook.ReadBook);
+
+                    FillRecylerView();
+                })
+                .SetNegativeButton("Отмена", delegate { })
+                .Show();
         }
 
         private void FillRecylerView()
