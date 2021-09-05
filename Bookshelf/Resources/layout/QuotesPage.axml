@@ -7,16 +7,18 @@
 	<TextView
 		android:text="Text"
 		android:layout_width="match_parent"
-		android:layout_height="60dp"
+		android:layout_height="wrap_content"
 		android:id="@+id/TxtNameQ"
 		android:textColor="#ffffffff"
 		android:textAlignment="textStart"
 		android:background="#fffc6e51"
-		android:textSize="21dp"
+		android:textSize="20dp"
 		android:fontFamily="Times new Romans"
 		android:textStyle="bold"
 		android:paddingLeft="22dp"
-		android:paddingTop="19dp" />
+		android:paddingTop="19dp"
+		android:minHeight="60dp"
+		android:maxHeight="70dp" />
 	<android.support.v7.widget.RecyclerView
 		xmlns:tools="http://schemas.android.com/tools"
 		android:id="@+id/RecQuot"
@@ -27,7 +29,7 @@
 		android:layout_marginRight="5dp"
 		app:layoutManager="LinearLayoutManager"
 		tools:context=".TodoListFragment"
-		android:layout_marginTop="61.0dp"
+		android:layout_marginTop="70.0dp"
 		android:layout_marginBottom="30.0dp" >
 	</android.support.v7.widget.RecyclerView>
 

@@ -64,12 +64,16 @@ namespace Bookshelf.Controler
             {
                  book.ID = DBControler.AddBook(book, type);
                 _shelf.readBooksArray.Add(book as ReadBook);
+                if(SortRead != -1)
+                    SortReadBook((TypeSort)SortRead);
                 
             }
             else
             {
                  book.ID = DBControler.AddBook(book, type);
                 _shelf.pendingBooksArray.Add(book as PendingBook);
+                if(SortPen != -1)
+                    SortPendingBook((TypeSort)SortPen);
             }
         }
 
@@ -131,11 +135,17 @@ namespace Bookshelf.Controler
             {
                 DBControler.UpdateBook(book, type);
                 _shelf.readBooksArray[id] = book as ReadBook;
+
+                if (SortRead != -1)
+                    SortReadBook((TypeSort)SortRead);
             }
             else
             {
                 DBControler.UpdateBook(book, type);
                 _shelf.pendingBooksArray[id] = book as PendingBook;
+
+                if (SortPen != -1)
+                    SortPendingBook((TypeSort)SortPen);
             }
         }
 

@@ -1,10 +1,13 @@
 ﻿using System;
+using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Support.V7.Widget;
 using Android.Views;
+using Android.Widget;
 using Bookshelf.Adapter;
+using Bookshelf.Controler;
 
 namespace Bookshelf
 {
@@ -21,6 +24,7 @@ namespace Bookshelf
         private RecyclerView.LayoutManager mLayoutManager;
         private View v;
         private FloatingActionButton fb;
+        private ImageButton BtnSort;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -29,10 +33,61 @@ namespace Bookshelf
             fb = v.FindViewById<FloatingActionButton>(Resource.Id.fltBtnAddLater);
             fb.Click += Fb_Click;
 
+            BtnSort = v.FindViewById<ImageButton>(Resource.Id.ImbSortL);
+            BtnSort.Click += BtnSort_Click;
+
             mRecyclerView = v.FindViewById<RecyclerView>(Resource.Id.RecLater);
             FillRecylerView();
 
             return v;
+        }
+
+        private void BtnSort_Click(object sender, EventArgs e)
+        {
+
+            RadioGroup rg = new RadioGroup(Application.Context);
+
+            RadioButton rbName = new RadioButton(Application.Context);
+            rbName.Text = "По названию";
+
+            RadioButton rbAutor = new RadioButton(Application.Context);
+            rbAutor.Text = "По автору";
+
+            rg.AddView(rbName);
+            rg.AddView(rbAutor);
+
+            switch (MainActivity._userControler.SortPen)
+            {
+                case 0:
+                    rbName.Checked = true;
+                    break;
+                case 1:
+                    rbAutor.Checked = true;
+                    break;
+            }
+
+
+            new Android.App.AlertDialog.Builder(v.Context)
+                .SetTitle("Сортировка")
+                .SetIcon(Resource.Drawable.Sort)
+                .SetView(rg)
+                .SetPositiveButton("Сортировать", delegate
+                {
+                    int index = -1;
+
+                    if (rbName.Checked)
+                        index = 0;
+                    if (rbAutor.Checked)
+                        index = 1;
+
+                    if (index != -1)
+                        MainActivity._userControler.SortBook((UserControler.TypeSort)index, UserControler.TypeBook.PendingBook);
+
+                    MainActivity._userControler.SortPen = index;
+                    FillRecylerView();
+                })
+                .SetNegativeButton("Отмена", delegate { })
+                .Show();
         }
 
         private void Fb_Click(object sender, EventArgs e)
