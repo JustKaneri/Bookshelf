@@ -1,13 +1,15 @@
 ﻿using Android.OS;
+using Android.Support.V7.Widget;
 using Android.Views;
-using Android.Widget;
+using Bookshelf.Adapter;
 using Bookshelf.Controler;
 
 namespace Bookshelf
 {
     public class FragmentStatistic : Android.Support.V4.App.Fragment
     {
-        
+        private RecyclerView mRecyclerView;
+        private RecyclerView.LayoutManager mLayoutManager;
 
         public static FragmentStatistic NewInstance()
         {
@@ -21,13 +23,23 @@ namespace Bookshelf
 
             View v = inflater.Inflate(Resource.Layout.StatisticPage, container, false);
 
-            ListView lst = v.FindViewById<ListView>(Resource.Id.LstStat);
+            mRecyclerView = v.FindViewById<RecyclerView>(Resource.Id.LstStat);
 
-            lst.Adapter = new ArrayAdapter(Activity, Android.Resource.Layout.SimpleListItem1, StatisticControler.GetList(MainActivity._userControler.GetBooks(),MainActivity._userControler.GetPendingBooks()));
-                
-
+            FillRecylerView();
 
             return v;
+        }
+
+        private void FillRecylerView()
+        {
+            var stat = StatisticControler.GetList(MainActivity._userControler.GetBooks(), MainActivity._userControler.GetPendingBooks());
+
+            StatisticAdapter adapter = new StatisticAdapter(stat.Item1,stat.Item2);
+
+            mRecyclerView.SetAdapter(adapter);
+
+            mLayoutManager = new LinearLayoutManager(Activity);
+            mRecyclerView.SetLayoutManager(mLayoutManager);
         }
 
     }

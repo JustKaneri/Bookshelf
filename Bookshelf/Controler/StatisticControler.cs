@@ -8,24 +8,37 @@ namespace Bookshelf.Controler
     {
         private StatisticControler() { }
 
-        public static List<string> GetList(List<ReadBook> readBooks, List<PendingBook> pendingBooks)
+        public static (List<string>,List<string>) GetList (List<ReadBook> readBooks, List<PendingBook> pendingBooks)
         {
-            List<string> statistic = new List<string>();
+            List<string> res = new List<string>();
 
-            statistic.Add("Прочитанно книг: " +readBooks.Count.ToString());
-            statistic.Add("Прочитанно страниц: " + CountReadPage(readBooks));
-            statistic.Add("Любимый жанр: " + LikeTypeBook(readBooks));
-            statistic.Add("Любимый автор: " + LikeAutor(readBooks));
-            statistic.Add("Избранных книг: " + GetFavoriteCount(readBooks));
+            res.Add(readBooks.Count.ToString());
+            res.Add(CountReadPage(readBooks));
+            res.Add(LikeTypeBook(readBooks));
+            res.Add(LikeAutor(readBooks));
+            res.Add(GetFavoriteCount(readBooks));
 
-            statistic.Add("Прочитано за этот месяц: " + GetCountBookThisMonth(readBooks));
-            statistic.Add("Прочитано за этот год: " + GetCountBookThisYear(readBooks));
-            statistic.Add("Цитат: " + DBControler.CountQuotes());
+            res.Add(GetCountBookThisMonth(readBooks));
+            res.Add(GetCountBookThisYear(readBooks));
+            res.Add(DBControler.CountQuotes());
 
-            statistic.Add("Отложенно книг: " +pendingBooks.Count.ToString());
-            statistic.Add("Страниц предстоит прочитать: " +CountLaterPage(pendingBooks));
+            res.Add(pendingBooks.Count.ToString());
+            res.Add(CountLaterPage(pendingBooks));
 
-            return statistic;
+
+            List<string> name = new List<string>();
+            name.Add("Прочитанно книг:");
+            name.Add("Прочитанно страниц:");
+            name.Add("Любимый жанр:");
+            name.Add("Любимый автор:");
+            name.Add("Избранных книг:");
+            name.Add("Прочитано за этот месяц:");
+            name.Add("Прочитано за этот год:");
+            name.Add("Цитат: ");
+            name.Add("Отложенно книг::");
+            name.Add("Страниц предстоит прочитать:");
+
+            return (name,res);
         }
 
         private static string GetCountBookThisYear(List<ReadBook> readBooks)
