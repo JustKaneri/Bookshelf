@@ -8,7 +8,6 @@ namespace Bookshelf
     public class FragmentStatistic : Android.Support.V4.App.Fragment
     {
         
-
         public static FragmentStatistic NewInstance()
         {
             var bundle = new Bundle();
