@@ -70,6 +70,7 @@
     <Compile Include="Adapter\BookLaterAdapter.cs" />
     <Compile Include="Adapter\QuotesAdapter.cs" />
     <Compile Include="Adapter\StatisticAdapter.cs" />
+    <Compile Include="Controler\ApplicationController.cs" />
     <Compile Include="Controler\DBControler.cs" />
     <Compile Include="Controler\QuoteControler.cs" />
     <Compile Include="Controler\Sorting.cs" />
@@ -240,6 +241,12 @@
     <AndroidResource Include="Resources\layout\ListItemStatistic.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ViewOne.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ViewTwo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

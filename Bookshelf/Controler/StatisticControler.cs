@@ -34,8 +34,8 @@ namespace Bookshelf.Controler
             name.Add("Избранных книг:");
             name.Add("Прочитано за этот месяц:");
             name.Add("Прочитано за этот год:");
-            name.Add("Цитат: ");
-            name.Add("Отложенно книг::");
+            name.Add("Цитат:");
+            name.Add("Отложенно книг:");
             name.Add("Страниц предстоит прочитать:");
 
             return (name,res);

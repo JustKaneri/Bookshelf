@@ -6,12 +6,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 	<LinearLayout
-		android:orientation="vertical"
+		android:orientation="horizontal"
 		android:minWidth="25px"
 		android:layout_width="match_parent"
 		android:layout_height="35dp"
 		android:id="@+id/linearLayout2"
 		android:gravity="right">
+		<LinearLayout
+			android:orientation="horizontal"
+			android:minWidth="25px"
+			android:minHeight="25px"
+			android:layout_width="match_parent"
+			android:layout_height="35dp"
+			android:id="@+id/linearLayout3"
+			android:layout_marginLeft="49.5dp" >
+			<ImageButton
+				android:layout_width="32dp"
+				android:layout_height="32dp"
+				android:id="@+id/ImgBtnView"
+				android:layout_marginLeft="5dp"
+				android:background="@drawable/viewone" />
+		</LinearLayout>
 		<ImageButton
 			android:layout_width="32dp"
 			android:layout_height="32dp"
