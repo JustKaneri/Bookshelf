@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+
+<android.support.design.widget.CoordinatorLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
-	<ListView
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:id="@+id/LstStat"
-			android:listSelector="#ff5d9cec"
-			android:choiceMode="singleChoice"
-		    android:layout_marginLeft = "5dp"
-	      android:layout_marginRight = "5dp"/>
 
-</LinearLayout>
+	<android.support.v7.widget.RecyclerView
+		xmlns:tools="http://schemas.android.com/tools"
+		android:id="@+id/LstStat"
+		android:name="..."
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_marginLeft="5dp"
+		android:layout_marginRight="5dp"
+		app:layoutManager="LinearLayoutManager"
+		tools:context=".TodoListFragment" >
+	</android.support.v7.widget.RecyclerView>
+
+</android.support.design.widget.CoordinatorLayout>
