@@ -41,8 +41,8 @@ namespace Bookshelf.Adapter
 
             if (MainActivity._appController.GetTypeView(Controler.UserControler.TypeBook.PendingBook) == Controler.ApplicationController.TypeView.MaxInfo)
             {
-                book.TxtAutor.Text = books[position].Autor;
-                book.TxtCategori.Text = UserControler.categories[books[position].Categori];
+                book.TxtAutor.Text = "Автор: " + books[position].Autor;
+                book.TxtCategori.Text = "Жанр: " + UserControler.categories[books[position].Categori];
             }
 
         }

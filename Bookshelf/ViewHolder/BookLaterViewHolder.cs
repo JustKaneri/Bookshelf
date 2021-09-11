@@ -26,6 +26,7 @@ namespace Bookshelf.Model
             BtnDele = itemView.FindViewById<ImageButton>(Resource.Id.BtnDelLater);
             BtnMove = itemView.FindViewById<ImageButton>(Resource.Id.BtnMovLater);
 
+
             TxtAutor = itemView.FindViewById<TextView>(Resource.Id.TvAutor);
             TxtCategori = itemView.FindViewById<TextView>(Resource.Id.TvCategori);
 

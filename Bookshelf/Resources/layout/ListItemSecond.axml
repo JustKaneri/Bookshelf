@@ -89,15 +89,15 @@
 					<TextView
 						android:text="Text"
 						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
+						android:layout_height="35.0dp"
 						android:id="@+id/TvAutor"
 						android:textColor="#ff000000"
-						android:layout_marginBottom="5dp"
+						android:layout_marginBottom="5.0dp"
 						android:layout_marginLeft="7dp" />
 					<TextView
 						android:text="Text"
 						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
+						android:layout_height="36.0dp"
 						android:id="@+id/TvCategori"
 						android:textColor="#ff000000"
 						android:layout_marginBottom="5dp"
@@ -110,7 +110,7 @@
 						android:id="@+id/TvDate"
 						android:textColor="#ff000000"
 						android:layout_marginTop="5dp"
-						android:layout_marginBottom="25dp"
+						android:layout_marginBottom="13.5dp"
 						android:layout_marginLeft="7dp" />
 					<ImageView
 						android:layout_width="match_parent"
