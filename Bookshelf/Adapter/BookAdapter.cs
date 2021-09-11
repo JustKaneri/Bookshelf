@@ -16,7 +16,12 @@ namespace Bookshelf.Controler
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
-            View itemView = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.ListItem, parent, false);
+            View itemView = null;
+
+            if (MainActivity._appController.GetTypeView() == ApplicationController.TypeView.MinInfo)
+                itemView = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.ListItem, parent, false);
+            else
+                itemView = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.ListItemSecond, parent, false);
 
             BookViewHolder bv = new BookViewHolder(itemView);
             return bv;
@@ -36,6 +41,32 @@ namespace Bookshelf.Controler
                 book.BtnFavorite.SetBackgroundResource(Resource.Drawable.Favorite);
             else
                 book.BtnFavorite.SetBackgroundResource(Resource.Drawable.NoFavorite);
+
+            if(MainActivity._appController.GetTypeView() == ApplicationController.TypeView.MaxInfo)
+            {
+                book.TxtAutor.Text = bookArray[position].Autor;
+                book.TxtCategori.Text = UserControler.categories[bookArray[position].Categori];
+                book.TxtDate.Text = bookArray[position].DateReading;
+
+                switch (bookArray[position].Mark)
+                {
+                    case 1:
+                        book.ImvMark.SetImageResource(Resource.Drawable.MarkOne);
+                        break;
+                    case 2:
+                        book.ImvMark.SetImageResource(Resource.Drawable.MarkTwo);
+                        break;
+                    case 3:
+                        book.ImvMark.SetImageResource(Resource.Drawable.MarkThree);
+                        break;
+                    case 4:
+                        book.ImvMark.SetImageResource(Resource.Drawable.MarkFour);
+                        break;
+                    case 5:
+                        book.ImvMark.SetImageResource(Resource.Drawable.MarkFive);
+                        break;
+                }
+            }
         }
 
         public override int ItemCount

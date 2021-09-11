@@ -18,6 +18,8 @@ namespace Bookshelf
 
         public static UserControler _userControler;
 
+        public static ApplicationController _appController;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -28,6 +30,8 @@ namespace Bookshelf
            
             BottomNavigationView navigation = FindViewById<BottomNavigationView>(Resource.Id.navigation);
             navigation.SetOnNavigationItemSelectedListener(this);
+
+            _appController = new ApplicationController();
 
         }
 

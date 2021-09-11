@@ -13,7 +13,12 @@ namespace Bookshelf.Model
         public TextView Caption { get; private set; }
         public ImageButton BtnEdit { get; private set; }
         public ImageButton BtnDele { get; private set; }
-        public ImageButton BtnFavorite { get; set; }
+        public ImageButton BtnFavorite { get;private set; }
+        public TextView TxtAutor { get;private set; }
+        public TextView TxtCategori { get; private set; }
+        public TextView TxtDate { get; private set; }
+        public ImageView ImvMark { get; private set; }
+
 
         public BookViewHolder(View itemView) : base(itemView)
         {
@@ -23,6 +28,11 @@ namespace Bookshelf.Model
             BtnEdit = itemView.FindViewById<ImageButton>(Resource.Id.BtnEdit);
             BtnDele = itemView.FindViewById<ImageButton>(Resource.Id.BtnDel);
             BtnFavorite = itemView.FindViewById<ImageButton>(Resource.Id.BtnFavorite);
+
+            TxtAutor = itemView.FindViewById<TextView>(Resource.Id.TvAutor);
+            TxtCategori = itemView.FindViewById<TextView>(Resource.Id.TvCategori);
+            TxtDate = itemView.FindViewById<TextView>(Resource.Id.TvDate);
+            ImvMark = itemView.FindViewById<ImageView>(Resource.Id.ImvMark);
 
             BtnEdit.Click += delegate
             {

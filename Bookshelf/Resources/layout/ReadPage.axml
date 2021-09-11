@@ -25,7 +25,7 @@
 				android:layout_height="32dp"
 				android:id="@+id/ImgBtnView"
 				android:layout_marginLeft="5dp"
-				android:background="@drawable/viewone" />
+				android:background="@drawable/viewtwo" />
 		</LinearLayout>
 		<ImageButton
 			android:layout_width="32dp"
