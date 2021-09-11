@@ -41,6 +41,12 @@ namespace Bookshelf
             BtnView.Click += BtnView_Click;
 
             mRecyclerView = v.FindViewById<RecyclerView>(Resource.Id.RecLater);
+
+            if (MainActivity._appController.GetTypeView(UserControler.TypeBook.PendingBook) == ApplicationController.TypeView.MinInfo)
+                BtnView.SetBackgroundResource(Resource.Drawable.ViewTwo);
+            else
+                BtnView.SetBackgroundResource(Resource.Drawable.ViewOne);
+
             FillRecylerView();
 
             return v;
