@@ -18,7 +18,7 @@ namespace Bookshelf.Controler
         {
             View itemView = null;
 
-            if (MainActivity._appController.GetTypeView() == ApplicationController.TypeView.MinInfo)
+            if (MainActivity._appController.GetTypeView(UserControler.TypeBook.ReadBook) == ApplicationController.TypeView.MinInfo)
                 itemView = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.ListItem, parent, false);
             else
                 itemView = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.ListItemSecond, parent, false);
@@ -37,16 +37,17 @@ namespace Bookshelf.Controler
             book.BtnDele.Tag = position.ToString();
             book.BtnFavorite.Tag = position.ToString();
             book.Image.Tag = position.ToString();
+
             if (MainActivity._userControler._shelf.readBooksArray[position].Favorite)
                 book.BtnFavorite.SetBackgroundResource(Resource.Drawable.Favorite);
             else
                 book.BtnFavorite.SetBackgroundResource(Resource.Drawable.NoFavorite);
 
-            if(MainActivity._appController.GetTypeView() == ApplicationController.TypeView.MaxInfo)
+            if(MainActivity._appController.GetTypeView(UserControler.TypeBook.ReadBook) == ApplicationController.TypeView.MaxInfo)
             {
-                book.TxtAutor.Text = bookArray[position].Autor;
-                book.TxtCategori.Text = UserControler.categories[bookArray[position].Categori];
-                book.TxtDate.Text = bookArray[position].DateReading;
+                book.TxtAutor.Text = "Автор: "+ bookArray[position].Autor;
+                book.TxtCategori.Text = "Жанр: "+UserControler.categories[bookArray[position].Categori];
+                book.TxtDate.Text = "Дата прочтения: " + bookArray[position].DateReading;
 
                 switch (bookArray[position].Mark)
                 {

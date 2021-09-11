@@ -21,20 +21,28 @@ namespace Bookshelf.Controler
         }
 
         private int SelectView { get; set; }
+        private int SelectViewLater { get; set; }
 
         public ApplicationController()
         {
             SelectView = 1;
+            SelectViewLater = 1;
         }
 
-        public TypeView GetTypeView()
+        public TypeView GetTypeView(UserControler.TypeBook type)
         {
-            return (TypeView)SelectView;
+            if (type == UserControler.TypeBook.ReadBook)
+                return (TypeView)SelectView;
+            else
+                return (TypeView)SelectViewLater;
         }
 
-        public void SetTypeView(TypeView type)
+        public void SetTypeView(TypeView type,UserControler.TypeBook typeBook)
         {
-            SelectView = (int)type;
+            if (typeBook == UserControler.TypeBook.ReadBook)
+                SelectView = (int)type;
+            else
+                SelectViewLater = (int)type;
         }
     }
 }

@@ -50,14 +50,14 @@ namespace Bookshelf
 
         private void BtnView_Click(object sender, EventArgs e)
         {
-            if(MainActivity._appController.GetTypeView() == ApplicationController.TypeView.MinInfo)
+            if(MainActivity._appController.GetTypeView(UserControler.TypeBook.ReadBook) == ApplicationController.TypeView.MinInfo)
             {
-                MainActivity._appController.SetTypeView(ApplicationController.TypeView.MaxInfo);
+                MainActivity._appController.SetTypeView(ApplicationController.TypeView.MaxInfo, UserControler.TypeBook.ReadBook);
                 BtnView.SetBackgroundResource(Resource.Drawable.ViewOne);
             }
             else
             {
-                MainActivity._appController.SetTypeView(ApplicationController.TypeView.MinInfo);
+                MainActivity._appController.SetTypeView(ApplicationController.TypeView.MinInfo, UserControler.TypeBook.ReadBook);
                 BtnView.SetBackgroundResource(Resource.Drawable.ViewTwo);
             }
 

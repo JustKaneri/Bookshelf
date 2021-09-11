@@ -25,6 +25,7 @@ namespace Bookshelf
         private View v;
         private FloatingActionButton fb;
         private ImageButton BtnSort;
+        private ImageButton BtnView;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -36,10 +37,29 @@ namespace Bookshelf
             BtnSort = v.FindViewById<ImageButton>(Resource.Id.ImbSortL);
             BtnSort.Click += BtnSort_Click;
 
+            BtnView = v.FindViewById<ImageButton>(Resource.Id.ImgBtnView);
+            BtnView.Click += BtnView_Click;
+
             mRecyclerView = v.FindViewById<RecyclerView>(Resource.Id.RecLater);
             FillRecylerView();
 
             return v;
+        }
+
+        private void BtnView_Click(object sender, EventArgs e)
+        {
+            if (MainActivity._appController.GetTypeView(UserControler.TypeBook.PendingBook) == ApplicationController.TypeView.MinInfo)
+            {
+                MainActivity._appController.SetTypeView(ApplicationController.TypeView.MaxInfo,UserControler.TypeBook.PendingBook);
+                BtnView.SetBackgroundResource(Resource.Drawable.ViewOne);
+            }
+            else
+            {
+                MainActivity._appController.SetTypeView(ApplicationController.TypeView.MinInfo,UserControler.TypeBook.PendingBook);
+                BtnView.SetBackgroundResource(Resource.Drawable.ViewTwo);
+            }
+
+            FillRecylerView();
         }
 
         private void BtnSort_Click(object sender, EventArgs e)

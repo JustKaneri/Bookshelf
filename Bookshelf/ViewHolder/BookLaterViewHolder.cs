@@ -14,6 +14,9 @@ namespace Bookshelf.Model
         public ImageButton BtnDele { get; private set; }
         public ImageButton BtnMove { get; private set; }
 
+        public TextView TxtAutor { get; private set; }
+        public TextView TxtCategori { get; private set; }
+
         public BookLaterViewHolder(View itemView) : base(itemView)
         {
             // Locate and cache view references:
@@ -22,6 +25,9 @@ namespace Bookshelf.Model
             BtnEdit = itemView.FindViewById<ImageButton>(Resource.Id.BtnEditLater);
             BtnDele = itemView.FindViewById<ImageButton>(Resource.Id.BtnDelLater);
             BtnMove = itemView.FindViewById<ImageButton>(Resource.Id.BtnMovLater);
+
+            TxtAutor = itemView.FindViewById<TextView>(Resource.Id.TvAutor);
+            TxtCategori = itemView.FindViewById<TextView>(Resource.Id.TvCategori);
 
             BtnEdit.Click += delegate
             {

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Android.Support.V7.Widget;
 using Android.Views;
+using Bookshelf.Controler;
 using Bookshelf.Model;
 
 namespace Bookshelf.Adapter
@@ -16,7 +17,12 @@ namespace Bookshelf.Adapter
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
-            View itemView = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.ListLaterItem ,parent, false);
+            View itemView = null;
+
+            if (MainActivity._appController.GetTypeView(Controler.UserControler.TypeBook.PendingBook) == Controler.ApplicationController.TypeView.MinInfo)
+                itemView = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.ListLaterItem ,parent, false);
+            else
+                itemView = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.ListLaterItemSecond, parent, false);
 
             BookLaterViewHolder bv = new BookLaterViewHolder(itemView);
             return bv;
@@ -32,6 +38,12 @@ namespace Bookshelf.Adapter
             book.BtnDele.Tag = position.ToString();
             book.BtnMove.Tag = position.ToString();
 
+
+            if (MainActivity._appController.GetTypeView(Controler.UserControler.TypeBook.PendingBook) == Controler.ApplicationController.TypeView.MaxInfo)
+            {
+                book.TxtAutor.Text = books[position].Autor;
+                book.TxtCategori.Text = UserControler.categories[books[position].Categori];
+            }
 
         }
 
