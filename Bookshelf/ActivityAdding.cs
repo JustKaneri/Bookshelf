@@ -231,9 +231,7 @@ namespace Bookshelf
 
             if (string.IsNullOrWhiteSpace(edtAutor.Text))
             {
-                Toast.MakeText(this, "Укажите автора", ToastLength.Short).Show();
-                btnAdd.Enabled = true;
-                return;
+                edtAutor.Text = "Неизвестен";
             }
 
             if (status.Contains("read") && string.IsNullOrWhiteSpace(edtMark.Text))
