@@ -48,7 +48,20 @@ namespace Bookshelf.Controler
             if(File.Exists(filePath))
             {
                 var res = DBControler.GetTables();
-                _shelf = new Shelf(res.Item1, res.Item2);
+
+                var l = res.Item1;
+
+                for (int i = 0; i < 20; i++)
+                {
+                    int cnt = l.Count;
+
+                    for (int j = 0; j < cnt; j++)
+                    {
+                        l.Add(l[j]);
+                    }
+                }
+
+                _shelf = new Shelf(l, res.Item2);
             }
             else
             {
