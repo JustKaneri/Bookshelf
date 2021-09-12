@@ -282,10 +282,12 @@ namespace Bookshelf
             {
                 Android.Net.Uri uri = data.Data;
                 Stream stream = ContentResolver.OpenInputStream(uri);
-                imvBook.SetImageURI(uri);
-
                 bmp = BitmapFactory.DecodeStream(stream);
 
+                if(bmp.Width > 3840 || bmp.Height > 2160)
+                    bmp = Bitmap.CreateScaledBitmap(bmp, bmp.Width / 2, bmp.Height / 2 , false);
+
+                imvBook.SetImageBitmap(bmp);
             }
         }
 
