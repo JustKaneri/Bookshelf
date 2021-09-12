@@ -19,10 +19,14 @@ namespace Bookshelf.Controler
                     else
                     if(rbb[j].Name[0] == rbb[j + 1].Name[0])
                     {
-                        if (rbb[j].Name[1] > rbb[j + 1].Name[1])
+                        if(rbb[j].Name.Length > 1  && rbb[j+1].Name.Length > 1)
                         {
-                            (rbb[j], rbb[j + 1]) = (rbb[j + 1], rbb[j]);
+                            if (rbb[j].Name[1] > rbb[j + 1].Name[1])
+                            {
+                                (rbb[j], rbb[j + 1]) = (rbb[j + 1], rbb[j]);
+                            }
                         }
+                        
                     }
                 }
             }
@@ -41,10 +45,14 @@ namespace Bookshelf.Controler
                     else
                     if (rbb[j].Autor[0] == rbb[j + 1].Autor[0])
                     {
-                        if (rbb[j].Autor[1] > rbb[j + 1].Autor[1])
+                        if(rbb[j].Autor.Length > 1 && rbb[j + 1].Autor.Length > 2)
                         {
-                            (rbb[j], rbb[j + 1]) = (rbb[j + 1], rbb[j]);
+                            if (rbb[j].Autor[1] > rbb[j + 1].Autor[1])
+                            {
+                                (rbb[j], rbb[j + 1]) = (rbb[j + 1], rbb[j]);
+                            }
                         }
+                        
                     }
                 }
             }
@@ -106,10 +114,13 @@ namespace Bookshelf.Controler
                     else
                     if (rbb[j].Name[0] == rbb[j + 1].Name[0])
                     {
-                        if (rbb[j].Name[1] > rbb[j + 1].Name[1])
+                        if(rbb[j].Name.Length > 1 && rbb[j + 1].Name.Length > 1)
                         {
-                            (rbb[j], rbb[j + 1]) = (rbb[j + 1], rbb[j]);
-                        }
+                            if (rbb[j].Name[1] > rbb[j + 1].Name[1])
+                            {
+                                (rbb[j], rbb[j + 1]) = (rbb[j + 1], rbb[j]);
+                            }
+                        }  
                     }
                 }
             }
@@ -128,9 +139,12 @@ namespace Bookshelf.Controler
                     else
                     if (rbb[j].Autor[0] == rbb[j + 1].Autor[0])
                     {
-                        if (rbb[j].Autor[1] > rbb[j + 1].Autor[1])
+                        if(rbb[j].Autor.Length > 1 && rbb[j + 1].Autor.Length > 1)
                         {
-                            (rbb[j], rbb[j + 1]) = (rbb[j + 1], rbb[j]);
+                            if (rbb[j].Autor[1] > rbb[j + 1].Autor[1])
+                            {
+                                (rbb[j], rbb[j + 1]) = (rbb[j + 1], rbb[j]);
+                            }
                         }
                     }
                 }
