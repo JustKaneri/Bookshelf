@@ -38,21 +38,10 @@
 						android:background="@drawable/NoFavorite"
 						android:layout_marginRight="15dp" />
 				</LinearLayout>
-				<ImageButton
-					android:layout_width="25dp"
-					android:layout_height="25dp"
-					android:id="@+id/BtnEdit"
-					android:maxWidth="25dp"
-					android:maxHeight="25dp"
-					android:background="@drawable/edit"
-					android:layout_marginRight="15dp" />
-				<ImageButton
-					android:layout_width="25dp"
-					android:layout_height="25dp"
-					android:id="@+id/BtnDel"
-					android:maxWidth="25dp"
-					android:maxHeight="25dp"
-					android:background="@drawable/delete" />
+				<Spinner
+					android:layout_width="56.5dp"
+					android:layout_height="match_parent"
+					android:id="@+id/spinner1" />
 			</LinearLayout>
 			<ImageView
 				android:layout_width="match_parent"
