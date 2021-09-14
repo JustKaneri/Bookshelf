@@ -25,6 +25,7 @@ namespace Bookshelf
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.QuotesPage);
+            RequestedOrientation = Android.Content.PM.ScreenOrientation.Portrait;
             // Create your application here
 
             mRecyclerView = FindViewById<RecyclerView>(Resource.Id.RecQuot);
