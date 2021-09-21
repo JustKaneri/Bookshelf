@@ -2501,6 +2501,9 @@ namespace Bookshelf
 			// aapt resource value: 0x7f0800b9
 			public const int BtnMovLater = 2131230905;
 			
+			// aapt resource value: 0x7f0800ae
+			public const int BtnOpenPopMenu = 2131230894;
+			
 			// aapt resource value: 0x7f080033
 			public const int CTRL = 2131230771;
 			
@@ -2873,6 +2876,21 @@ namespace Bookshelf
 			// aapt resource value: 0x7f0800c8
 			public const int media_actions = 2131230920;
 			
+			// aapt resource value: 0x7f0800e7
+			public const int menu_Del = 2131230951;
+			
+			// aapt resource value: 0x7f0800e6
+			public const int menu_Edit = 2131230950;
+			
+			// aapt resource value: 0x7f0800e4
+			public const int menu_PreShow = 2131230948;
+			
+			// aapt resource value: 0x7f0800e5
+			public const int menu_Quotes = 2131230949;
+			
+			// aapt resource value: 0x7f0800e3
+			public const int menugroup1 = 2131230947;
+			
 			// aapt resource value: 0x7f0800dd
 			public const int message = 2131230941;
 			
@@ -3037,9 +3055,6 @@ namespace Bookshelf
 			
 			// aapt resource value: 0x7f080064
 			public const int spacer = 2131230820;
-			
-			// aapt resource value: 0x7f0800ae
-			public const int spinner1 = 2131230894;
 			
 			// aapt resource value: 0x7f080008
 			public const int split_action_bar = 2131230728;
@@ -3442,6 +3457,9 @@ namespace Bookshelf
 			
 			// aapt resource value: 0x7f0e0000
 			public const int navigation = 2131623936;
+			
+			// aapt resource value: 0x7f0e0001
+			public const int popupmenu = 2131623937;
 			
 			static Menu()
 			{
