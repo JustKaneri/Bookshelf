@@ -11,8 +11,6 @@ namespace Bookshelf.Model
     {
         public ImageView Image { get; private set; }
         public TextView Caption { get; private set; }
-        public ImageButton BtnEdit { get; private set; }
-        public ImageButton BtnDele { get; private set; }
         public ImageButton BtnFavorite { get;private set; }
         public TextView TxtAutor { get;private set; }
         public TextView TxtCategori { get; private set; }
@@ -25,16 +23,13 @@ namespace Bookshelf.Model
         {
             Image = itemView.FindViewById<ImageView>(Resource.Id.imageView);
             Caption = itemView.FindViewById<TextView>(Resource.Id.textView);
-            //BtnEdit = itemView.FindViewById<ImageButton>(Resource.Id.BtnEdit);
             BtnPopMenu = itemView.FindViewById<Button>(Resource.Id.BtnOpenPopMenu);
-
-            //BtnDele = itemView.FindViewById<ImageButton>(Resource.Id.BtnDel);
             BtnFavorite = itemView.FindViewById<ImageButton>(Resource.Id.BtnFavorite);
 
-            //TxtAutor = itemView.FindViewById<TextView>(Resource.Id.TvAutor);
-            //TxtCategori = itemView.FindViewById<TextView>(Resource.Id.TvCategori);
-            //TxtDate = itemView.FindViewById<TextView>(Resource.Id.TvDate);
-            //ImvMark = itemView.FindViewById<ImageView>(Resource.Id.ImvMark);
+            TxtAutor = itemView.FindViewById<TextView>(Resource.Id.TvAutor);
+            TxtCategori = itemView.FindViewById<TextView>(Resource.Id.TvCategori);
+            TxtDate = itemView.FindViewById<TextView>(Resource.Id.TvDate);
+            ImvMark = itemView.FindViewById<ImageView>(Resource.Id.ImvMark);
 
             BtnPopMenu.Click += (s, arg) =>
             {
@@ -61,39 +56,6 @@ namespace Bookshelf.Model
 
                 menu.Show();
             };
-
-            //BtnEdit.Click += delegate
-            //{
-            //    MainActivity._userControler.BegingUpdate(int.Parse(BtnEdit.Tag.ToString()),UserControler.TypeBook.ReadBook);
-            //};
-
-            //BtnEdit.LongClick += delegate
-            //{
-            //    Toast.MakeText(Application.Context, "Редактировать книгу", ToastLength.Short).Show();
-            //};
-
-
-            //BtnDele.Click += delegate
-            //{
-            //    MainActivity._userControler.BeginDelete(int.Parse(BtnDele.Tag.ToString()), UserControler.TypeBook.ReadBook);
-            //};
-
-            //BtnDele.LongClick += delegate
-            //{
-            //    Toast.MakeText(Application.Context, "Удалить книгу", ToastLength.Short).Show();
-            //};
-
-            //Image.Click += delegate
-            //{
-            //    MainActivity._userControler.BeginOpenQuotes(int.Parse(Image.Tag.ToString()));
-            //};
-
-            //Image.LongClick += delegate
-            //{
-            //    Toast.MakeText(Application.Context, "Открыть страницу с цитатами из этой книги", ToastLength.Short).Show();
-            //};
-
-
 
             BtnFavorite.Click += BtnFavorite_Click;
         }
