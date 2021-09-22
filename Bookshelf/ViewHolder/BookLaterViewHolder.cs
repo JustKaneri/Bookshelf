@@ -10,44 +10,44 @@ namespace Bookshelf.Model
     {
         public ImageView Image { get; private set; }
         public TextView Caption { get; private set; }
-        public ImageButton BtnEdit { get; private set; }
-        public ImageButton BtnDele { get; private set; }
         public ImageButton BtnMove { get; private set; }
 
         public TextView TxtAutor { get; private set; }
         public TextView TxtCategori { get; private set; }
+
+        public Button BtnPopMenu { get; set; }
 
         public BookLaterViewHolder(View itemView) : base(itemView)
         {
             // Locate and cache view references:
             Image = itemView.FindViewById<ImageView>(Resource.Id.ImgLater);
             Caption = itemView.FindViewById<TextView>(Resource.Id.TxtLater);
-            BtnEdit = itemView.FindViewById<ImageButton>(Resource.Id.BtnEditLater);
-            BtnDele = itemView.FindViewById<ImageButton>(Resource.Id.BtnDelLater);
             BtnMove = itemView.FindViewById<ImageButton>(Resource.Id.BtnMovLater);
-
-
+            BtnPopMenu = itemView.FindViewById<Button>(Resource.Id.BtnOpenPopMenu);
             TxtAutor = itemView.FindViewById<TextView>(Resource.Id.TvAutor);
             TxtCategori = itemView.FindViewById<TextView>(Resource.Id.TvCategori);
 
-            BtnEdit.Click += delegate
+            BtnPopMenu.Click += (s, arg) =>
             {
-                MainActivity._userControler.BegingUpdate(int.Parse(BtnEdit.Tag.ToString()),UserControler.TypeBook.PendingBook);
-            };
+                Android.Widget.PopupMenu menu = new Android.Widget.PopupMenu(Application.Context, BtnPopMenu);
+                menu.Inflate(Resource.Menu.PopupMenuPending);
 
-            BtnDele.LongClick += delegate
-            {
-                Toast.MakeText(Application.Context, "Удалить книгу", ToastLength.Short).Show();
-            };
+                menu.MenuItemClick += (s1, arg1) =>
+                {
+                    switch (arg1.Item.ItemId)
+                    {
+                        case Resource.Id.menu_PreShow:
+                            break;
+                        case Resource.Id.menu_Edit:
+                            MainActivity._userControler.BegingUpdate(int.Parse(BtnMove.Tag.ToString()), UserControler.TypeBook.PendingBook);
+                            break;
+                        case Resource.Id.menu_Del:
+                            MainActivity._userControler.BeginDelete(int.Parse(BtnMove.Tag.ToString()), UserControler.TypeBook.PendingBook);
+                            break;
+                    }
+                };
 
-            BtnDele.Click += delegate
-            {
-                MainActivity._userControler.BeginDelete(int.Parse(BtnDele.Tag.ToString()), UserControler.TypeBook.PendingBook);
-            };
-
-            BtnEdit.LongClick += delegate
-            {
-                Toast.MakeText(Application.Context, "Редактировать книгу", ToastLength.Short).Show();
+                menu.Show();
             };
 
             BtnMove.Click += delegate
