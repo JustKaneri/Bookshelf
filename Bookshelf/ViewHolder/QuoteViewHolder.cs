@@ -17,36 +17,57 @@ namespace Bookshelf.ViewHolder
     {
         public TextView Quot { get; private set; }
         public TextView Caption { get; private set; }
-        public ImageButton BtnEdit { get; private set; }
-        public ImageButton BtnDelet { get; private set; }
+        public Button BtnPopMenu { get; set; }
 
         public QuoteViewHolder(View itemView) : base(itemView)
         {
             // Locate and cache view references:
             Quot = itemView.FindViewById<TextView>(Resource.Id.TxtQuot);
             Caption = itemView.FindViewById<TextView>(Resource.Id.TxtAutorQ);
-            BtnEdit = itemView.FindViewById<ImageButton>(Resource.Id.BtnEditQ);
-            BtnDelet = itemView.FindViewById<ImageButton>(Resource.Id.BtnDelQ);
+            BtnPopMenu = itemView.FindViewById<Button>(Resource.Id.BtnOpenPopMenu);
 
-            BtnEdit.Click += delegate
+            BtnPopMenu.Click += (s, arg) =>
             {
-                PageQuotes._quoteControler.StartUpdate(int.Parse(BtnEdit.Tag.ToString()));
+                Android.Widget.PopupMenu menu = new Android.Widget.PopupMenu(Application.Context, BtnPopMenu);
+                menu.Inflate(Resource.Menu.PopupMenuQuotes);
+
+                menu.MenuItemClick += (s1, arg1) =>
+                {
+                    switch (arg1.Item.ItemId)
+                    {
+                        
+                        case Resource.Id.menu_Edit:
+                            PageQuotes._quoteControler.StartUpdate(int.Parse(Caption.Tag.ToString()));
+                            break;
+                        case Resource.Id.menu_Del:
+                            PageQuotes._quoteControler.StartDelet(int.Parse(Caption.Tag.ToString()));
+                            break;
+                    }
+                };
+
+                menu.Show();
             };
 
-            BtnEdit.LongClick += delegate
-            {
-                Toast.MakeText(Application.Context, "Редактировать цитату", ToastLength.Short).Show();
-            };
 
-            BtnDelet.Click += delegate
-            {
-                PageQuotes._quoteControler.StartDelet(int.Parse(BtnDelet.Tag.ToString()));
-            };
+            //BtnEdit.Click += delegate
+            //{
+            //    PageQuotes._quoteControler.StartUpdate(int.Parse(BtnEdit.Tag.ToString()));
+            //};
 
-            BtnDelet.LongClick += delegate
-            {
-                Toast.MakeText(Application.Context, "Редактировать цитату", ToastLength.Short).Show();
-            };
+            //BtnEdit.LongClick += delegate
+            //{
+            //    Toast.MakeText(Application.Context, "Редактировать цитату", ToastLength.Short).Show();
+            //};
+
+            //BtnDelet.Click += delegate
+            //{
+            //    PageQuotes._quoteControler.StartDelet(int.Parse(BtnDelet.Tag.ToString()));
+            //};
+
+            //BtnDelet.LongClick += delegate
+            //{
+            //    Toast.MakeText(Application.Context, "Редактировать цитату", ToastLength.Short).Show();
+            //};
         }
     }
 }

@@ -33,8 +33,6 @@ namespace Bookshelf.Controler
 
             book.Image.SetImageBitmap(bookArray[position].Photo);
             book.Caption.Text = bookArray[position].Name;
-            book.BtnEdit.Tag = position.ToString();
-            book.BtnDele.Tag = position.ToString();
             book.BtnFavorite.Tag = position.ToString();
             book.Image.Tag = position.ToString();
 

@@ -27,8 +27,7 @@ namespace Bookshelf.Adapter
         {
             QuoteViewHolder quot = holder as QuoteViewHolder;
 
-            quot.BtnDelet.Tag = position;
-            quot.BtnEdit.Tag = position;
+            quot.Caption.Tag = position;
             quot.Caption.Text = quotes[position].Autor;
             quot.Quot.Text = "\" " + quotes[position].Quot + " \" ";
         }

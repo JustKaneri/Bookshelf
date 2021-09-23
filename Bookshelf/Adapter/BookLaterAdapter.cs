@@ -34,8 +34,6 @@ namespace Bookshelf.Adapter
 
             book.Image.SetImageBitmap(books[position].Photo);
             book.Caption.Text = books[position].Name;
-            book.BtnEdit.Tag = position.ToString();
-            book.BtnDele.Tag = position.ToString();
             book.BtnMove.Tag = position.ToString();
 
 

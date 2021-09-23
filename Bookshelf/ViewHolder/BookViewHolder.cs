@@ -11,22 +11,19 @@ namespace Bookshelf.Model
     {
         public ImageView Image { get; private set; }
         public TextView Caption { get; private set; }
-        public ImageButton BtnEdit { get; private set; }
-        public ImageButton BtnDele { get; private set; }
         public ImageButton BtnFavorite { get;private set; }
         public TextView TxtAutor { get;private set; }
         public TextView TxtCategori { get; private set; }
         public TextView TxtDate { get; private set; }
         public ImageView ImvMark { get; private set; }
 
+        public Button BtnPopMenu { get; set; }
 
         public BookViewHolder(View itemView) : base(itemView)
         {
-            // Locate and cache view references:
             Image = itemView.FindViewById<ImageView>(Resource.Id.imageView);
             Caption = itemView.FindViewById<TextView>(Resource.Id.textView);
-            BtnEdit = itemView.FindViewById<ImageButton>(Resource.Id.BtnEdit);
-            BtnDele = itemView.FindViewById<ImageButton>(Resource.Id.BtnDel);
+            BtnPopMenu = itemView.FindViewById<Button>(Resource.Id.BtnOpenPopMenu);
             BtnFavorite = itemView.FindViewById<ImageButton>(Resource.Id.BtnFavorite);
 
             TxtAutor = itemView.FindViewById<TextView>(Resource.Id.TvAutor);
@@ -34,38 +31,31 @@ namespace Bookshelf.Model
             TxtDate = itemView.FindViewById<TextView>(Resource.Id.TvDate);
             ImvMark = itemView.FindViewById<ImageView>(Resource.Id.ImvMark);
 
-            BtnEdit.Click += delegate
+            BtnPopMenu.Click += (s, arg) =>
             {
-                MainActivity._userControler.BegingUpdate(int.Parse(BtnEdit.Tag.ToString()),UserControler.TypeBook.ReadBook);
+                Android.Widget.PopupMenu menu = new Android.Widget.PopupMenu(Application.Context, BtnPopMenu);
+                menu.Inflate(Resource.Menu.popupmenu);
+
+                menu.MenuItemClick += (s1, arg1) =>
+                {
+                    switch (arg1.Item.ItemId)
+                    {
+                        case Resource.Id.menu_PreShow:
+                            break;
+                        case Resource.Id.menu_Quotes:
+                            MainActivity._userControler.BeginOpenQuotes(int.Parse(Image.Tag.ToString()));
+                            break;
+                        case Resource.Id.menu_Edit:
+                            MainActivity._userControler.BegingUpdate(int.Parse(Image.Tag.ToString()), UserControler.TypeBook.ReadBook);
+                            break;
+                        case Resource.Id.menu_Del:
+                            MainActivity._userControler.BeginDelete(int.Parse(Image.Tag.ToString()), UserControler.TypeBook.ReadBook);
+                            break;
+                    }
+                };
+
+                menu.Show();
             };
-
-            BtnEdit.LongClick += delegate
-            {
-                Toast.MakeText(Application.Context, "Редактировать книгу", ToastLength.Short).Show();
-            };
-
-
-            BtnDele.Click += delegate
-            {
-                MainActivity._userControler.BeginDelete(int.Parse(BtnDele.Tag.ToString()), UserControler.TypeBook.ReadBook);
-            };
-
-            BtnDele.LongClick += delegate
-            {
-                Toast.MakeText(Application.Context, "Удалить книгу", ToastLength.Short).Show();
-            };
-
-            Image.Click += delegate
-            {
-                MainActivity._userControler.BeginOpenQuotes(int.Parse(Image.Tag.ToString()));
-            };
-
-            Image.LongClick += delegate
-            {
-                Toast.MakeText(Application.Context, "Открыть страницу с цитатами из этой книги", ToastLength.Short).Show();
-            };
-
-     
 
             BtnFavorite.Click += BtnFavorite_Click;
         }
