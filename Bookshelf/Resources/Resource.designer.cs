@@ -2810,8 +2810,8 @@ namespace Bookshelf
 			// aapt resource value: 0x7f08005f
 			public const int image = 2131230815;
 			
-			// aapt resource value: 0x7f0800b0
-			public const int imageView = 2131230896;
+			// aapt resource value: 0x7f0800af
+			public const int imageView = 2131230895;
 			
 			// aapt resource value: 0x7f0800cf
 			public const int imageView1 = 2131230927;
@@ -3083,8 +3083,8 @@ namespace Bookshelf
 			// aapt resource value: 0x7f080069
 			public const int textSpacerNoTitle = 2131230825;
 			
-			// aapt resource value: 0x7f0800b1
-			public const int textView = 2131230897;
+			// aapt resource value: 0x7f0800b0
+			public const int textView = 2131230896;
 			
 			// aapt resource value: 0x7f0800a7
 			public const int text_input_password_toggle = 2131230887;
