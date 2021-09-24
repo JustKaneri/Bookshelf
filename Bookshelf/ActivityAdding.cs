@@ -61,7 +61,7 @@ namespace Bookshelf
             btnAdd.Click += BtnAdd_Click;
 
             edtDate.Text = DateTime.Now.ToShortDateString();
-            imvBook.SetImageResource(Resource.Drawable.NotBook);
+            imvBook.SetImageResource(Resource.Drawable.nophoto);
             spType.Adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, UserControler.categories);
 
 
