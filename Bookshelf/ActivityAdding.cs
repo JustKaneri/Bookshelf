@@ -5,6 +5,7 @@ using Android.App;
 using Android.Content;
 using Android.Graphics;
 using Android.OS;
+using Android.Provider;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
@@ -36,6 +37,8 @@ namespace Bookshelf
         private ReadBook readBook;
         private int id;
 
+        private AlertDialog Alert;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -56,7 +59,6 @@ namespace Bookshelf
 
             imvdate.Click += Imvdate_Click;
             imvBook.Click += ImvBook_Click;
-            imvBook.LongClick += ImvBook_LongClick;
             edtMark.TextChanged += EdtMark_TextChanged;
             btnAdd.Click += BtnAdd_Click;
 
@@ -64,10 +66,8 @@ namespace Bookshelf
             imvBook.SetImageResource(Resource.Drawable.nophoto);
             spType.Adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, UserControler.categories);
 
-
             status = Intent.GetStringExtra("status");
             id = Intent.GetIntExtra("id", -1);
-            
 
             if (status == "edit_read")
             {
@@ -98,7 +98,7 @@ namespace Bookshelf
                 FillLater();
             }
 
-            Toast.MakeText(this, "Нажмите на изображение что бы добавить фотографию.\nУдерживайте палец на изображении что бы очистиь", ToastLength.Long).Show();
+            Toast.MakeText(this, "Нажмите на изображение что бы добавить фотографию.", ToastLength.Short).Show();
         }
 
         private void Imvdate_Click(object sender, EventArgs e)
@@ -117,19 +117,6 @@ namespace Bookshelf
                 })
                 .SetNegativeButton("Отмена", delegate { })
                 .Show();
-        }
-
-        private void ImvBook_LongClick(object sender, View.LongClickEventArgs e)
-        {
-            new AlertDialog.Builder(this)
-               .SetTitle("Удаление")
-               .SetMessage("Очистить изображение ?")
-               .SetPositiveButton("Да", delegate
-               {
-                   imvBook.SetImageResource(Resource.Drawable.NotBook);
-                   bmp = BitmapFactory.DecodeResource(this.Resources, Resource.Drawable.NotBook);
-               })
-               .SetNegativeButton("Нет", delegate { }).Show();
         }
 
         private void FillLater()
@@ -268,11 +255,70 @@ namespace Bookshelf
 
         private void ImvBook_Click(object sender, EventArgs e)
         {
+            LinearLayout linearLayout = new LinearLayout(this);
+            linearLayout.Orientation = Orientation.Vertical;
+
+            Button btnCamera = new Button(this);
+            btnCamera.Text = "Открыть камеру";
+            btnCamera.SetBackgroundColor(Color.White);
+            btnCamera.SetTextColor(Color.Black);
+            
+
+
+            Button btnGalery = new Button(this);
+            btnGalery.Text = "Открыть галерую";
+            btnGalery.SetBackgroundColor(Color.White);
+            btnGalery.SetTextColor(Color.Black);
+            
+
+
+            Button btnClear = new Button(this);
+            btnClear.Text = "Очистить";
+            btnClear.SetBackgroundColor(Color.White);
+            btnClear.SetTextColor(Color.Black);
+            
+
+
+            linearLayout.AddView(btnCamera);
+            linearLayout.AddView(btnGalery);
+            linearLayout.AddView(btnClear);
+
+            Alert =  new AlertDialog.Builder(this).SetView(linearLayout).Show();
+
+            btnCamera.Click += BtnCamera_Click;
+            btnGalery.Click += BtnGalery_Click;
+            btnClear.Click += BtnClear_Click;
+        }
+
+        private void BtnClear_Click(object sender, EventArgs e)
+        {
+            new AlertDialog.Builder(this)
+               .SetTitle("Удаление")
+               .SetMessage("Очистить изображение ?")
+               .SetPositiveButton("Да", delegate
+               {
+                   imvBook.SetImageResource(Resource.Drawable.nophoto);
+                   bmp = BitmapFactory.DecodeResource(this.Resources, Resource.Drawable.NotBook);
+               })
+               .SetNegativeButton("Нет", delegate { }).Show();
+
+            Alert.Cancel();
+        }
+
+        private void BtnGalery_Click(object sender, EventArgs e)
+        {
             Intent intent = new Intent();
             intent.SetType("image/*");
             intent.SetAction(Intent.ActionGetContent);
             StartActivityForResult(Intent.CreateChooser(intent, "Select Picture"), 0);
+            Alert.Cancel();
+        }
 
+        private void BtnCamera_Click(object sender, EventArgs e)
+        {
+            Intent ope = new Intent(MediaStore.ActionImageCapture);
+            StartActivityForResult(ope, 1);
+            Alert.Cancel();
         }
 
         protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
@@ -287,6 +333,12 @@ namespace Bookshelf
                 if(bmp.Width > 3840 || bmp.Height > 2160)
                     bmp = Bitmap.CreateScaledBitmap(bmp, bmp.Width / 2, bmp.Height / 2 , false);
 
+                imvBook.SetImageBitmap(bmp);
+            }
+
+            if (requestCode == 1 && data != null)
+            {
+                bmp = (Bitmap)data.Extras.Get("data");
                 imvBook.SetImageBitmap(bmp);
             }
         }
