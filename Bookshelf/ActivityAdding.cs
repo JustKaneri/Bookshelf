@@ -27,6 +27,7 @@ namespace Bookshelf
         private EditText edtStr;
         private EditText edtDiscript;
         private Button btnAdd;
+        private TextView TxtStatus;
 
         private LinearLayout layout;
 
@@ -42,7 +43,7 @@ namespace Bookshelf
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.AddingPage);
+            SetContentView(Resource.Layout.AddPage);
             // Create your application here
 
             edtName = FindViewById<EditText>(Resource.Id.EdtName);
@@ -56,6 +57,7 @@ namespace Bookshelf
             edtDiscript = FindViewById<EditText>(Resource.Id.EdtDiscript);
             btnAdd = FindViewById<Button>(Resource.Id.BtnAdd);
             layout = FindViewById<LinearLayout>(Resource.Id.linearLayout2);
+            TxtStatus = FindViewById<TextView>(Resource.Id.TxtStatus);
 
             imvdate.Click += Imvdate_Click;
             imvBook.Click += ImvBook_Click;
@@ -68,6 +70,8 @@ namespace Bookshelf
 
             status = Intent.GetStringExtra("status");
             id = Intent.GetIntExtra("id", -1);
+
+            TxtStatus.Text = status.Contains("add") ? "Добавление" : "Редактирование";
 
             if (status == "edit_read")
             {
