@@ -349,6 +349,10 @@ namespace Bookshelf
             if (requestCode == 1 && data != null)
             {
                 bmp = (Bitmap)data.Extras.Get("data");
+
+                if (bmp.Width > 3840 || bmp.Height > 2160)
+                    bmp = Bitmap.CreateScaledBitmap(bmp, bmp.Width / 2, bmp.Height / 2, false);
+
                 imvBook.SetImageBitmap(bmp);
             }
         }
