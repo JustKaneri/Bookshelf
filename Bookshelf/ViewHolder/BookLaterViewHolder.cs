@@ -54,6 +54,7 @@ namespace Bookshelf.Model
             {
                 EditText editText = new EditText(itemView.Context);
                 editText.Hint = "Введите оценку";
+                editText.InputType = Android.Text.InputTypes.ClassNumber;
                 editText.TextAlignment = TextAlignment.Center;
                 editText.TextChanged += EditText_TextChanged;
 

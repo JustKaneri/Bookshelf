@@ -56,7 +56,7 @@ namespace Bookshelf
             edtStr = FindViewById<EditText>(Resource.Id.EdtStr);
             edtDiscript = FindViewById<EditText>(Resource.Id.EdtDiscript);
             btnAdd = FindViewById<Button>(Resource.Id.BtnAdd);
-            layout = FindViewById<LinearLayout>(Resource.Id.linearLayout2);
+            layout = FindViewById<LinearLayout>(Resource.Id.lLayout2);
             TxtStatus = FindViewById<TextView>(Resource.Id.TxtStatus);
 
             imvdate.Click += Imvdate_Click;
@@ -90,19 +90,25 @@ namespace Bookshelf
 
             if (status == "add_later")
             {
-                edtMark.Visibility = ViewStates.Gone;
-                layout.Visibility = ViewStates.Gone;
+                DeVisibility();
             }
             
             if (status == "edit_later")
             {
-                edtMark.Visibility = ViewStates.Gone;
-                layout.Visibility = ViewStates.Gone;
+                DeVisibility();
                 pendingBook = MainActivity._userControler.GetPendingBooks()[id];
                 FillLater();
             }
 
             Toast.MakeText(this, "Нажмите на изображение что бы добавить фотографию.", ToastLength.Short).Show();
+        }
+
+        private void DeVisibility()
+        {
+            edtMark.Visibility = ViewStates.Gone;
+            layout.Visibility = ViewStates.Gone;
+            FindViewById<LinearLayout>(Resource.Id.linearLayout5).Visibility = ViewStates.Gone;
+            FindViewById<TextView>(Resource.Id.textView4).Visibility = ViewStates.Gone;
         }
 
         private void Imvdate_Click(object sender, EventArgs e)

@@ -130,7 +130,7 @@
 				android:minHeight="25px"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:id="@+id/linearLayout2"
+				android:id="@+id/lLayout2"
 				android:gravity="center"
 				android:layout_marginBottom="10dp">
 				<EditText
@@ -183,7 +183,7 @@
 						android:textStyle="bold" />
 					<EditText
 						android:layout_width="match_parent"
-						android:layout_height="46.5dp"
+						android:layout_height="match_parent"
 						android:id="@+id/EdtMark"
 						android:hint="Введите оценку"
 						android:textColor="#ff000000"
@@ -211,7 +211,7 @@
 						android:textStyle="bold" />
 					<EditText
 						android:layout_width="match_parent"
-						android:layout_height="46.5dp"
+						android:layout_height="match_parent"
 						android:id="@+id/EdtStr"
 						android:layout_marginLeft="7.0dp"
 						android:layout_marginRight="5dp"
