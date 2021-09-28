@@ -41,6 +41,7 @@ namespace Bookshelf.Model
                     switch (arg1.Item.ItemId)
                     {
                         case Resource.Id.menu_PreShow:
+                            Preview(int.Parse(Image.Tag.ToString()));
                             break;
                         case Resource.Id.menu_Quotes:
                             MainActivity._userControler.BeginOpenQuotes(int.Parse(Image.Tag.ToString()));
@@ -58,6 +59,24 @@ namespace Bookshelf.Model
             };
 
             BtnFavorite.Click += BtnFavorite_Click;
+        }
+
+        private void Preview(int pos)
+        {
+            View view  = LayoutInflater.From(Application.Context).Inflate(Resource.Layout.PreviewReadPage, null , false);
+            var book = MainActivity._userControler.GetBooks()[pos];
+
+            view.FindViewById<TextView>(Resource.Id.TxtMarkPrev).Text = book.Mark+"/5";
+            view.FindViewById<TextView>(Resource.Id.TxtDatePrev).Text = book.DateReading;
+            view.FindViewById<ImageView>(Resource.Id.ImvPhotoPrev).SetImageBitmap(book.Photo);
+            view.FindViewById<TextView>(Resource.Id.TxtNamePrev).Text = book.Name;
+            view.FindViewById<TextView>(Resource.Id.TxtAutorPrev).Text = book.Autor;
+            view.FindViewById<TextView>(Resource.Id.TxtCategoriPrev).Text = UserControler.categories[book.Categori];
+            view.FindViewById<TextView>(Resource.Id.TxtStrPrev).Text = book.CountPage.ToString();
+            view.FindViewById<TextView>(Resource.Id.TxtDiscriptPrev).Text = book.Discript==""?"Описание отсутствует": book.Discript;
+
+            new AlertDialog.Builder(BtnPopMenu.Context).SetView(view).Show();
+           
         }
 
 

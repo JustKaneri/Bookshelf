@@ -81,6 +81,7 @@
     <Compile Include="Fragments\FragmentStatistic.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Model\Book.cs" />
+    <Compile Include="PageReadPreview.cs" />
     <Compile Include="ViewHolder\BookLaterViewHolder.cs" />
     <Compile Include="ViewHolder\BookViewHolder.cs" />
     <Compile Include="Model\PendingBook.cs" />
@@ -293,6 +294,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\AddPage.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\PreviewReadPage.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
