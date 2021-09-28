@@ -96,7 +96,6 @@ namespace Bookshelf.Model
             view.FindViewById<TextView>(Resource.Id.TxtDiscriptPrev).Text = book.Discript == "" ? "Описание отсутствует" : book.Discript;
 
             new AlertDialog.Builder(BtnPopMenu.Context).SetView(view).Show();
-
         }
 
         private void EditText_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
