@@ -37,6 +37,7 @@ namespace Bookshelf.Model
                     switch (arg1.Item.ItemId)
                     {
                         case Resource.Id.menu_PreShow:
+                            Preview(int.Parse(BtnMove.Tag.ToString()));
                             break;
                         case Resource.Id.menu_Edit:
                             MainActivity._userControler.BegingUpdate(int.Parse(BtnMove.Tag.ToString()), UserControler.TypeBook.PendingBook);
@@ -79,6 +80,22 @@ namespace Bookshelf.Model
             {
                 Toast.MakeText(Application.Context, "Переместить книгу в прочитанное", ToastLength.Short).Show();
             };
+
+        }
+
+        private void Preview(int pos)
+        {
+            View view = LayoutInflater.From(Application.Context).Inflate(Resource.Layout.PreviewPendingPage, null, false);
+            var book = MainActivity._userControler.GetPendingBooks()[pos];
+
+            view.FindViewById<ImageView>(Resource.Id.ImvPhotoPrev).SetImageBitmap(book.Photo);
+            view.FindViewById<TextView>(Resource.Id.TxtNamePrev).Text = book.Name;
+            view.FindViewById<TextView>(Resource.Id.TxtAutorPrev).Text = book.Autor;
+            view.FindViewById<TextView>(Resource.Id.TxtCategoriPrev).Text = UserControler.categories[book.Categori];
+            view.FindViewById<TextView>(Resource.Id.TxtStrPrev).Text = book.CountPage.ToString();
+            view.FindViewById<TextView>(Resource.Id.TxtDiscriptPrev).Text = book.Discript == "" ? "Описание отсутствует" : book.Discript;
+
+            new AlertDialog.Builder(BtnPopMenu.Context).SetView(view).Show();
 
         }
 

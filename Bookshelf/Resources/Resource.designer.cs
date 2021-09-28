@@ -2534,8 +2534,8 @@ namespace Bookshelf
 			// aapt resource value: 0x7f0800c0
 			public const int ImvMark = 2131230912;
 			
-			// aapt resource value: 0x7f0800e0
-			public const int ImvPhotoPrev = 2131230944;
+			// aapt resource value: 0x7f0800de
+			public const int ImvPhotoPrev = 2131230942;
 			
 			// aapt resource value: 0x7f0800ec
 			public const int LstStat = 2131230956;
@@ -2570,29 +2570,29 @@ namespace Bookshelf
 			// aapt resource value: 0x7f0800bf
 			public const int TvDate = 2131230911;
 			
-			// aapt resource value: 0x7f0800e2
-			public const int TxtAutorPrev = 2131230946;
+			// aapt resource value: 0x7f0800e0
+			public const int TxtAutorPrev = 2131230944;
 			
 			// aapt resource value: 0x7f0800c7
 			public const int TxtAutorQ = 2131230919;
 			
-			// aapt resource value: 0x7f0800e3
-			public const int TxtCategoriPrev = 2131230947;
-			
-			// aapt resource value: 0x7f0800de
-			public const int TxtDatePrev = 2131230942;
+			// aapt resource value: 0x7f0800e1
+			public const int TxtCategoriPrev = 2131230945;
 			
 			// aapt resource value: 0x7f0800e5
-			public const int TxtDiscriptPrev = 2131230949;
+			public const int TxtDatePrev = 2131230949;
+			
+			// aapt resource value: 0x7f0800e3
+			public const int TxtDiscriptPrev = 2131230947;
 			
 			// aapt resource value: 0x7f0800c5
 			public const int TxtLater = 2131230917;
 			
-			// aapt resource value: 0x7f0800dd
-			public const int TxtMarkPrev = 2131230941;
+			// aapt resource value: 0x7f0800e4
+			public const int TxtMarkPrev = 2131230948;
 			
-			// aapt resource value: 0x7f0800e1
-			public const int TxtNamePrev = 2131230945;
+			// aapt resource value: 0x7f0800df
+			public const int TxtNamePrev = 2131230943;
 			
 			// aapt resource value: 0x7f0800e6
 			public const int TxtNameQ = 2131230950;
@@ -2609,8 +2609,8 @@ namespace Bookshelf
 			// aapt resource value: 0x7f08009b
 			public const int TxtStatus = 2131230875;
 			
-			// aapt resource value: 0x7f0800e4
-			public const int TxtStrPrev = 2131230948;
+			// aapt resource value: 0x7f0800e2
+			public const int TxtStrPrev = 2131230946;
 			
 			// aapt resource value: 0x7f0800cb
 			public const int action0 = 2131230923;
@@ -2846,8 +2846,8 @@ namespace Bookshelf
 			// aapt resource value: 0x7f0800db
 			public const int imageView1 = 2131230939;
 			
-			// aapt resource value: 0x7f0800df
-			public const int imageView3 = 2131230943;
+			// aapt resource value: 0x7f0800dd
+			public const int imageView3 = 2131230941;
 			
 			// aapt resource value: 0x7f0800d5
 			public const int info = 2131230933;
@@ -3476,31 +3476,34 @@ namespace Bookshelf
 			public const int PreviewPage = 2130968641;
 			
 			// aapt resource value: 0x7f040042
-			public const int PreviewReadPage = 2130968642;
+			public const int PreviewPendingPage = 2130968642;
 			
 			// aapt resource value: 0x7f040043
-			public const int QuotesPage = 2130968643;
+			public const int PreviewReadPage = 2130968643;
 			
 			// aapt resource value: 0x7f040044
-			public const int ReadPage = 2130968644;
+			public const int QuotesPage = 2130968644;
 			
 			// aapt resource value: 0x7f040045
-			public const int select_dialog_item_material = 2130968645;
+			public const int ReadPage = 2130968645;
 			
 			// aapt resource value: 0x7f040046
-			public const int select_dialog_multichoice_material = 2130968646;
+			public const int select_dialog_item_material = 2130968646;
 			
 			// aapt resource value: 0x7f040047
-			public const int select_dialog_singlechoice_material = 2130968647;
+			public const int select_dialog_multichoice_material = 2130968647;
 			
 			// aapt resource value: 0x7f040048
-			public const int StatisticPage = 2130968648;
+			public const int select_dialog_singlechoice_material = 2130968648;
 			
 			// aapt resource value: 0x7f040049
-			public const int support_simple_spinner_dropdown_item = 2130968649;
+			public const int StatisticPage = 2130968649;
 			
 			// aapt resource value: 0x7f04004a
-			public const int tooltip = 2130968650;
+			public const int support_simple_spinner_dropdown_item = 2130968650;
+			
+			// aapt resource value: 0x7f04004b
+			public const int tooltip = 2130968651;
 			
 			static Layout()
 			{
