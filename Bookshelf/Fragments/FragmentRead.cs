@@ -39,6 +39,7 @@ namespace Bookshelf
 
             BtnView = v.FindViewById<ImageButton>(Resource.Id.ImgBtnView);
             BtnView.Click += BtnView_Click;
+            
 
             mRecyclerView = v.FindViewById<RecyclerView>(Resource.Id.RecRead);
             
@@ -153,7 +154,7 @@ namespace Bookshelf
             mLayoutManager = new LinearLayoutManager(Activity);
             mRecyclerView.SetLayoutManager(mLayoutManager);
         }
-
+        
         private void Fb_Click(object sender, EventArgs e)
         {
             fb.Enabled = false;
