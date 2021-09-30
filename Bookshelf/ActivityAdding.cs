@@ -107,8 +107,6 @@ namespace Bookshelf
         {
             edtMark.Visibility = ViewStates.Gone;
             layout.Visibility = ViewStates.Gone;
-            FindViewById<LinearLayout>(Resource.Id.linearLayout5).Visibility = ViewStates.Gone;
-            FindViewById<TextView>(Resource.Id.textView4).Visibility = ViewStates.Gone;
         }
 
         private void Imvdate_Click(object sender, EventArgs e)
