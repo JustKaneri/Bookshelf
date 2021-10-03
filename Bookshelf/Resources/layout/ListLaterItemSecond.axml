@@ -88,9 +88,10 @@
 						android:layout_width="match_parent"
 						android:layout_height="65.0dp"
 						android:id="@+id/BtnMovLater"
-						android:src="@drawable/moveinread"
-						android:background="#ffffffff"
-						android:scaleType="fitEnd"  />
+						android:src="@drawable/moveonread"
+						android:scaleType="fitEnd"
+						android:layout_marginLeft="2.3dp"
+						android:background="#ffffffff" />
 				</LinearLayout>
 			</LinearLayout>
 		</LinearLayout>
