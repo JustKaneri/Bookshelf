@@ -17,7 +17,6 @@
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:id="@+id/linearLayout1">
-		
 			<EditText
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
@@ -30,7 +29,9 @@
 				android:layout_marginRight="10dp"
 				android:layout_marginLeft="10dp"
 				android:layout_marginBottom="5dp"
-				android:maxLength="33" />
+				android:maxLength="33"
+				android:text="Я"
+				android:fontFamily="@font/nord" />
 			<EditText
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"

@@ -61,7 +61,8 @@
 				android:layout_gravity="center_horizontal"
 				android:layout_marginLeft="4dp"
 				android:textStyle="bold"
-				android:layout_marginBottom="4.0dp" />
+				android:layout_marginBottom="4.0dp"
+				android:fontFamily="@font/nord"/>
 			<LinearLayout
 				android:orientation="horizontal"
 				android:minWidth="25px"
@@ -90,7 +91,8 @@
 						android:id="@+id/TvAutor"
 						android:textColor="#ff000000"
 						android:layout_marginBottom="5.0dp"
-						android:layout_marginLeft="7dp" />
+						android:layout_marginLeft="7dp"
+						android:fontFamily="@font/nord"/>
 					<TextView
 						android:text="Text"
 						android:layout_width="match_parent"
@@ -99,7 +101,8 @@
 						android:textColor="#ff000000"
 						android:layout_marginBottom="5dp"
 						android:layout_marginTop="5dp"
-						android:layout_marginLeft="7dp" />
+						android:layout_marginLeft="7dp"
+						android:fontFamily="@font/nord"/>
 					<TextView
 						android:text="Text"
 						android:layout_width="match_parent"
@@ -108,7 +111,8 @@
 						android:textColor="#ff000000"
 						android:layout_marginTop="5dp"
 						android:layout_marginBottom="13.5dp"
-						android:layout_marginLeft="7dp" />
+						android:layout_marginLeft="7dp"
+						android:fontFamily="@font/nord"/>
 					<ImageView
 						android:layout_width="match_parent"
 						android:layout_height="65.0dp"
