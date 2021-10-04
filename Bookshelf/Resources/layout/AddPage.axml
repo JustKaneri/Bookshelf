@@ -64,7 +64,7 @@
 						android:maxLength="33"
 						android:maxHeight="64.0dp"
 						android:layout_marginBottom="10dp"
-						android:textColorHint="#7f5d9cec"
+						android:textColorHint="#7f000000"
 						android:fontFamily="@font/nord"/>
 					<EditText
 						android:layout_width="match_parent"
@@ -77,7 +77,7 @@
 						android:textSize="20dp"
 						android:maxLength="33"
 						android:layout_marginRight="5dp"
-						android:textColorHint="#7f5d9cec"
+						android:textColorHint="#7f000000"
 						android:fontFamily="@font/nord"/>
 				</LinearLayout>
 			</LinearLayout>
@@ -86,7 +86,7 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:id="@+id/textView3"
-				android:textColor="#7f5d9cec"
+				android:textColor="#7f000000"
 				android:paddingLeft="15dp"
 				android:textSize="20dp"
 				android:layout_marginTop="4.7dp"
@@ -121,7 +121,7 @@
 					android:enabled="false"
 					android:textColor="#ff000000"
 					android:textSize="20dp"
-					android:textColorHint="#7f5d9cec"
+					android:textColorHint="#7f000000"
 					android:fontFamily="@font/nord"/>
 				<ImageButton
 					android:layout_width="50dp"
@@ -146,7 +146,7 @@
 				android:textAlignment="center"
 				android:maxLength="4"
 				android:layout_marginBottom="15dp"
-				android:textColorHint="#7f5d9cec"
+				android:textColorHint="#7f000000"
 				android:fontFamily="@font/nord"/>
 			<EditText
 				android:layout_width="match_parent"
@@ -160,7 +160,7 @@
 				android:layout_marginRight="10dp"
 				android:layout_marginLeft="10dp"
 				android:layout_marginBottom="15dp"
-				android:textColorHint="#7f5d9cec"
+				android:textColorHint="#7f000000"
 				android:fontFamily="@font/nord"/>
 			<EditText
 				android:layout_width="match_parent"
@@ -173,7 +173,7 @@
 				android:textSize="20dp"
 				android:maxHeight="80dp"
 				android:layout_marginBottom="15dp"
-				android:textColorHint="#7F5D9CEC"
+				android:textColorHint="#7f000000"
 				android:textAlignment="center"
 				android:fontFamily="@font/nord"/>
 			<Button

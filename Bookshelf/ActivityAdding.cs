@@ -271,27 +271,21 @@ namespace Bookshelf
             btnCamera.SetBackgroundColor(Color.White);
             btnCamera.SetTextColor(Color.Black);
             
-
-
             Button btnGalery = new Button(this);
             btnGalery.Text = "Открыть галерую";
             btnGalery.SetBackgroundColor(Color.White);
             btnGalery.SetTextColor(Color.Black);
             
-
-
             Button btnClear = new Button(this);
             btnClear.Text = "Очистить";
             btnClear.SetBackgroundColor(Color.White);
             btnClear.SetTextColor(Color.Black);
             
-
-
             linearLayout.AddView(btnCamera);
             linearLayout.AddView(btnGalery);
             linearLayout.AddView(btnClear);
 
-            Alert =  new AlertDialog.Builder(this).SetView(linearLayout).Show();
+            Alert =  new AlertDialog.Builder(this).SetTitle("Изображение").SetView(linearLayout).Show();
 
             btnCamera.Click += BtnCamera_Click;
             btnGalery.Click += BtnGalery_Click;
