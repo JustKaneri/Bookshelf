@@ -150,7 +150,11 @@ namespace Bookshelf
             
             mRecyclerView.SetAdapter(adapter);
 
-            mLayoutManager = new LinearLayoutManager(Activity);
+            if (MainActivity._appController.GetTypeView(UserControler.TypeBook.ReadBook) == ApplicationController.TypeView.MinInfo)
+                mLayoutManager = new GridLayoutManager(Activity, 2);
+            else
+                mLayoutManager = new LinearLayoutManager(Activity);
+
             mRecyclerView.SetLayoutManager(mLayoutManager);
         }
 
