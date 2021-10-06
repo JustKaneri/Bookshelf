@@ -53,12 +53,12 @@
 				</LinearLayout>
 				<TextView
 					android:text="01.01.1111"
-					android:layout_width="71.0dp"
+					android:layout_width="79.5dp"
 					android:layout_height="30dp"
 					android:id="@+id/TxtDatePrev"
 					android:textColor="#ffffffff"
 					android:textSize="17dp"
-					android:layout_marginLeft="60.5dp"
+					android:layout_marginLeft="38.5dp"
 					android:layout_marginRight="0.0dp"
 					android:fontFamily="@font/nord"/>
 			</LinearLayout>

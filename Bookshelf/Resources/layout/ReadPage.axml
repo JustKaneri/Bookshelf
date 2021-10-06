@@ -25,7 +25,8 @@
 				android:layout_height="32dp"
 				android:id="@+id/ImgBtnView"
 				android:layout_marginLeft="5dp"
-				android:background="@drawable/viewtwo" />
+				android:background="@drawable/viewtwo"
+				android:layout_marginTop="2dp" />
 		</LinearLayout>
 		<ImageButton
 			android:layout_width="32dp"
@@ -33,7 +34,8 @@
 			android:id="@+id/ImbSortR"
 			android:layout_marginLeft="5.0dp"
 			android:background="@drawable/sort"
-			android:layout_marginRight="10.5dp" />
+			android:layout_marginRight="10.5dp"
+			android:layout_marginTop="2dp" />
 	</LinearLayout>
 	
 	<LinearLayout
