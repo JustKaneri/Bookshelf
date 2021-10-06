@@ -90,6 +90,7 @@ namespace Bookshelf.Model
 
             view.FindViewById<ImageView>(Resource.Id.ImvPhotoPrev).SetImageBitmap(book.Photo);
             view.FindViewById<TextView>(Resource.Id.TxtNamePrev).Text = book.Name;
+            view.FindViewById<ImageView>(Resource.Id.ImvFon).SetImageBitmap(book.Photo);
             view.FindViewById<TextView>(Resource.Id.TxtAutorPrev).Text = book.Autor;
             view.FindViewById<TextView>(Resource.Id.TxtCategoriPrev).Text = UserControler.categories[book.Categori];
             view.FindViewById<TextView>(Resource.Id.TxtStrPrev).Text = book.CountPage.ToString();
