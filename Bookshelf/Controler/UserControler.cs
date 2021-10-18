@@ -44,6 +44,8 @@ namespace Bookshelf.Controler
         public event EventHandler StartLaterDelete;
         public event EventHandler StartCopy;
 
+        public event EventHandler StartRepostBook;
+
         public UserControler()
         {
             if(File.Exists(filePath))
@@ -102,6 +104,11 @@ namespace Bookshelf.Controler
                 StartReadUpdate?.Invoke(id, null);
             else
                 StartLaterUpdate?.Invoke(id, null);
+        }
+
+        public void BeginRepost(int id)
+        {
+            StartRepostBook?.Invoke(id, null);
         }
 
         /// <summary>

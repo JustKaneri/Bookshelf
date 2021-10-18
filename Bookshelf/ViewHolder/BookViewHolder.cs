@@ -1,5 +1,7 @@
 ﻿using System;
 using Android.App;
+using Android.Content;
+using Android.Provider;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
@@ -42,6 +44,9 @@ namespace Bookshelf.Model
                     {
                         case Resource.Id.menu_PreShow:
                             Preview(int.Parse(Image.Tag.ToString()));
+                            break;
+                        case Resource.Id.menu_Repost:
+                            MainActivity._userControler.BeginRepost(int.Parse(Image.Tag.ToString()));
                             break;
                         case Resource.Id.menu_Quotes:
                             MainActivity._userControler.BeginOpenQuotes(int.Parse(Image.Tag.ToString()));
@@ -104,5 +109,4 @@ namespace Bookshelf.Model
                 
         }
     }
-
 }

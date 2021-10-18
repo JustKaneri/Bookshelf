@@ -6,6 +6,11 @@
       android:id="@+id/menu_PreShow"
       android:enabled="true"
       android:title="Подробнее"/>
+
+    <item
+      android:id="@+id/menu_Repost"
+      android:enabled="true"
+      android:title="Поделиться"/>
     
     <item
         android:id="@+id/menu_Quotes"

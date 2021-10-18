@@ -2928,23 +2928,26 @@ namespace Bookshelf
 			// aapt resource value: 0x7f0900c7
 			public const int media_actions = 2131296455;
 			
-			// aapt resource value: 0x7f0900f3
-			public const int menu_Del = 2131296499;
+			// aapt resource value: 0x7f0900f4
+			public const int menu_Del = 2131296500;
 			
-			// aapt resource value: 0x7f0900f2
-			public const int menu_Edit = 2131296498;
+			// aapt resource value: 0x7f0900f3
+			public const int menu_Edit = 2131296499;
 			
 			// aapt resource value: 0x7f0900f0
 			public const int menu_PreShow = 2131296496;
 			
+			// aapt resource value: 0x7f0900f2
+			public const int menu_Quotes = 2131296498;
+			
 			// aapt resource value: 0x7f0900f1
-			public const int menu_Quotes = 2131296497;
+			public const int menu_Repost = 2131296497;
 			
 			// aapt resource value: 0x7f0900ef
 			public const int menugroup1 = 2131296495;
 			
-			// aapt resource value: 0x7f0900f4
-			public const int menugroup2 = 2131296500;
+			// aapt resource value: 0x7f0900f5
+			public const int menugroup2 = 2131296501;
 			
 			// aapt resource value: 0x7f0900e9
 			public const int message = 2131296489;
