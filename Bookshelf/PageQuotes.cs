@@ -1,14 +1,17 @@
 ﻿using System;
-
+using System.IO;
 using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Runtime;
 using Android.Support.Design.Widget;
+using Android.Support.V4.Provider;
 using Android.Support.V7.Widget;
 using Android.Widget;
 using Bookshelf.Adapter;
 using Bookshelf.Controler;
 using Bookshelf.Model;
+using static Android.Provider.MediaStore;
 
 namespace Bookshelf
 {
@@ -20,6 +23,9 @@ namespace Bookshelf
         private RecyclerView.LayoutManager mLayoutManager;
         private TextView txtName;
         private FloatingActionButton fb;
+
+        private int IdBook;
+        private string Url;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -37,14 +43,45 @@ namespace Bookshelf
             int id = Intent.GetIntExtra("id", -1);
             int pos = Intent.GetIntExtra("pos", -1);
 
+            IdBook = pos;
+
             txtName.Text = "Цитаты из книги \"" + Intent.GetStringExtra("name") + "\"";
 
             _quoteControler = new QuoteControler(id, pos);
 
             _quoteControler.BeginDelete += _quoteControler_BeginDelete;
             _quoteControler.BeginUpdate += _quoteControler_BeginUpdate;
+            _quoteControler.BeginRepost += _quoteControler_BeginRepost;
 
             FillRecylerView();
+        }
+
+        private void _quoteControler_BeginRepost(object sender, EventArgs e)
+        {
+            var Book = MainActivity._userControler.GetBooks()[IdBook];
+            var quote = _quoteControler.GetQuoteList()[int.Parse((sender).ToString())];
+
+
+            string TxtMessage = $"«{quote.Quot}»\n© {quote.Autor}.\n Цатата из книги {Book.Name}.\nЧитательский дневник Bookshelf.";
+
+            try
+            {
+                String url = Images.Media.InsertImage(this.ContentResolver, Book.Photo, "title", null);
+                Url = url;
+
+                Intent intentRep = new Intent();
+                intentRep.SetAction(Intent.ActionSend);
+                intentRep.SetFlags(ActivityFlags.NewTask);
+                intentRep.PutExtra(Intent.ExtraStream, Android.Net.Uri.Parse(url));
+                intentRep.PutExtra(Intent.ExtraText, TxtMessage);
+                intentRep.SetType("image/png");
+                StartActivity(Intent.CreateChooser(intentRep, "Share with Friends"));
+            }
+            catch
+            {
+                Toast.MakeText(this, "Не удалось поделиться записью", ToastLength.Short).Show();
+            }
+            
         }
 
         private void Fb_Click(object sender, EventArgs e)
@@ -149,5 +186,6 @@ namespace Bookshelf
                 .SetNegativeButton("Отмена", delegate { })
                 .Show();
         }
+
     }
 }

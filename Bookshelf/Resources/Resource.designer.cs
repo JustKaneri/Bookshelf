@@ -2940,6 +2940,9 @@ namespace Bookshelf
 			// aapt resource value: 0x7f0900f2
 			public const int menu_Quotes = 2131296498;
 			
+			// aapt resource value: 0x7f0900f6
+			public const int menu_Rep = 2131296502;
+			
 			// aapt resource value: 0x7f0900f1
 			public const int menu_Repost = 2131296497;
 			

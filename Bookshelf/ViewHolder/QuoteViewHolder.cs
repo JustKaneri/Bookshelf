@@ -39,6 +39,9 @@ namespace Bookshelf.ViewHolder
                         case Resource.Id.menu_Edit:
                             PageQuotes._quoteControler.StartUpdate(int.Parse(Caption.Tag.ToString()));
                             break;
+                        case Resource.Id.menu_Rep:
+                            PageQuotes._quoteControler.StartRepost(int.Parse(Caption.Tag.ToString()));
+                            break;
                         case Resource.Id.menu_Del:
                             PageQuotes._quoteControler.StartDelet(int.Parse(Caption.Tag.ToString()));
                             break;
@@ -48,26 +51,6 @@ namespace Bookshelf.ViewHolder
                 menu.Show();
             };
 
-
-            //BtnEdit.Click += delegate
-            //{
-            //    PageQuotes._quoteControler.StartUpdate(int.Parse(BtnEdit.Tag.ToString()));
-            //};
-
-            //BtnEdit.LongClick += delegate
-            //{
-            //    Toast.MakeText(Application.Context, "Редактировать цитату", ToastLength.Short).Show();
-            //};
-
-            //BtnDelet.Click += delegate
-            //{
-            //    PageQuotes._quoteControler.StartDelet(int.Parse(BtnDelet.Tag.ToString()));
-            //};
-
-            //BtnDelet.LongClick += delegate
-            //{
-            //    Toast.MakeText(Application.Context, "Редактировать цитату", ToastLength.Short).Show();
-            //};
         }
     }
 }

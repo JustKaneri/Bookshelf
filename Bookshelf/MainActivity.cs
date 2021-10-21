@@ -1,22 +1,14 @@
-﻿using Android;
-using Android.App;
-using Android.Arch.Lifecycle;
+﻿using Android.App;
 using Android.Content;
-using Android.Content.PM;
-using Android.Graphics;
 using Android.OS;
-using Android.Provider;
 using Android.Runtime;
 using Android.Support.Design.Widget;
-using Android.Support.V4.Content;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
 using Bookshelf.Controler;
 using Bookshelf.Model;
-using Java.IO;
 using System;
-using System.IO;
 using static Android.Provider.MediaStore;
 
 namespace Bookshelf
@@ -44,8 +36,6 @@ namespace Bookshelf
 
             _appController = new ApplicationController();
 
-   
-
         }
 
         private void ConnectEvent()
@@ -61,22 +51,22 @@ namespace Bookshelf
             _userControler.StartRepostBook += _userControler_StartRepostBook;
         }
 
-        private void CheckAppPermissions()
-        {
-            if ((int)Build.VERSION.SdkInt < 23)
-            {
-                return;
-            }
-            else
-            {
-                if (PackageManager.CheckPermission(Manifest.Permission.ReadExternalStorage, PackageName) != Permission.Granted
-                    && PackageManager.CheckPermission(Manifest.Permission.WriteExternalStorage, PackageName) != Permission.Granted)
-                {
-                    var permissions = new string[] { Manifest.Permission.ReadExternalStorage, Manifest.Permission.WriteExternalStorage };
-                    RequestPermissions(permissions, 1);
-                }
-            }
-        }
+        //private void CheckAppPermissions()
+        //{
+        //    if ((int)Build.VERSION.SdkInt < 23)
+        //    {
+        //        return;
+        //    }
+        //    else
+        //    {
+        //        if (PackageManager.CheckPermission(Manifest.Permission.ReadExternalStorage, PackageName) != Permission.Granted
+        //            && PackageManager.CheckPermission(Manifest.Permission.WriteExternalStorage, PackageName) != Permission.Granted)
+        //        {
+        //            var permissions = new string[] { Manifest.Permission.ReadExternalStorage, Manifest.Permission.WriteExternalStorage };
+        //            RequestPermissions(permissions, 1);
+        //        }
+        //    }
+        //}
 
         private void _userControler_StartRepostBook(object sender, EventArgs e)
         {
@@ -109,8 +99,6 @@ namespace Bookshelf
             quot.PutExtra("name", _userControler.GetBooks()[int.Parse(sender.ToString())].Name);
             StartActivity(quot);
         }
-
-
 
         private void OpenPreviewScreen()
         {
@@ -218,7 +206,6 @@ namespace Bookshelf
                     fragment = FragmentRead.NewInstance();
                     LoadFragment(fragment);
                     ConnectEvent();
-                    CheckAppPermissions();
                 }
             }
                 

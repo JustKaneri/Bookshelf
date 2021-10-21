@@ -5,6 +5,10 @@
         android:id="@+id/menu_Edit"
         android:enabled="true"
         android:title="Редактировать"/>
+      <item
+        android:id="@+id/menu_Rep"
+        android:enabled="true"
+        android:title="Поделиться"/>
     <item
         android:id="@+id/menu_Del"
         android:enabled="true"

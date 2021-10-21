@@ -22,6 +22,8 @@ namespace Bookshelf.Controler
         public event EventHandler BeginUpdate;
         public event EventHandler BeginDelete;
 
+        public event EventHandler BeginRepost;
+
         public QuoteControler(int id,int pos)
         {
             idBook = id;
@@ -47,6 +49,11 @@ namespace Bookshelf.Controler
         public void StartDelet(int pos)
         {
             BeginDelete?.Invoke(pos, null);
+        }
+
+        public void StartRepost(int pos)
+        {
+            BeginRepost?.Invoke(pos, null);
         }
 
         internal List<Quotes> GetQuoteList()
