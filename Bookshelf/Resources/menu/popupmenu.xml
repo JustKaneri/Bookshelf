@@ -5,27 +5,32 @@
     <item
       android:id="@+id/menu_PreShow"
       android:enabled="true"
-      android:title="Подробнее"/>
+      android:title="Подробнее"
+      android:icon="@drawable/allinfo"/>
 
     <item
       android:id="@+id/menu_Repost"
       android:enabled="true"
-      android:title="Поделиться"/>
+      android:title="Поделиться"
+      android:icon="@drawable/allinfo"/>
     
     <item
         android:id="@+id/menu_Quotes"
         android:enabled="true"
-        android:title="Цитаты"/>
+        android:title="Цитаты"
+        android:icon="@drawable/allinfo"/>
 
     <item
         android:id="@+id/menu_Edit"
         android:enabled="true"
-        android:title="Редактировать"/>
+        android:title="Редактировать"
+        android:icon="@drawable/allinfo"/>
 
     <item
         android:id="@+id/menu_Del"
         android:enabled="true"
-        android:title="Удалить"/>
+        android:title="Удалить"
+        android:icon="@drawable/allinfo"/>
   </group>
 
 </menu>
