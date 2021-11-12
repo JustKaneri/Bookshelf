@@ -34,7 +34,7 @@
 				android:id="@+id/TxtResStat"
 				android:layout_gravity="center_horizontal"
 				android:textAlignment="center"
-				android:layout_marginTop="10.5dp" 
+				android:layout_marginTop="10.5dp"
 				android:fontFamily="@font/nord"
 				 />
 		</LinearLayout>

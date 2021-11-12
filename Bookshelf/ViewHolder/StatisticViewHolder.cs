@@ -23,7 +23,6 @@ namespace Bookshelf.ViewHolder
             // Locate and cache view references:
             TxtName = itemView.FindViewById<TextView>(Resource.Id.TxtNameSt);
             TxtStat = itemView.FindViewById<TextView>(Resource.Id.TxtResStat);
-
         }
     }
 }
