@@ -34,7 +34,7 @@ namespace Bookshelf
         {
             var stat = StatisticControler.GetList(MainActivity._userControler.GetBooks(), MainActivity._userControler.GetPendingBooks());
 
-            StatisticAdapter adapter = new StatisticAdapter(stat.Item1,stat.Item2);
+            StatisticAdapter adapter = new StatisticAdapter(stat);
 
             mRecyclerView.SetAdapter(adapter);
 

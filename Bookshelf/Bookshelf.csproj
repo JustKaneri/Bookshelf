@@ -82,6 +82,7 @@
     <Compile Include="Fragments\FragmentStatistic.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Model\Book.cs" />
+    <Compile Include="Model\Statistic.cs" />
     <Compile Include="ViewHolder\BookLaterViewHolder.cs" />
     <Compile Include="ViewHolder\BookViewHolder.cs" />
     <Compile Include="Model\PendingBook.cs" />
@@ -135,6 +136,9 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher_round.png" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microcharts">
+      <Version>0.7.1</Version>
+    </PackageReference>
     <PackageReference Include="sqlite-net-pcl">
       <Version>1.7.335</Version>
     </PackageReference>

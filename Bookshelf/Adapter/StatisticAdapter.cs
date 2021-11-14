@@ -1,20 +1,18 @@
 ﻿using System.Collections.Generic;
-using System.Drawing;
 using Android.Support.V7.Widget;
 using Android.Views;
+using Bookshelf.Model;
 using Bookshelf.ViewHolder;
 
 namespace Bookshelf.Adapter
 {
     public class StatisticAdapter : RecyclerView.Adapter
     {
-        private List<string> lstName = new List<string>();
-        private List<string> lstResult = new List<string>();
+        private List<Statistic> AllStatisc = new List<Statistic>();
 
-        public StatisticAdapter(List<string> name,List<string> res)
+        public StatisticAdapter(List<Statistic> stat)
         {
-            lstName = name;
-            lstResult = res;
+            AllStatisc = stat;
         }
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
@@ -31,8 +29,19 @@ namespace Bookshelf.Adapter
             //BookViewHolder book = holder as BookViewHolder;
             StatisticViewHolder statistic = holder as StatisticViewHolder;
 
-            statistic.TxtName.Text = lstName[position];
-            statistic.TxtStat.Text = lstResult[position];
+            statistic.TxtName.Text = AllStatisc[position].Name;
+            //statistic.TxtStat.Text = lstResult[position];
+            if(AllStatisc[position].ChartStat == null)
+            {
+                statistic.ImvChart.Visibility = ViewStates.Gone;
+                statistic.TxtStat.Text = AllStatisc[position].Value;
+            }
+            else
+            {
+                statistic.ImvChart.Chart = AllStatisc[position].ChartStat;
+                statistic.TxtStat.Visibility = ViewStates.Gone;
+            }
+            
 
         }
 
@@ -40,7 +49,7 @@ namespace Bookshelf.Adapter
         {
             get
             {
-                return lstName.Count;
+                return AllStatisc.Count;
             }
         }
     }

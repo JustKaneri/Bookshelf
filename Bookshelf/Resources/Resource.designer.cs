@@ -26,6 +26,7 @@ namespace Bookshelf
 		
 		public static void UpdateIdValues()
 		{
+			global::Microcharts.Droid.Resource.String.library_name = global::Bookshelf.Resource.String.library_name;
 		}
 		
 		public partial class Animation
@@ -2511,6 +2512,9 @@ namespace Bookshelf
 			// aapt resource value: 0x7f090033
 			public const int CTRL = 2131296307;
 			
+			// aapt resource value: 0x7f0900bb
+			public const int ChartV = 2131296443;
+			
 			// aapt resource value: 0x7f090091
 			public const int EdtAutor = 2131296401;
 			
@@ -2546,9 +2550,6 @@ namespace Bookshelf
 			
 			// aapt resource value: 0x7f090092
 			public const int ImvBookAdd = 2131296402;
-			
-			// aapt resource value: 0x7f0900bb
-			public const int ImvChart = 2131296443;
 			
 			// aapt resource value: 0x7f090096
 			public const int ImvDate = 2131296406;
@@ -3668,8 +3669,8 @@ namespace Bookshelf
 			// aapt resource value: 0x7f0c0010
 			public const int abc_toolbar_collapse_description = 2131492880;
 			
-			// aapt resource value: 0x7f0c0027
-			public const int app_name = 2131492903;
+			// aapt resource value: 0x7f0c0028
+			public const int app_name = 2131492904;
 			
 			// aapt resource value: 0x7f0c001e
 			public const int appbar_scrolling_view_behavior = 2131492894;
@@ -3679,6 +3680,9 @@ namespace Bookshelf
 			
 			// aapt resource value: 0x7f0c0020
 			public const int character_counter_pattern = 2131492896;
+			
+			// aapt resource value: 0x7f0c0027
+			public const int library_name = 2131492903;
 			
 			// aapt resource value: 0x7f0c0021
 			public const int password_toggle_content_description = 2131492897;
@@ -3701,14 +3705,14 @@ namespace Bookshelf
 			// aapt resource value: 0x7f0c0026
 			public const int status_bar_notification_info_overflow = 2131492902;
 			
-			// aapt resource value: 0x7f0c0029
-			public const int title_dashboard = 2131492905;
-			
-			// aapt resource value: 0x7f0c0028
-			public const int title_home = 2131492904;
-			
 			// aapt resource value: 0x7f0c002a
-			public const int title_statistic = 2131492906;
+			public const int title_dashboard = 2131492906;
+			
+			// aapt resource value: 0x7f0c0029
+			public const int title_home = 2131492905;
+			
+			// aapt resource value: 0x7f0c002b
+			public const int title_statistic = 2131492907;
 			
 			static String()
 			{
