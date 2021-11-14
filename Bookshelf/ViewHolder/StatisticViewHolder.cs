@@ -17,12 +17,14 @@ namespace Bookshelf.ViewHolder
     {
         public TextView TxtName { get; private set; }
         public TextView TxtStat { get; private set; }
+        public ImageView ImvChart { get; private set; }
 
         public StatisticViewHolder(View itemView) : base(itemView)
         {
             // Locate and cache view references:
             TxtName = itemView.FindViewById<TextView>(Resource.Id.TxtNameSt);
             TxtStat = itemView.FindViewById<TextView>(Resource.Id.TxtResStat);
+            ImvChart = itemView.FindViewById<ImageView>(Resource.Id.ImvChart);
         }
     }
 }

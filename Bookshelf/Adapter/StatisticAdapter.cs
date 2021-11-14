@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Bookshelf.ViewHolder;
@@ -32,6 +33,7 @@ namespace Bookshelf.Adapter
 
             statistic.TxtName.Text = lstName[position];
             statistic.TxtStat.Text = lstResult[position];
+
         }
 
         public override int ItemCount
