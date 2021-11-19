@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using Bookshelf.Model;
 using Microcharts;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Bookshelf.Controler
 {
@@ -9,6 +11,7 @@ namespace Bookshelf.Controler
     {
         private StatisticControler() { }
 
+        
         public static List<Statistic> GetList(List<ReadBook> readBooks, List<PendingBook> pendingBooks)
         {
             List<Statistic> res = new List<Statistic>();
