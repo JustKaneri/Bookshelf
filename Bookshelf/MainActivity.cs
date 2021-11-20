@@ -18,9 +18,9 @@ namespace Bookshelf
     {
         private Android.Support.V4.App.Fragment fragment = null;
 
-        public static UserControler _userControler;
+        public static UserControler _userControler { get; set; }
 
-        public static ApplicationController _appController;
+        public static ApplicationController _appController { get; set; }
 
         protected override void OnCreate(Bundle savedInstanceState)
         {

@@ -10,12 +10,13 @@ namespace Bookshelf.Controler
     public class StatisticControler
     {
         private StatisticControler() { }
+
    
         public static List<Statistic> GetList(List<ReadBook> readBooks, List<PendingBook> pendingBooks)
         {
             List<Statistic> res = new List<Statistic>();
 
-            res.Add(GetCountStatistic(readBooks.Count, pendingBooks.Count));
+            res.Add(GetCountBookStatistic(readBooks.Count, pendingBooks.Count));
 
             res.Add(LikeAutor(readBooks));
 
@@ -72,7 +73,7 @@ namespace Bookshelf.Controler
             return statistic;
         }
 
-        private static Statistic GetCountStatistic(int red, int pendin)
+        private static Statistic GetCountBookStatistic(int red, int pendin)
         {
             Statistic statistic = new Statistic();
             var Elem = new[]
@@ -283,8 +284,6 @@ namespace Bookshelf.Controler
 
             return count.ToString();
         }
-
-
 
         private static string CountLaterPage(List<PendingBook> pendingBooks)
         {
