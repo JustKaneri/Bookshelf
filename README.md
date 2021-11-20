@@ -9,7 +9,9 @@
 
 # Стек технологий:
 > Xamarin.Android
+# 
 > SQLite3
+#
 > Microcharts
 
 # Описание:
