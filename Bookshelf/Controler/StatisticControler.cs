@@ -10,8 +10,7 @@ namespace Bookshelf.Controler
     public class StatisticControler
     {
         private StatisticControler() { }
-
-        
+   
         public static List<Statistic> GetList(List<ReadBook> readBooks, List<PendingBook> pendingBooks)
         {
             List<Statistic> res = new List<Statistic>();

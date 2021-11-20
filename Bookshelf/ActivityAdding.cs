@@ -28,15 +28,13 @@ namespace Bookshelf
         private EditText edtDiscript;
         private Button btnAdd;
         private TextView TxtStatus;
-
         private LinearLayout layout;
 
-        private Bitmap bmp;
-
-        private string status;
-        private PendingBook pendingBook;
-        private ReadBook readBook;
-        private int id;
+        private Bitmap ImageBook { get; set; }
+        private string StatusPage { get; set; }
+        private PendingBook BookPending { get; set; }
+        private ReadBook BookRead { get; set; }
+        private int IdBook { get; set; }
 
         private AlertDialog Alert;
 
@@ -46,6 +44,54 @@ namespace Bookshelf
             SetContentView(Resource.Layout.AddPage);
             // Create your application here
 
+            FindIdElements();
+
+            imvdate.Click += Imvdate_Click;
+            imvBook.Click += ImvBook_Click;
+            edtMark.TextChanged += EdtMark_TextChanged;
+            btnAdd.Click += BtnAdd_Click;
+
+            edtDate.Text = DateTime.Now.ToShortDateString();
+            imvBook.SetImageResource(Resource.Drawable.nophoto);
+            spType.Adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, UserControler.categories);
+
+            StatusPage = Intent.GetStringExtra("status");
+            IdBook = Intent.GetIntExtra("id", -1);
+
+            TxtStatus.Text = StatusPage.Contains("add") ? "Добавление" : "Редактирование";
+
+            if (StatusPage == "edit_read")
+            {
+                BookRead = MainActivity._userControler.GetBooks()[IdBook];
+
+                edtName.Text = BookRead.Name;
+                edtAutor.Text = BookRead.Autor;
+                imvBook.SetImageBitmap(BookRead.Photo);
+                ImageBook = BookRead.Photo;
+                edtDate.Text = BookRead.DateReading;
+                edtMark.Text = BookRead.Mark.ToString();
+                edtStr.Text = BookRead.CountPage.ToString();
+                edtDiscript.Text = BookRead.Discript;
+                spType.SetSelection(BookRead.Categori);
+            }
+
+            if (StatusPage == "add_later")
+            {
+                InvisibilityPartUI();
+            }
+            
+            if (StatusPage == "edit_later")
+            {
+                InvisibilityPartUI();
+                BookPending = MainActivity._userControler.GetPendingBooks()[IdBook];
+                FillLater();
+            }
+
+            Toast.MakeText(this, "Нажмите на изображение что бы добавить фотографию.", ToastLength.Short).Show();
+        }
+
+        private void FindIdElements()
+        {
             edtName = FindViewById<EditText>(Resource.Id.EdtName);
             edtAutor = FindViewById<EditText>(Resource.Id.EdtAutor);
             imvBook = FindViewById<ImageView>(Resource.Id.ImvBookAdd);
@@ -58,52 +104,9 @@ namespace Bookshelf
             btnAdd = FindViewById<Button>(Resource.Id.BtnAdd);
             layout = FindViewById<LinearLayout>(Resource.Id.lLayout2);
             TxtStatus = FindViewById<TextView>(Resource.Id.TxtStatus);
-
-            imvdate.Click += Imvdate_Click;
-            imvBook.Click += ImvBook_Click;
-            edtMark.TextChanged += EdtMark_TextChanged;
-            btnAdd.Click += BtnAdd_Click;
-
-            edtDate.Text = DateTime.Now.ToShortDateString();
-            imvBook.SetImageResource(Resource.Drawable.nophoto);
-            spType.Adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, UserControler.categories);
-
-            status = Intent.GetStringExtra("status");
-            id = Intent.GetIntExtra("id", -1);
-
-            TxtStatus.Text = status.Contains("add") ? "Добавление" : "Редактирование";
-
-            if (status == "edit_read")
-            {
-                readBook = MainActivity._userControler.GetBooks()[id];
-
-                edtName.Text = readBook.Name;
-                edtAutor.Text = readBook.Autor;
-                imvBook.SetImageBitmap(readBook.Photo);
-                bmp = readBook.Photo;
-                edtDate.Text = readBook.DateReading;
-                edtMark.Text = readBook.Mark.ToString();
-                edtStr.Text = readBook.CountPage.ToString();
-                edtDiscript.Text = readBook.Discript;
-                spType.SetSelection(readBook.Categori);
-            }
-
-            if (status == "add_later")
-            {
-                DeVisibility();
-            }
-            
-            if (status == "edit_later")
-            {
-                DeVisibility();
-                pendingBook = MainActivity._userControler.GetPendingBooks()[id];
-                FillLater();
-            }
-
-            Toast.MakeText(this, "Нажмите на изображение что бы добавить фотографию.", ToastLength.Short).Show();
         }
 
-        private void DeVisibility()
+        private void InvisibilityPartUI()
         {
             edtMark.Visibility = ViewStates.Gone;
             layout.Visibility = ViewStates.Gone;
@@ -129,13 +132,13 @@ namespace Bookshelf
 
         private void FillLater()
         {
-            edtName.Text = pendingBook.Name;
-            edtAutor.Text = pendingBook.Autor;
-            imvBook.SetImageBitmap(pendingBook.Photo);
-            edtStr.Text = pendingBook.CountPage.ToString();
-            bmp = pendingBook.Photo;
-            edtDiscript.Text = pendingBook.Discript;
-            spType.SetSelection(pendingBook.Categori);
+            edtName.Text = BookPending.Name;
+            edtAutor.Text = BookPending.Autor;
+            imvBook.SetImageBitmap(BookPending.Photo);
+            edtStr.Text = BookPending.CountPage.ToString();
+            ImageBook = BookPending.Photo;
+            edtDiscript.Text = BookPending.Discript;
+            spType.SetSelection(BookPending.Categori);
         }
 
         private void EdtMark_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
@@ -159,15 +162,23 @@ namespace Bookshelf
 
         private void SetBitmap()
         {
-            if (bmp == null)
-                bmp = BitmapFactory.DecodeResource(this.Resources, Resource.Drawable.NotBook);
+            if (ImageBook == null)
+                ImageBook = BitmapFactory.DecodeResource(this.Resources, Resource.Drawable.NotBook);
         }
 
         private void AddReadBook()
         {
             SetBitmap();
 
-            ReadBook read = new ReadBook(edtName.Text, edtAutor.Text, bmp, int.Parse(edtStr.Text), edtDiscript.Text, int.Parse(edtMark.Text),spType.SelectedItemPosition,edtDate.Text);
+            string nameBook = edtName.Text;
+            string autorBook = edtAutor.Text;
+            int countPage = int.Parse(edtStr.Text);
+            string discriptBook = edtDiscript.Text;
+            int markBook = int.Parse(edtMark.Text);
+            int categoriBook = spType.SelectedItemPosition;
+            string dateBook = edtDate.Text;
+
+            ReadBook read = new ReadBook(nameBook, autorBook, ImageBook, countPage, edtDiscript.Text, markBook , categoriBook ,dateBook);
 
             MainActivity._userControler.AddBook(read, UserControler.TypeBook.ReadBook);
 
@@ -178,13 +189,22 @@ namespace Bookshelf
         {
             SetBitmap();
 
-            int idB = readBook.ID;
-            bool favorite = readBook.Favorite;
-            readBook = new ReadBook(edtName.Text, edtAutor.Text, bmp, int.Parse(edtStr.Text), edtDiscript.Text, int.Parse(edtMark.Text),spType.SelectedItemPosition,edtDate.Text);
-            readBook.ID = idB;
-            readBook.Favorite = favorite;
+            int idB = BookRead.ID;
+            bool IsFavorite = BookRead.Favorite;
 
-            MainActivity._userControler.Update(readBook, id, UserControler.TypeBook.ReadBook);
+            string nameBook = edtName.Text;
+            string autorBook = edtAutor.Text;
+            int countPage = int.Parse(edtStr.Text);
+            string discriptBook = edtDiscript.Text;
+            int markBook = int.Parse(edtMark.Text);
+            int categoriBook = spType.SelectedItemPosition;
+            string dateBook = edtDate.Text;
+
+            BookRead = new ReadBook(nameBook, autorBook, ImageBook, countPage, edtDiscript.Text, markBook, categoriBook, dateBook);
+            BookRead.ID = idB;
+            BookRead.Favorite = IsFavorite;
+
+            MainActivity._userControler.Update(BookRead, IdBook, UserControler.TypeBook.ReadBook);
 
             FinishAddingOrEdit();
         }
@@ -193,9 +213,15 @@ namespace Bookshelf
         {
             SetBitmap();
 
-            pendingBook = new PendingBook(edtName.Text, edtAutor.Text, bmp, int.Parse(edtStr.Text), edtDiscript.Text,spType.SelectedItemPosition);
+            string nameBook = edtName.Text;
+            string autorBook = edtAutor.Text;
+            int countPage = int.Parse(edtStr.Text);
+            string discriptBook = edtDiscript.Text;
+            int categoriBook = spType.SelectedItemPosition;
 
-            MainActivity._userControler.AddBook(pendingBook, UserControler.TypeBook.PendingBook);
+            BookPending = new PendingBook(nameBook, autorBook, ImageBook, countPage,discriptBook,categoriBook);
+
+            MainActivity._userControler.AddBook(BookPending, UserControler.TypeBook.PendingBook);
 
             FinishAddingOrEdit();
         }
@@ -204,11 +230,17 @@ namespace Bookshelf
         {
             SetBitmap();
 
-            int idBook = pendingBook.ID;
-            pendingBook = new PendingBook(edtName.Text, edtAutor.Text, bmp, int.Parse(edtStr.Text), edtDiscript.Text,spType.SelectedItemPosition);
-            pendingBook.ID = idBook;
+            int idBook = BookPending.ID;
+            string nameBook = edtName.Text;
+            string autorBook = edtAutor.Text;
+            int countPage = int.Parse(edtStr.Text);
+            string discriptBook = edtDiscript.Text;
+            int categoriBook = spType.SelectedItemPosition;
 
-            MainActivity._userControler.Update(pendingBook, id, UserControler.TypeBook.PendingBook);
+            BookPending = new PendingBook(nameBook, autorBook, ImageBook, countPage, discriptBook, categoriBook);
+            BookPending.ID = idBook;
+
+            MainActivity._userControler.Update(BookPending, IdBook, UserControler.TypeBook.PendingBook);
 
             FinishAddingOrEdit();
         }
@@ -229,7 +261,7 @@ namespace Bookshelf
                 edtAutor.Text = "Неизвестен";
             }
 
-            if (status.Contains("read") && string.IsNullOrWhiteSpace(edtMark.Text))
+            if (StatusPage.Contains("read") && string.IsNullOrWhiteSpace(edtMark.Text))
             {
                 Toast.MakeText(this, "Укажите оценку", ToastLength.Short).Show();
                 btnAdd.Enabled = true;
@@ -243,7 +275,7 @@ namespace Bookshelf
                 return;
             }
 
-            switch (status)
+            switch (StatusPage)
             {
                 case "add_read":
                     AddReadBook();
@@ -300,7 +332,7 @@ namespace Bookshelf
                .SetPositiveButton("Да", delegate
                {
                    imvBook.SetImageResource(Resource.Drawable.nophoto);
-                   bmp = BitmapFactory.DecodeResource(this.Resources, Resource.Drawable.NotBook);
+                   ImageBook = BitmapFactory.DecodeResource(this.Resources, Resource.Drawable.NotBook);
                })
                .SetNegativeButton("Нет", delegate { }).Show();
 
@@ -330,22 +362,22 @@ namespace Bookshelf
             {
                 Android.Net.Uri uri = data.Data;
                 Stream stream = ContentResolver.OpenInputStream(uri);
-                bmp = BitmapFactory.DecodeStream(stream);
+                ImageBook = BitmapFactory.DecodeStream(stream);
 
-                if(bmp.Width > 3840 || bmp.Height > 2160)
-                    bmp = Bitmap.CreateScaledBitmap(bmp, bmp.Width / 2, bmp.Height / 2 , false);
+                if(ImageBook.Width > 3840 || ImageBook.Height > 2160)
+                    ImageBook = Bitmap.CreateScaledBitmap(ImageBook, ImageBook.Width / 2, ImageBook.Height / 2 , false);
 
-                imvBook.SetImageBitmap(bmp);
+                imvBook.SetImageBitmap(ImageBook);
             }
 
             if (requestCode == 1 && data != null)
             {
-                bmp = (Bitmap)data.Extras.Get("data");
+                ImageBook = (Bitmap)data.Extras.Get("data");
 
-                if (bmp.Width > 3840 || bmp.Height > 2160)
-                    bmp = Bitmap.CreateScaledBitmap(bmp, bmp.Width / 2, bmp.Height / 2, false);
+                if (ImageBook.Width > 3840 || ImageBook.Height > 2160)
+                    ImageBook = Bitmap.CreateScaledBitmap(ImageBook, ImageBook.Width / 2, ImageBook.Height / 2, false);
 
-                imvBook.SetImageBitmap(bmp);
+                imvBook.SetImageBitmap(ImageBook);
             }
         }
 
