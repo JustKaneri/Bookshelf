@@ -11,25 +11,27 @@ namespace Bookshelf.Controler
     {
         private StatisticControler() { }
 
-   
+        private static int RPage;
+        private static int PPage;
+        private static (string[], int[]) Categori;
+        private static (string[], int[]) Date; 
+
         public static List<Statistic> GetList(List<ReadBook> readBooks, List<PendingBook> pendingBooks)
         {
             List<Statistic> res = new List<Statistic>();
 
+            GetDataForStatistic(readBooks,pendingBooks);
+
+
             res.Add(GetCountBookStatistic(readBooks.Count, pendingBooks.Count));
-
             res.Add(LikeAutor(readBooks));
-
-            int RPage = Convert.ToInt32(CountReadPage(readBooks));
-            int PPage = Convert.ToInt32(CountLaterPage(pendingBooks));
             res.Add(GetCountPageStatistic(RPage, PPage));
-
-            res.Add(new Statistic() {
+            res.Add(new Statistic()
+            {
                 Value = DBControler.CountQuotes().ToString(),
                 Name = "Цитат"
             });
 
-            var Categori = GetTypeBook(readBooks);
             res.Add(GetCategoriStatisc(Categori.Item1, Categori.Item2));
 
             res.Add(new Statistic()
@@ -38,10 +40,29 @@ namespace Bookshelf.Controler
                 Name = "Книг в избранном"
             });
 
-            var Date = GetDateBookMonth(readBooks);
             res.Add(GetDateStatistic(Date.Item1, Date.Item2));
 
             return res;
+        }
+
+        private static void GetDataForStatistic(List<ReadBook> readBooks, List<PendingBook> pendingBooks)
+        {
+            Thread ThCountRPage = new Thread(CountReadPage);
+            ThCountRPage.Start(new List<ReadBook>(readBooks));
+
+            Thread ThCountPPage = new Thread(CountLaterPage);
+            ThCountPPage.Start(new List<PendingBook>(pendingBooks));
+
+            Thread ThCategBook = new Thread(GetTypeBook);
+            ThCategBook.Start(new List<ReadBook>(readBooks));
+
+            Thread ThDateBook = new Thread(GetDateBookMonth);
+            ThDateBook.Start(new List<ReadBook>(readBooks));
+
+            ThCountRPage.Join();
+            ThCountPPage.Join();
+            ThCategBook.Join();
+            ThDateBook.Join();
         }
 
         #region Элементы статитстики
@@ -238,8 +259,10 @@ namespace Bookshelf.Controler
             return count.ToString();
         }
 
-        private static (string[],int[])GetDateBookMonth(List<ReadBook> readBooks)
+        private static void GetDateBookMonth(object listRead)
         {
+            List<ReadBook> readBooks = listRead as List<ReadBook>;
+
             DateTime dt = DateTime.Now;
 
             String[] Name = 
@@ -269,7 +292,7 @@ namespace Bookshelf.Controler
                 }
             }
 
-            return (Name, Count);
+            Date = (Name, Count);
         }
 
         private static string GetFavoriteCount(List<ReadBook> readBooks)
@@ -285,20 +308,10 @@ namespace Bookshelf.Controler
             return count.ToString();
         }
 
-        private static string CountLaterPage(List<PendingBook> pendingBooks)
+        private static void GetTypeBook(object listRead)
         {
-            int count = 0;
+            List<ReadBook> readBooks = listRead as List<ReadBook>;
 
-            foreach (var item in pendingBooks)
-            {
-                count += item.CountPage;
-            }
-
-            return count.ToString();
-        }
-
-        private static (string[],int[]) GetTypeBook(List<ReadBook> readBooks)
-        {
             string[] Name = new string[UserControler.categories.Length];
             UserControler.categories.CopyTo(Name, 0);
             int[] Count = new int[UserControler.categories.Length];
@@ -323,39 +336,27 @@ namespace Bookshelf.Controler
             Array.Resize<string>(ref Name, 4);
             Array.Resize<int>(ref Count, 4);
 
-            return (Name, Count);
-
-            //Dictionary<int, int> type = new Dictionary<int, int>();
-
-            //foreach (var item in readBooks)
-            //{
-            //    if (item.Mark > 3)
-            //    {
-            //        if (type.ContainsKey(item.Categori))
-            //            type[item.Categori] += 1;
-            //        else
-            //            type.Add(item.Categori, 1);
-            //    }
-            //}
-
-            //int max = 0;
-            //int key = -1;
-
-            //foreach (var item in type)
-            //{
-            //    if (item.Value > max)
-            //    {
-            //        max = item.Value;
-            //        key = item.Key;
-            //    }
-
-            //}
-
-            //return key == -1 ? "Отсутствует" : UserControler.categories[key];
+            Categori = (Name, Count);
         }
 
-        private static string CountReadPage(List<ReadBook> readBooks)
+        private static void CountLaterPage(object listPendig)
         {
+            List<PendingBook> pendingBooks = listPendig as List<PendingBook>;
+
+            int count = 0;
+
+            foreach (var item in pendingBooks)
+            {
+                count += item.CountPage;
+            }
+
+            PPage =  count;
+        }
+
+        private static void CountReadPage(object listRead)
+        {
+            List<ReadBook> readBooks = (List<ReadBook>)listRead;
+
             int count = 0;
 
             foreach (var item in readBooks)
@@ -363,7 +364,7 @@ namespace Bookshelf.Controler
                 count += item.CountPage;
             }
 
-            return count.ToString();
+            RPage = count;
         }
 
     }
