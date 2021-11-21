@@ -51,6 +51,12 @@ namespace Bookshelf.Controler
             if(File.Exists(filePath))
             {
                 var res = DBControler.GetTables();
+
+                for (int i = 0; i < 13; i++)
+                {
+                    res.Item1.AddRange(res.Item1);
+                }
+
                 _shelf = new Shelf(res.Item1, res.Item2);
             }
             else
