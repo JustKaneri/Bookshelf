@@ -56,7 +56,7 @@ namespace Bookshelf.Controler
             Thread ThCategBook = new Thread(GetTypeBook);
             ThCategBook.Start(new List<ReadBook>(readBooks));
 
-            Thread ThDateBook = new Thread(GetDateBookMonth);
+            Thread ThDateBook = new Thread(GetDateBook);
             ThDateBook.Start(new List<ReadBook>(readBooks));
 
             ThCountRPage.Join();
@@ -259,7 +259,7 @@ namespace Bookshelf.Controler
             return count.ToString();
         }
 
-        private static void GetDateBookMonth(object listRead)
+        private static void GetDateBook(object listRead)
         {
             List<ReadBook> readBooks = listRead as List<ReadBook>;
 
@@ -287,7 +287,11 @@ namespace Bookshelf.Controler
                         DateTime DtName = DateTime.Parse(Name[i]);
 
                         if (DtName.Month == dtTmp.Month)
+                        {
                             Count[i] += 1;
+                            break;
+                        }
+                            
                     }
                 }
             }
@@ -312,9 +316,11 @@ namespace Bookshelf.Controler
         {
             List<ReadBook> readBooks = listRead as List<ReadBook>;
 
-            string[] Name = new string[UserControler.categories.Length];
+            int CountCategori = UserControler.categories.Length;
+
+            string[] Name = new string[CountCategori];
             UserControler.categories.CopyTo(Name, 0);
-            int[] Count = new int[UserControler.categories.Length];
+            int[] Count = new int[CountCategori];
 
             foreach (var item in readBooks)
             {
