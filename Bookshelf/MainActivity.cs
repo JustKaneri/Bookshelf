@@ -68,6 +68,11 @@ namespace Bookshelf
         //    }
         //}
 
+        /// <summary>
+        /// Поделиться книгой
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void _userControler_StartRepostBook(object sender, EventArgs e)
         {
             var Book = MainActivity._userControler.GetBooks()[int.Parse((sender).ToString())];
@@ -75,7 +80,6 @@ namespace Bookshelf
             try
             {
                 String url = Images.Media.InsertImage(this.ContentResolver, Book.Photo, "title", null);
-                //Toast.MakeText(this, new Uri(url).ToString(), ToastLength.Long).Show();
 
                 Intent intentRep = new Intent();
                 intentRep.SetAction(Intent.ActionSend);
@@ -91,6 +95,11 @@ namespace Bookshelf
             }          
         }
 
+        /// <summary>
+        /// Открытие страницы с цитатами
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void _userControler_StartOpenQuotes(object sender, EventArgs e)
         {
             Intent quot = new Intent(this, typeof(PageQuotes));
@@ -100,6 +109,9 @@ namespace Bookshelf
             StartActivity(quot);
         }
 
+        /// <summary>
+        /// Открытие окна с превью
+        /// </summary>
         private void OpenPreviewScreen()
         {
             Intent intent = new Intent(this,typeof(PagePreview));
@@ -111,7 +123,7 @@ namespace Bookshelf
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void _userControler_StartCopy(object sender, System.EventArgs e)
+        private void _userControler_StartCopy(object sender, EventArgs e)
         {
             var mas = sender as int[];
 
@@ -130,7 +142,7 @@ namespace Bookshelf
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void _userControler_StartLaterDelete(object sender, System.EventArgs e)
+        private void _userControler_StartLaterDelete(object sender, EventArgs e)
         {
             new Android.App.AlertDialog.Builder(this)
                 .SetTitle("Удаление")
@@ -150,7 +162,7 @@ namespace Bookshelf
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void _userControler_StartLaterUpdate(object sender, System.EventArgs e)
+        private void _userControler_StartLaterUpdate(object sender, EventArgs e)
         {
             Intent edt = new Intent(this, typeof(ActivityAdding));
             edt.PutExtra("status", "edit_later");
@@ -163,7 +175,7 @@ namespace Bookshelf
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void _userControler_StartReadDelete(object sender, System.EventArgs e)
+        private void _userControler_StartReadDelete(object sender, EventArgs e)
         {
             new Android.App.AlertDialog.Builder(this)
                 .SetIcon(Resource.Drawable.help)
@@ -183,7 +195,7 @@ namespace Bookshelf
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void _userControler_StartReadUpdate(object sender, System.EventArgs e)
+        private void _userControler_StartReadUpdate(object sender, EventArgs e)
         {
             Intent edt = new Intent(this, typeof(ActivityAdding));
             edt.PutExtra("status", "edit_read");

@@ -61,7 +61,7 @@ namespace Bookshelf.Model
 
 
                 new Android.App.AlertDialog.Builder(itemView.Context)
-                .SetTitle("Перемещение").SetMessage("Переместить данную книгу в раздел прочитанное?\nДля этого укажите оценку данной книги.")
+                .SetTitle("В прочитанное").SetMessage("Укажите оценку книги:")
                 .SetView(editText)
                 .SetPositiveButton("Переместить", delegate
                 {

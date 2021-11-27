@@ -26,11 +26,9 @@ namespace Bookshelf.Adapter
 
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
-            //BookViewHolder book = holder as BookViewHolder;
             StatisticViewHolder statistic = holder as StatisticViewHolder;
 
             statistic.TxtName.Text = AllStatisc[position].Name;
-            //statistic.TxtStat.Text = lstResult[position];
             if(AllStatisc[position].ChartStat == null)
             {
                 statistic.ImvChart.Visibility = ViewStates.Gone;
