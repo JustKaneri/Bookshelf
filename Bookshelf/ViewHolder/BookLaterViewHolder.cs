@@ -27,6 +27,7 @@ namespace Bookshelf.Model
             TxtAutor = itemView.FindViewById<TextView>(Resource.Id.TvAutor);
             TxtCategori = itemView.FindViewById<TextView>(Resource.Id.TvCategori);
 
+
             BtnPopMenu.Click += (s, arg) =>
             {
                 Android.Widget.PopupMenu menu = new Android.Widget.PopupMenu(Application.Context, BtnPopMenu);
