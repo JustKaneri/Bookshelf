@@ -17,6 +17,8 @@ namespace Bookshelf.Model
 
         public Button BtnPopMenu { get; set; }
 
+        private View viewMain { get; set; }
+
         public BookLaterViewHolder(View itemView) : base(itemView)
         {
             // Locate and cache view references:
@@ -26,6 +28,8 @@ namespace Bookshelf.Model
             BtnPopMenu = itemView.FindViewById<Button>(Resource.Id.BtnOpenPopMenu);
             TxtAutor = itemView.FindViewById<TextView>(Resource.Id.TvAutor);
             TxtCategori = itemView.FindViewById<TextView>(Resource.Id.TvCategori);
+
+            viewMain = itemView;
 
             BtnPopMenu.Click += (s, arg) =>
             {
@@ -51,35 +55,48 @@ namespace Bookshelf.Model
                 menu.Show();
             };
 
-            BtnMove.Click += delegate
-            {
-                EditText editText = new EditText(itemView.Context);
-                editText.Hint = "Введите оценку";
-                editText.InputType = Android.Text.InputTypes.ClassNumber;
-                editText.TextAlignment = TextAlignment.Center;
-                editText.TextChanged += EditText_TextChanged;
+            BtnMove.Click += BtnMove_Click;
 
-
-                new Android.App.AlertDialog.Builder(itemView.Context)
-                .SetTitle("В прочитанное").SetMessage("Укажите оценку книги:")
-                .SetView(editText)
-                .SetPositiveButton("Переместить", delegate
-                {
-                    if (editText.Text == "")
-                        Toast.MakeText(itemView.Context, "Вы не указали оценку", ToastLength.Long).Show();
-                    else
-                        MainActivity._userControler.StartMoved(int.Parse(BtnMove.Tag.ToString()),int.Parse(editText.Text));
-                })
-                .SetNegativeButton("Отмена", delegate { })
-                .Show();
-
-              
-            };
 
             BtnMove.LongClick += delegate
             {
                 Toast.MakeText(Application.Context, "Переместить книгу в прочитанное", ToastLength.Short).Show();
             };
+
+        }
+
+        private void BtnMove_Click(object sender, System.EventArgs e)
+        {
+
+            View view = LayoutInflater.From(Application.Context).Inflate(Resource.Layout.WindowMark, null, false);
+            EditText editText = view.FindViewById<EditText>(Resource.Id.EdtMark);
+            editText.Hint = "Введите оценку";
+            editText.InputType = Android.Text.InputTypes.ClassNumber;
+            editText.TextChanged += EditText_TextChanged;
+
+            Button btnOk = view.FindViewById<Button>(Resource.Id.BtnOkMark);
+            Button btnCns = view.FindViewById<Button>(Resource.Id.BtnCancelMark);
+
+            var window = new AlertDialog.Builder(viewMain.Context).SetView(view).Show();
+
+            btnOk.Click += delegate
+            {
+                if(string.IsNullOrEmpty(editText.Text))
+                {
+                    Toast.MakeText(viewMain.Context,"Вы не указали оценку",ToastLength.Short).Show();
+                }
+                else
+                {
+                    window.Cancel();
+                    MainActivity._userControler.StartMoved(int.Parse(BtnMove.Tag.ToString()), int.Parse(editText.Text));
+                }
+            };
+            btnCns.Click += delegate
+            {
+                window.Cancel();
+            };
+
+            view.Dispose();
 
         }
 
