@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Bookshelf.Model;
@@ -26,12 +27,11 @@ namespace Bookshelf.Adapter
 
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
-            //BookViewHolder book = holder as BookViewHolder;
             StatisticViewHolder statistic = holder as StatisticViewHolder;
 
             statistic.TxtName.Text = AllStatisc[position].Name;
             //statistic.TxtStat.Text = lstResult[position];
-            if(AllStatisc[position].ChartStat == null)
+            if (AllStatisc[position].ChartStat == null)
             {
                 statistic.ImvChart.Visibility = ViewStates.Gone;
                 statistic.TxtStat.Text = AllStatisc[position].Value;
@@ -41,8 +41,6 @@ namespace Bookshelf.Adapter
                 statistic.ImvChart.Chart = AllStatisc[position].ChartStat;
                 statistic.TxtStat.Visibility = ViewStates.Gone;
             }
-            
-
         }
 
         public override int ItemCount
