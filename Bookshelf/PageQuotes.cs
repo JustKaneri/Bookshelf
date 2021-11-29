@@ -11,6 +11,7 @@ using Android.Widget;
 using Bookshelf.Adapter;
 using Bookshelf.Controler;
 using Bookshelf.Model;
+using Android.Views;
 using static Android.Provider.MediaStore;
 
 namespace Bookshelf
@@ -86,39 +87,47 @@ namespace Bookshelf
 
         private void Fb_Click(object sender, EventArgs e)
         {
-            EditText edtQut = new EditText(this);
-            edtQut.Hint =  "Цитата";
-            EditText edtAutor = new EditText(this);
+            View view = LayoutInflater.From(Application.Context).Inflate(Resource.Layout.WindowQuotes, null, false);
+
+            EditText edtQut = view.FindViewById<EditText>(Resource.Id.EdtTextMin);
+            edtQut.Hint = "Цитата";
+
+            EditText edtAutor = view.FindViewById<EditText>(Resource.Id.EdtAutorMin);
             edtAutor.Hint = "Автор Цитаты";
 
-            LinearLayout ln = new LinearLayout(this);
-            ln.Orientation = Orientation.Vertical;
+            TextView txtV = view.FindViewById<TextView>(Resource.Id.TxtMinQuot);
+            txtV.Text = "Добавление цитаты";
 
-            ln.AddView(edtQut);
-            ln.AddView(edtAutor);
+            Button btnSave = view.FindViewById<Button>(Resource.Id.BtnOkQuot);
+            Button btnCancel = view.FindViewById<Button>(Resource.Id.BtnCancelQuot);
 
-            new Android.App.AlertDialog.Builder(this)
-                .SetTitle("Добавление цитаты")
-                .SetView(ln)
-                .SetPositiveButton("Добавить", delegate 
+
+            var Window = new AlertDialog.Builder(this).SetView(view).Show();
+
+            btnSave.Click += delegate
+            {
+                if (string.IsNullOrWhiteSpace(edtQut.Text))
                 {
-                    if (string.IsNullOrWhiteSpace(edtQut.Text))
-                    {
-                        Toast.MakeText(this, "Укажите цитату", ToastLength.Short).Show();
-                        return;
-                    }
+                    Toast.MakeText(this, "Укажите цитату", ToastLength.Short).Show();
+                    return;
+                }
 
-                    if (string.IsNullOrWhiteSpace(edtAutor.Text))
-                        edtAutor.Text = "Неизвестен";
+                if (string.IsNullOrWhiteSpace(edtAutor.Text))
+                    edtAutor.Text = "Неизвестен";
 
-                    Quotes quot = new Quotes();
-                    quot.Autor = edtAutor.Text;
-                    quot.Quot = edtQut.Text;
-                    _quoteControler.AddQuot(quot);
-                    FillRecylerView();
-                })
-                .SetNegativeButton("Отмена", delegate { })
-                .Show();
+                Quotes quot = new Quotes();
+                quot.Autor = edtAutor.Text.Trim();
+                quot.Quot = edtQut.Text.Trim();
+                _quoteControler.AddQuot(quot);
+                FillRecylerView();
+
+                Window.Cancel();
+            };
+
+            btnCancel.Click += delegate
+            {
+                Window.Cancel();
+            };
         }
 
         private void FillRecylerView()
@@ -136,38 +145,51 @@ namespace Bookshelf
             int pos = int.Parse(sender.ToString());
             var tmp = _quoteControler.GetQuoteList()[pos];
 
-            EditText edtQut = new EditText(this);
+            View view = LayoutInflater.From(Application.Context).Inflate(Resource.Layout.WindowQuotes, null, false);
+
+            EditText edtQut = view.FindViewById<EditText>(Resource.Id.EdtTextMin);
             edtQut.Text = tmp.Quot;
             edtQut.Hint = "Цитата";
-            EditText edtAutor = new EditText(this);
+
+            EditText edtAutor = view.FindViewById<EditText>(Resource.Id.EdtAutorMin);
             edtAutor.Text = tmp.Autor;
             edtAutor.Hint = "Автор Цитаты";
 
-            LinearLayout ln = new LinearLayout(this);
-            ln.Orientation = Orientation.Vertical;
+            TextView txtV = view.FindViewById<TextView>(Resource.Id.TxtMinQuot);
+            txtV.Text = "Редактирование цитаты";
 
-            ln.AddView(edtQut);
-            ln.AddView(edtAutor);
+            Button btnSave = view.FindViewById<Button>(Resource.Id.BtnOkQuot);
+            Button btnCancel = view.FindViewById<Button>(Resource.Id.BtnCancelQuot);
 
-            new Android.App.AlertDialog.Builder(this)
-                .SetTitle("Редактирование цитаты")
-                .SetView(ln)
-                .SetPositiveButton("Сохранить", delegate
+
+            var Window = new AlertDialog.Builder(this).SetView(view).Show();
+
+            btnSave.Click += delegate
+            {
+                if (string.IsNullOrWhiteSpace(edtQut.Text))
                 {
-                    if(string.IsNullOrWhiteSpace(edtAutor.Text) || string.IsNullOrWhiteSpace(edtQut.Text))
-                    {
-                        Toast.MakeText(this, "Заполните все поля", ToastLength.Short).Show();
-                        return;
-                    }
+                    Toast.MakeText(this, "Введите цитату", ToastLength.Short).Show();
+                    return;
+                }
 
-                    Quotes quot = new Quotes();
-                    quot.Autor = edtAutor.Text;
-                    quot.Quot = edtQut.Text;
-                    _quoteControler.EditQuot(quot,pos);
-                    FillRecylerView();
-                })
-                .SetNegativeButton("Отмена", delegate { })
-                .Show();
+                if(string.IsNullOrWhiteSpace(edtAutor.Text))
+                {
+                    edtAutor.Text = "Неизвестен";
+                }
+
+                Quotes quot = new Quotes();
+                quot.Autor = edtAutor.Text.Trim();
+                quot.Quot = edtQut.Text.Trim();
+                _quoteControler.EditQuot(quot, pos);
+                FillRecylerView();
+
+                Window.Cancel();
+            };
+
+            btnCancel.Click += delegate
+            {
+                Window.Cancel();
+            };
         }
 
         private void _quoteControler_BeginDelete(object sender, EventArgs e)

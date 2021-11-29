@@ -19,8 +19,8 @@
 				android:layout_height="wrap_content"
 				android:textAppearance="?android:attr/textAppearanceMedium"
 				android:textColor="#333333"
-				android:text="В прочитанное"
-				android:id="@+id/TxtQuot"
+				android:text=""
+				android:id="@+id/TxtMinQuot"
 				android:layout_gravity="center_horizontal"
 				android:layout_marginLeft="10dp"
 				android:layout_marginRight="10dp"
@@ -39,18 +39,30 @@
 				android:id="@+id/linearLayout4"
 				android:background="#fffc6e51"
 				android:layout_marginRight="15dp"
-				android:layout_marginLeft="15dp" />
+				android:layout_marginLeft="15dp"
+				android:layout_marginBottom="6.0dp" />
 			<EditText
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:fontFamily="@font/nord"
-				android:id="@+id/EdtMark"
+				android:id="@+id/EdtTextMin"
 				android:layout_marginRight="20.0dp"
 				android:layout_marginLeft="20.0dp"
 				android:textColor="#ff000000"
 				android:textAlignment="center"
-				android:textSize="23dp"
+				android:textSize="15dp"
 				android:layout_marginTop="5.3dp" />
+			<EditText
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:fontFamily="@font/nord"
+				android:id="@+id/EdtAutorMin"
+				android:layout_marginRight="20.0dp"
+				android:layout_marginLeft="20.0dp"
+				android:textColor="#ff000000"
+				android:textAlignment="center"
+				android:textSize="15dp"
+				android:layout_marginTop="2.6dp" />
 			<LinearLayout
 				android:orientation="horizontal"
 				android:minWidth="25px"
@@ -65,21 +77,21 @@
 					android:fontFamily="@font/nord"
 					android:layout_width="90.0dp"
 					android:layout_height="30dp"
-					android:id="@+id/BtnCancelMark"
+					android:id="@+id/BtnCancelQuot"
 					android:textColor="#ffffffff"
 					android:background="#fffc6e51"
 					android:textSize="15dp"
 					android:layout_marginRight="17.4dp"
 					android:layout_marginTop="16dp" />
 				<Button
-					android:text="Ок"
+					android:text="Сохранить"
 					android:fontFamily="@font/nord"
-					android:layout_width="90.0dp"
+					android:layout_width="100.0dp"
 					android:layout_height="30dp"
-					android:id="@+id/BtnOkMark"
+					android:id="@+id/BtnOkQuot"
 					android:textColor="#ffffffff"
 					android:background="#fffc6e51"
-					android:textSize="19dp"
+					android:textSize="16dp"
 					android:layout_marginTop="16dp"  />
 			</LinearLayout>
 		</LinearLayout>
