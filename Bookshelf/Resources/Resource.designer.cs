@@ -2500,8 +2500,8 @@ namespace Bookshelf
 			// aapt resource value: 0x7f09009a
 			public const int BtnAdd = 2131296410;
 			
-			// aapt resource value: 0x7f0900ed
-			public const int BtnCancelMark = 2131296493;
+			// aapt resource value: 0x7f0900ec
+			public const int BtnCancelMark = 2131296492;
 			
 			// aapt resource value: 0x7f0900b2
 			public const int BtnFavorite = 2131296434;
@@ -2509,8 +2509,8 @@ namespace Bookshelf
 			// aapt resource value: 0x7f0900bd
 			public const int BtnMovLater = 2131296445;
 			
-			// aapt resource value: 0x7f0900ec
-			public const int BtnOkMark = 2131296492;
+			// aapt resource value: 0x7f0900ed
+			public const int BtnOkMark = 2131296493;
 			
 			// aapt resource value: 0x7f0900b3
 			public const int BtnOpenPopMenu = 2131296435;
