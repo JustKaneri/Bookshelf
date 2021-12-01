@@ -51,10 +51,10 @@
 						android:layout_marginLeft="69.5dp">
 						<ImageButton
 							android:layout_width="26dp"
-							android:layout_height="31dp"
+							android:layout_height="29dp"
 							android:id="@+id/BtnFavorite"
 							android:maxWidth="26dp"
-							android:maxHeight="31dp"
+							android:maxHeight="29dp"
 							android:background="@drawable/NoFavorite"
 							android:layout_marginRight="15dp" />
 					</LinearLayout>
