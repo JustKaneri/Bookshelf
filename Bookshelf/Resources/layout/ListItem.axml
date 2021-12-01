@@ -3,71 +3,99 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content">
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        card_view:cardElevation="4dp"
-        card_view:cardUseCompatPadding="true"
-        card_view:cardCornerRadius="5dp">
-		<LinearLayout
+	<android.support.v7.widget.CardView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		card_view:cardElevation="4dp"
+		card_view:cardUseCompatPadding="true"
+		card_view:cardCornerRadius="2dp">
+		<RelativeLayout
+			android:minWidth="25px"
+			android:minHeight="25px"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:orientation="vertical"
-			android:padding="8dp">
+			android:id="@+id/relativeLayout1" >
+			<ImageView
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:id="@+id/imageView2"
+				android:scaleType="centerCrop"
+				android:layout_marginRight="3dp"
+				android:layout_marginTop="3dp"
+				android:layout_marginLeft="3dp"
+				android:layout_marginBottom="3dp"
+				android:maxHeight="250dp" />
+
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:orientation="horizontal"
-				android:padding="8dp"
-				android:layout_gravity="center"
-				android:gravity="center|right">
+				android:orientation="vertical"
+				android:padding="5dp"
+				android:id="@+id/LnlMain">
 				<LinearLayout
-					android:orientation="horizontal"
-					android:minWidth="25px"
-					android:minHeight="25px"
 					android:layout_width="match_parent"
-					android:layout_height="match_parent"
-					android:id="@+id/linearLayout1"
-					android:layout_marginLeft="69.5dp">
-					<ImageButton
-						android:layout_width="25dp"
-						android:layout_height="25dp"
-						android:id="@+id/BtnFavorite"
-						android:maxWidth="25dp"
-						android:maxHeight="25dp"
-						android:background="@drawable/NoFavorite"
-						android:layout_marginRight="15dp" />
+					android:layout_height="wrap_content"
+					android:orientation="horizontal"
+					android:padding="8dp"
+					android:layout_gravity="center"
+					android:gravity="center|right"
+					android:id="@+id/linearLayout2"
+					android:background="#40000000">
+					<LinearLayout
+						android:orientation="horizontal"
+						android:minWidth="25px"
+						android:minHeight="25px"
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
+						android:id="@+id/linearLayout1"
+						android:layout_marginLeft="69.5dp">
+						<ImageButton
+							android:layout_width="26dp"
+							android:layout_height="31dp"
+							android:id="@+id/BtnFavorite"
+							android:maxWidth="26dp"
+							android:maxHeight="31dp"
+							android:background="@drawable/NoFavorite"
+							android:layout_marginRight="15dp" />
+					</LinearLayout>
+					<Button
+						android:text="⋮"
+						android:layout_width="50dp"
+						android:layout_height="30dp"
+						android:id="@+id/BtnOpenPopMenu"
+						android:textColor="#fffc6e51"
+						android:textStyle="bold"
+						android:textAlignment="textEnd"
+						android:layout_marginLeft="14.0dp"
+						android:textSize="20dp"
+						android:paddingRight="10dp"
+						android:background="#00ffffff" />
 				</LinearLayout>
-				<Button
-					android:text="⋮"
-					android:layout_width="50dp"
-					android:layout_height="30dp"
-					android:id="@+id/BtnOpenPopMenu"
-					android:background="#ffffffff"
-					android:textColor="#fffc6e51"
-					android:textStyle="bold"
-					android:textAlignment="textEnd"
-					android:layout_marginLeft="14.0dp"
-					android:textSize="20dp"
-					android:paddingRight="10dp" />
-			</LinearLayout>
 			<ImageView
 				android:layout_width="match_parent"
-				android:layout_height="190dp"
+				android:layout_height="200dp"
 				android:id="@+id/imageView"
 				android:scaleType="centerCrop"
-				android:maxHeight="350dp" />
-			<TextView
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:textAppearance="?android:attr/textAppearanceMedium"
-				android:textColor="#333333"
-				android:text="Caption"
-				android:id="@+id/textView"
-				android:layout_gravity="center_horizontal"
-				android:layout_marginLeft="4dp"
-				android:textStyle="bold"
-				android:fontFamily="@font/nord"/>
-		</LinearLayout>
-    </android.support.v7.widget.CardView>
+				android:maxHeight="200dp"
+				android:visibility="invisible" />
+				<TextView
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:textColor="#ffffffff"
+					android:text="Caption"
+					android:id="@+id/textView"
+					android:layout_gravity="center_horizontal"
+					android:layout_marginLeft="0.0dp"
+					android:textStyle="bold"
+					android:fontFamily="@font/nord"
+					android:background="#40000000"
+					android:layout_marginRight="0.0dp"
+					android:paddingLeft="10dp"
+					android:textAlignment="center" />
+			</LinearLayout>
+
+		</RelativeLayout>
+		
+	</android.support.v7.widget.CardView>
 </FrameLayout>

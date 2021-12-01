@@ -19,6 +19,8 @@ namespace Bookshelf.Model
         public TextView TxtCategori { get; private set; }
         public TextView TxtDate { get; private set; }
         public ImageView ImvMark { get; private set; }
+        public ImageView ImageFon { get; private set; }
+        public LinearLayout Layout { get; private set; }
 
         public Button BtnPopMenu { get; set; }
 
@@ -28,6 +30,8 @@ namespace Bookshelf.Model
             Caption = itemView.FindViewById<TextView>(Resource.Id.textView);
             BtnPopMenu = itemView.FindViewById<Button>(Resource.Id.BtnOpenPopMenu);
             BtnFavorite = itemView.FindViewById<ImageButton>(Resource.Id.BtnFavorite);
+            ImageFon = itemView.FindViewById<ImageView>(Resource.Id.imageView2);
+            Layout = itemView.FindViewById<LinearLayout>(Resource.Id.LnlMain);
 
             TxtAutor = itemView.FindViewById<TextView>(Resource.Id.TvAutor);
             TxtCategori = itemView.FindViewById<TextView>(Resource.Id.TvCategori);

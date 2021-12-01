@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Android.App;
+using Android.Content.Res;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Bookshelf.Model;
@@ -32,7 +34,12 @@ namespace Bookshelf.Controler
             BookViewHolder book = holder as BookViewHolder;
 
             book.Image.SetImageBitmap(bookArray[position].Photo);
-            book.Caption.Text = bookArray[position].Name;
+
+            if (bookArray[position].Name.Length > 12)
+                book.Caption.Text = bookArray[position].Name.Substring(0, 12) + "...";
+            else
+                book.Caption.Text = bookArray[position].Name;
+
             book.BtnFavorite.Tag = position.ToString();
             book.Image.Tag = position.ToString();
 
@@ -66,6 +73,32 @@ namespace Bookshelf.Controler
                         break;
                 }
             }
+            else
+            {
+                int Height = GetSize();
+
+                book.ImageFon.SetImageBitmap(bookArray[position].Photo);
+                var param = book.ImageFon.LayoutParameters;
+                var paramLayot = book.Layout.LayoutParameters;
+                var paramView = book.Image.LayoutParameters;
+
+                paramLayot.Height = Height + 150;
+                param.Height = Height + 130;
+                paramView.Height = (Height+  450) /2;
+
+                book.ImageFon.LayoutParameters = param;
+                book.Layout.LayoutParameters = paramLayot;
+                book.Image.LayoutParameters = paramView;
+            }
+        }
+
+        private int GetSize()
+        {
+            var pixels = Resources.System.DisplayMetrics.HeightPixels;
+            var scale = Resources.System.DisplayMetrics.Density;
+            var dps = (double)((pixels - 0.5f) / scale);
+
+            return (int)(dps);
         }
 
         public override int ItemCount
