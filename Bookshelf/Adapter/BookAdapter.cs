@@ -82,9 +82,13 @@ namespace Bookshelf.Controler
                 var paramLayot = book.Layout.LayoutParameters;
                 var paramView = book.Image.LayoutParameters;
 
-                paramLayot.Height = Height + 150;
-                param.Height = Height + 130;
-                paramView.Height = (Height+  450) /2;
+                //paramLayot.Height = Height + 150;
+                //param.Height = Height + 130;
+                //paramView.Height = (Height+  450) /2;
+
+                paramLayot.Height = (int)(Height / 2);
+                param.Height = (int)(Height / 2)-20;
+                paramView.Height = (int)(Height /3);
 
                 book.ImageFon.LayoutParameters = param;
                 book.Layout.LayoutParameters = paramLayot;
@@ -95,10 +99,11 @@ namespace Bookshelf.Controler
         private int GetSize()
         {
             var pixels = Resources.System.DisplayMetrics.HeightPixels;
-            var scale = Resources.System.DisplayMetrics.Density;
-            var dps = (double)((pixels - 0.5f) / scale);
+            //var scale = Resources.System.DisplayMetrics.Density;
+            //var dps = (double)((pixels - 0.5f) / scale);
 
-            return (int)(dps);
+            //return (int)(dps);
+            return pixels - 200;
         }
 
         public override int ItemCount
