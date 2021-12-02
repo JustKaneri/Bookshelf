@@ -71,7 +71,6 @@ namespace Bookshelf.Adapter
             var pixels = Resources.System.DisplayMetrics.HeightPixels;
             //var scale = Resources.System.DisplayMetrics.Density;
             //var dps = (double)((pixels - 0.5f) / scale);
-
             //return (int)(dps);
             return pixels - 200;
         }
