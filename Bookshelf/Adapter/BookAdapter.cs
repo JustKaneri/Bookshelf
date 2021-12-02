@@ -88,7 +88,7 @@ namespace Bookshelf.Controler
 
                 paramLayot.Height = (int)(Height / 2);
                 param.Height = (int)(Height / 2)-20;
-                paramView.Height = (int)(Height /3);
+                paramView.Height = (int)(Height /2.8);
 
                 book.ImageFon.LayoutParameters = param;
                 book.Layout.LayoutParameters = paramLayot;
