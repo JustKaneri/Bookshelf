@@ -15,6 +15,25 @@ namespace Bookshelf.Model
 
         public ReadBook(string name,string autor,Bitmap photo,int cntPage,string discript,int mark,int categori,string date)
         {
+
+            if (name.Contains("\""))
+                name = name.Replace("\"", "");
+
+            if (name.Contains("'"))
+                name = name.Replace("'", "`");
+
+            if (autor.Contains("\""))
+                autor = autor.Replace("\"", "");
+
+            if (autor.Contains("'"))
+                autor = autor.Replace("'", "`");
+
+            if (discript.Contains("\""))
+                discript = discript.Replace("\"", "");
+
+            if (discript.Contains("'"))
+                discript = discript.Replace("'", "`");
+
             Name = name;
             Autor = autor;
             Photo = photo;

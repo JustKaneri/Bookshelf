@@ -115,9 +115,7 @@ namespace Bookshelf
                 if (string.IsNullOrWhiteSpace(edtAutor.Text))
                     edtAutor.Text = "Неизвестен";
 
-                Quotes quot = new Quotes();
-                quot.Autor = edtAutor.Text.Trim();
-                quot.Quot = edtQut.Text.Trim();
+                Quotes quot = new Quotes(edtQut.Text.Trim(),edtAutor.Text.Trim());
                 _quoteControler.AddQuot(quot);
                 FillRecylerView();
 
@@ -177,9 +175,7 @@ namespace Bookshelf
                     edtAutor.Text = "Неизвестен";
                 }
 
-                Quotes quot = new Quotes();
-                quot.Autor = edtAutor.Text.Trim();
-                quot.Quot = edtQut.Text.Trim();
+                Quotes quot = new Quotes(edtQut.Text.Trim(), edtAutor.Text.Trim());
                 _quoteControler.EditQuot(quot, pos);
                 FillRecylerView();
 
