@@ -19,6 +19,9 @@ namespace Bookshelf.Model
 
         private View viewMain { get; set; }
 
+        public ImageView ImageFon { get; private set; }
+        public LinearLayout Layout { get; private set; }
+
         public BookLaterViewHolder(View itemView) : base(itemView)
         {
             // Locate and cache view references:
@@ -28,6 +31,8 @@ namespace Bookshelf.Model
             BtnPopMenu = itemView.FindViewById<Button>(Resource.Id.BtnOpenPopMenu);
             TxtAutor = itemView.FindViewById<TextView>(Resource.Id.TvAutor);
             TxtCategori = itemView.FindViewById<TextView>(Resource.Id.TvCategori);
+            ImageFon = itemView.FindViewById<ImageView>(Resource.Id.imageView2);
+            Layout = itemView.FindViewById<LinearLayout>(Resource.Id.LnlMain);
 
             viewMain = itemView;
 

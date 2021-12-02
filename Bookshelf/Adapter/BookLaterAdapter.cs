@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Android.Content.Res;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Bookshelf.Controler;
@@ -42,7 +43,37 @@ namespace Bookshelf.Adapter
                 book.TxtAutor.Text = "Автор: " + books[position].Autor;
                 book.TxtCategori.Text = "Жанр: " + UserControler.categories[books[position].Categori];
             }
+            else
+            {
+                if (books[position].Name.Length > 12)
+                    book.Caption.Text = books[position].Name.Substring(0, 12) + "...";
 
+                int Height = GetSize();
+
+                book.ImageFon.SetImageBitmap(books[position].Photo);
+                var param = book.ImageFon.LayoutParameters;
+                var paramLayot = book.Layout.LayoutParameters;
+                var paramView = book.Image.LayoutParameters;
+
+                paramLayot.Height = (int)(Height / 2);
+                param.Height = (int)(Height / 2) - 20;
+                paramView.Height = (int)(Height / 2.8);
+
+                book.ImageFon.LayoutParameters = param;
+                book.Layout.LayoutParameters = paramLayot;
+                book.Image.LayoutParameters = paramView;
+            }
+
+        }
+
+        private int GetSize()
+        {
+            var pixels = Resources.System.DisplayMetrics.HeightPixels;
+            //var scale = Resources.System.DisplayMetrics.Density;
+            //var dps = (double)((pixels - 0.5f) / scale);
+
+            //return (int)(dps);
+            return pixels - 200;
         }
 
         public override int ItemCount

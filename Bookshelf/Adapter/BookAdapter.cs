@@ -34,12 +34,7 @@ namespace Bookshelf.Controler
             BookViewHolder book = holder as BookViewHolder;
 
             book.Image.SetImageBitmap(bookArray[position].Photo);
-
-            if (bookArray[position].Name.Length > 12)
-                book.Caption.Text = bookArray[position].Name.Substring(0, 12) + "...";
-            else
-                book.Caption.Text = bookArray[position].Name;
-
+            book.Caption.Text = bookArray[position].Name;
             book.BtnFavorite.Tag = position.ToString();
             book.Image.Tag = position.ToString();
 
@@ -75,16 +70,15 @@ namespace Bookshelf.Controler
             }
             else
             {
+                if (bookArray[position].Name.Length > 12)
+                    book.Caption.Text = bookArray[position].Name.Substring(0, 12) + "...";
+
                 int Height = GetSize();
 
                 book.ImageFon.SetImageBitmap(bookArray[position].Photo);
                 var param = book.ImageFon.LayoutParameters;
                 var paramLayot = book.Layout.LayoutParameters;
                 var paramView = book.Image.LayoutParameters;
-
-                //paramLayot.Height = Height + 150;
-                //param.Height = Height + 130;
-                //paramView.Height = (Height+  450) /2;
 
                 paramLayot.Height = (int)(Height / 2);
                 param.Height = (int)(Height / 2)-20;
