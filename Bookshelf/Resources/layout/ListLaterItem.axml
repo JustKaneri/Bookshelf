@@ -24,7 +24,7 @@
 				android:layout_marginTop="3dp"
 				android:layout_marginLeft="3dp"
 				android:layout_marginBottom="3dp"
-				android:maxHeight="250dp" />
+				android:maxHeight="250dp"/>
 
 			<LinearLayout
 			android:layout_width="match_parent"
@@ -76,7 +76,7 @@
 					android:id="@+id/ImgLater"
 					android:scaleType="centerCrop"
 					android:maxHeight="350dp"
-					android:visibility="invisible" />
+					android:visibility="invisible"/>
 				<TextView
 					android:layout_width="match_parent"
 					android:layout_height="match_parent"
