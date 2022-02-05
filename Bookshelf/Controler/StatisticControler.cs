@@ -267,10 +267,10 @@ namespace Bookshelf.Controler
 
             String[] Name = 
             {
-                new DateTime(dt.Year,dt.Month-3,dt.Day).ToString("MM.yyyy"),
-                new DateTime(dt.Year,dt.Month-2,dt.Day).ToString("MM.yyyy"),
-                new DateTime(dt.Year,dt.Month-1,dt.Day).ToString("MM.yyyy"),
-                new DateTime(dt.Year,dt.Month,dt.Day).ToString("MM.yyyy")
+                dt.AddMonths(-3).ToString("MM.yyyy"),
+                dt.AddMonths(-2).ToString("MM.yyyy"),
+                dt.AddMonths(-1).ToString("MM.yyyy"),
+                dt.ToString("MM.yyyy")
                
             };
 
